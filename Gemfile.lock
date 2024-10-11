@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: aa3da4ab8a0b73e9451760ca12aa49b7fcd718dc
+  revision: 101f3d0cf57a6bd35eb49192ab794d6f68786464
   branch: wip/new-to-nl-2
   specs:
     better_together (0.6.0)
@@ -359,7 +359,7 @@ GEM
     image_processing (1.13.0)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
-    importmap-rails (2.0.2)
+    importmap-rails (2.0.3)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
