@@ -55,74 +55,73 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_01_152501) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table 'better_together_addresses', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
-    t.integer 'lock_version', default: 0, null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'label', null: false
-    t.boolean 'physical', default: true, null: false
-    t.boolean 'postal', default: false, null: false
-    t.string 'line1'
-    t.string 'line2'
-    t.string 'city_name'
-    t.string 'state_province_name'
-    t.string 'postal_code'
-    t.string 'country_name'
-    t.string 'privacy', limit: 50, default: 'unlisted', null: false
-    t.uuid 'contact_detail_id', null: false
-    t.boolean 'primary_flag', default: false, null: false
-    t.index %w[contact_detail_id primary_flag], name: 'index_bt_addresses_on_contact_detail_id_and_primary',
-                                                unique: true, where: '(primary_flag IS TRUE)'
-    t.index ['contact_detail_id'], name: 'index_better_together_addresses_on_contact_detail_id'
-    t.index ['privacy'], name: 'by_better_together_addresses_privacy'
+  create_table "better_together_addresses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "label", null: false
+    t.boolean "physical", default: true, null: false
+    t.boolean "postal", default: false, null: false
+    t.string "line1"
+    t.string "line2"
+    t.string "city_name"
+    t.string "state_province_name"
+    t.string "postal_code"
+    t.string "country_name"
+    t.string "privacy", limit: 50, default: "unlisted", null: false
+    t.uuid "contact_detail_id", null: false
+    t.boolean "primary_flag", default: false, null: false
+    t.index ["contact_detail_id", "primary_flag"], name: "index_bt_addresses_on_contact_detail_id_and_primary", unique: true, where: "(primary_flag IS TRUE)"
+    t.index ["contact_detail_id"], name: "index_better_together_addresses_on_contact_detail_id"
+    t.index ["privacy"], name: "by_better_together_addresses_privacy"
   end
 
-  create_table 'better_together_ai_log_translations', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
-    t.integer 'lock_version', default: 0, null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.text 'request', null: false
-    t.text 'response'
-    t.string 'model', null: false
-    t.integer 'prompt_tokens', default: 0, null: false
-    t.integer 'completion_tokens', default: 0, null: false
-    t.integer 'tokens_used', default: 0, null: false
-    t.decimal 'estimated_cost', precision: 10, scale: 5, default: '0.0', null: false
-    t.datetime 'start_time'
-    t.datetime 'end_time'
-    t.string 'status', default: 'pending', null: false
-    t.uuid 'initiator_id'
-    t.string 'source_locale', null: false
-    t.string 'target_locale', null: false
-    t.index ['initiator_id'], name: 'index_better_together_ai_log_translations_on_initiator_id'
-    t.index ['model'], name: 'index_better_together_ai_log_translations_on_model'
-    t.index ['source_locale'], name: 'index_better_together_ai_log_translations_on_source_locale'
-    t.index ['status'], name: 'index_better_together_ai_log_translations_on_status'
-    t.index ['target_locale'], name: 'index_better_together_ai_log_translations_on_target_locale'
+  create_table "better_together_ai_log_translations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "request", null: false
+    t.text "response"
+    t.string "model", null: false
+    t.integer "prompt_tokens", default: 0, null: false
+    t.integer "completion_tokens", default: 0, null: false
+    t.integer "tokens_used", default: 0, null: false
+    t.decimal "estimated_cost", precision: 10, scale: 5, default: "0.0", null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string "status", default: "pending", null: false
+    t.uuid "initiator_id"
+    t.string "source_locale", null: false
+    t.string "target_locale", null: false
+    t.index ["initiator_id"], name: "index_better_together_ai_log_translations_on_initiator_id"
+    t.index ["model"], name: "index_better_together_ai_log_translations_on_model"
+    t.index ["source_locale"], name: "index_better_together_ai_log_translations_on_source_locale"
+    t.index ["status"], name: "index_better_together_ai_log_translations_on_status"
+    t.index ["target_locale"], name: "index_better_together_ai_log_translations_on_target_locale"
   end
 
-  create_table 'better_together_categories', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
-    t.integer 'lock_version', default: 0, null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'identifier', limit: 100, null: false
-    t.integer 'position', null: false
-    t.boolean 'protected', default: false, null: false
-    t.string 'type', default: 'BetterTogether::Category', null: false
-    t.string 'icon', default: 'fas fa-icons', null: false
-    t.index %w[identifier type], name: 'index_better_together_categories_on_identifier_and_type', unique: true
+  create_table "better_together_categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "identifier", limit: 100, null: false
+    t.integer "position", null: false
+    t.boolean "protected", default: false, null: false
+    t.string "type", default: "BetterTogether::Category", null: false
+    t.string "icon", default: "fas fa-icons", null: false
+    t.index ["identifier", "type"], name: "index_better_together_categories_on_identifier_and_type", unique: true
   end
 
-  create_table 'better_together_categorizations', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
-    t.integer 'lock_version', default: 0, null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'category_type', null: false
-    t.uuid 'category_id', null: false
-    t.string 'categorizable_type', null: false
-    t.uuid 'categorizable_id', null: false
-    t.index %w[categorizable_type categorizable_id], name: 'index_better_together_categorizations_on_categorizable'
-    t.index %w[category_type category_id], name: 'index_better_together_categorizations_on_category'
+  create_table "better_together_categorizations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "category_type", null: false
+    t.uuid "category_id", null: false
+    t.string "categorizable_type", null: false
+    t.uuid "categorizable_id", null: false
+    t.index ["categorizable_type", "categorizable_id"], name: "index_better_together_categorizations_on_categorizable"
+    t.index ["category_type", "category_id"], name: "index_better_together_categorizations_on_category"
   end
 
   create_table "better_together_communities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -332,69 +331,65 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_01_152501) do
     t.index ["slug"], name: "index_better_together_geography_states_on_slug", unique: true
   end
 
-  create_table 'better_together_identifications', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
-    t.integer 'lock_version', default: 0, null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.boolean 'active', null: false
-    t.string 'identity_type', null: false
-    t.uuid 'identity_id', null: false
-    t.string 'agent_type', null: false
-    t.uuid 'agent_id', null: false
-    t.index %w[active agent_type agent_id], name: 'active_identification', unique: true
-    t.index ['active'], name: 'by_active_state'
-    t.index %w[agent_type agent_id], name: 'by_agent'
-    t.index %w[identity_type identity_id agent_type agent_id], name: 'unique_identification', unique: true
-    t.index %w[identity_type identity_id], name: 'by_identity'
+  create_table "better_together_identifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "active", null: false
+    t.string "identity_type", null: false
+    t.uuid "identity_id", null: false
+    t.string "agent_type", null: false
+    t.uuid "agent_id", null: false
+    t.index ["active", "agent_type", "agent_id"], name: "active_identification", unique: true
+    t.index ["active"], name: "by_active_state"
+    t.index ["agent_type", "agent_id"], name: "by_agent"
+    t.index ["identity_type", "identity_id", "agent_type", "agent_id"], name: "unique_identification", unique: true
+    t.index ["identity_type", "identity_id"], name: "by_identity"
   end
 
-  create_table 'better_together_jwt_denylists', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
-    t.integer 'lock_version', default: 0, null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'jti'
-    t.datetime 'exp'
-    t.index ['jti'], name: 'index_better_together_jwt_denylists_on_jti'
+  create_table "better_together_jwt_denylists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "jti"
+    t.datetime "exp"
+    t.index ["jti"], name: "index_better_together_jwt_denylists_on_jti"
   end
 
-  create_table 'better_together_messages', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
-    t.integer 'lock_version', default: 0, null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.uuid 'sender_id', null: false
-    t.uuid 'conversation_id', null: false
-    t.index ['conversation_id'], name: 'index_better_together_messages_on_conversation_id'
-    t.index ['sender_id'], name: 'index_better_together_messages_on_sender_id'
+  create_table "better_together_messages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "sender_id", null: false
+    t.uuid "conversation_id", null: false
+    t.index ["conversation_id"], name: "index_better_together_messages_on_conversation_id"
+    t.index ["sender_id"], name: "index_better_together_messages_on_sender_id"
   end
 
-  create_table 'better_together_metrics_downloads', id: :uuid, default: lambda {
-    'gen_random_uuid()'
-  }, force: :cascade do |t|
-    t.integer 'lock_version', default: 0, null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'locale', limit: 5, default: 'es', null: false
-    t.string 'downloadable_type'
-    t.uuid 'downloadable_id'
-    t.string 'file_name', null: false
-    t.string 'file_type', null: false
-    t.bigint 'file_size', null: false
-    t.datetime 'downloaded_at', null: false
-    t.index %w[downloadable_type downloadable_id], name: 'index_better_together_metrics_downloads_on_downloadable'
-    t.index ['locale'], name: 'by_better_together_metrics_downloads_locale'
+  create_table "better_together_metrics_downloads", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "locale", limit: 5, default: "es", null: false
+    t.string "downloadable_type"
+    t.uuid "downloadable_id"
+    t.string "file_name", null: false
+    t.string "file_type", null: false
+    t.bigint "file_size", null: false
+    t.datetime "downloaded_at", null: false
+    t.index ["downloadable_type", "downloadable_id"], name: "index_better_together_metrics_downloads_on_downloadable"
+    t.index ["locale"], name: "by_better_together_metrics_downloads_locale"
   end
 
-  create_table 'better_together_metrics_link_clicks', id: :uuid, default: lambda {
-    'gen_random_uuid()'
-  }, force: :cascade do |t|
-    t.integer 'lock_version', default: 0, null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'url', null: false
-    t.string 'page_url', null: false
-    t.string 'locale', null: false
-    t.boolean 'internal', default: true
-    t.datetime 'clicked_at', null: false
+  create_table "better_together_metrics_link_clicks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "url", null: false
+    t.string "page_url", null: false
+    t.string "locale", null: false
+    t.boolean "internal", default: true
+    t.datetime "clicked_at", null: false
   end
 
   create_table "better_together_metrics_page_views", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -442,32 +437,30 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_01_152501) do
     t.index ["slug"], name: "index_better_together_navigation_areas_on_slug", unique: true
   end
 
-  create_table 'better_together_navigation_items', id: :uuid, default: lambda {
-    'gen_random_uuid()'
-  }, force: :cascade do |t|
-    t.integer 'lock_version', default: 0, null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'identifier', limit: 100, null: false
-    t.integer 'position', null: false
-    t.boolean 'protected', default: false, null: false
-    t.string 'slug'
-    t.boolean 'visible', default: true, null: false
-    t.uuid 'navigation_area_id', null: false
-    t.uuid 'parent_id'
-    t.string 'url'
-    t.string 'icon'
-    t.string 'item_type', null: false
-    t.string 'linkable_type'
-    t.uuid 'linkable_id'
-    t.string 'route_name'
-    t.integer 'children_count', default: 0, null: false
-    t.index ['identifier'], name: 'index_better_together_navigation_items_on_identifier', unique: true
-    t.index %w[linkable_type linkable_id], name: 'by_linkable'
-    t.index %w[navigation_area_id parent_id position], name: 'navigation_items_area_position', unique: true
-    t.index ['navigation_area_id'], name: 'index_better_together_navigation_items_on_navigation_area_id'
-    t.index ['parent_id'], name: 'by_nav_item_parent'
-    t.index ['slug'], name: 'index_better_together_navigation_items_on_slug', unique: true
+  create_table "better_together_navigation_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "identifier", limit: 100, null: false
+    t.integer "position", null: false
+    t.boolean "protected", default: false, null: false
+    t.string "slug"
+    t.boolean "visible", default: true, null: false
+    t.uuid "navigation_area_id", null: false
+    t.uuid "parent_id"
+    t.string "url"
+    t.string "icon"
+    t.string "item_type", null: false
+    t.string "linkable_type"
+    t.uuid "linkable_id"
+    t.string "route_name"
+    t.integer "children_count", default: 0, null: false
+    t.index ["identifier"], name: "index_better_together_navigation_items_on_identifier", unique: true
+    t.index ["linkable_type", "linkable_id"], name: "by_linkable"
+    t.index ["navigation_area_id", "parent_id", "position"], name: "navigation_items_area_position", unique: true
+    t.index ["navigation_area_id"], name: "index_better_together_navigation_items_on_navigation_area_id"
+    t.index ["parent_id"], name: "by_nav_item_parent"
+    t.index ["slug"], name: "index_better_together_navigation_items_on_slug", unique: true
   end
 
   create_table "better_together_pages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -546,40 +539,37 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_01_152501) do
     t.index ["privacy"], name: "by_better_together_phone_numbers_privacy"
   end
 
-  create_table 'better_together_platform_invitations', id: :uuid, default: lambda {
-    'gen_random_uuid()'
-  }, force: :cascade do |t|
-    t.integer 'lock_version', default: 0, null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.uuid 'community_role_id', null: false
-    t.string 'invitee_email', null: false
-    t.uuid 'invitable_id', null: false
-    t.uuid 'invitee_id'
-    t.uuid 'inviter_id', null: false
-    t.uuid 'platform_role_id'
-    t.string 'status', limit: 20, null: false
-    t.string 'locale', limit: 5, default: 'en', null: false
-    t.string 'token', limit: 24, null: false
-    t.datetime 'valid_from', null: false
-    t.datetime 'valid_until'
-    t.datetime 'last_sent'
-    t.datetime 'accepted_at'
-    t.index ['community_role_id'], name: 'platform_invitations_by_community_role'
-    t.index %w[invitable_id status], name: 'index_platform_invitations_on_invitable_id_and_status'
-    t.index ['invitable_id'], name: 'platform_invitations_by_invitable'
-    t.index %w[invitee_email invitable_id], name: 'idx_on_invitee_email_invitable_id_5a7d642388', unique: true
-    t.index ['invitee_email'], name: 'index_pending_invitations_on_invitee_email',
-                               where: '((status)::text = 'pending'::text)'
-    t.index ['invitee_email'], name: 'platform_invitations_by_invitee_email'
-    t.index ['invitee_id'], name: 'platform_invitations_by_invitee'
-    t.index ['inviter_id'], name: 'platform_invitations_by_inviter'
-    t.index ['locale'], name: 'platform_invitations_by_locale'
-    t.index ['platform_role_id'], name: 'platform_invitations_by_platform_role'
-    t.index ['status'], name: 'platform_invitations_by_status'
-    t.index ['token'], name: 'platform_invitations_by_token', unique: true
-    t.index ['valid_from'], name: 'platform_invitations_by_valid_from'
-    t.index ['valid_until'], name: 'platform_invitations_by_valid_until'
+  create_table "better_together_platform_invitations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "community_role_id", null: false
+    t.string "invitee_email", null: false
+    t.uuid "invitable_id", null: false
+    t.uuid "invitee_id"
+    t.uuid "inviter_id", null: false
+    t.uuid "platform_role_id"
+    t.string "status", limit: 20, null: false
+    t.string "locale", limit: 5, default: "en", null: false
+    t.string "token", limit: 24, null: false
+    t.datetime "valid_from", null: false
+    t.datetime "valid_until"
+    t.datetime "last_sent"
+    t.datetime "accepted_at"
+    t.index ["community_role_id"], name: "platform_invitations_by_community_role"
+    t.index ["invitable_id", "status"], name: "index_platform_invitations_on_invitable_id_and_status"
+    t.index ["invitable_id"], name: "platform_invitations_by_invitable"
+    t.index ["invitee_email", "invitable_id"], name: "idx_on_invitee_email_invitable_id_5a7d642388", unique: true
+    t.index ["invitee_email"], name: "index_pending_invitations_on_invitee_email", where: "((status)::text = 'pending'::text)"
+    t.index ["invitee_email"], name: "platform_invitations_by_invitee_email"
+    t.index ["invitee_id"], name: "platform_invitations_by_invitee"
+    t.index ["inviter_id"], name: "platform_invitations_by_inviter"
+    t.index ["locale"], name: "platform_invitations_by_locale"
+    t.index ["platform_role_id"], name: "platform_invitations_by_platform_role"
+    t.index ["status"], name: "platform_invitations_by_status"
+    t.index ["token"], name: "platform_invitations_by_token", unique: true
+    t.index ["valid_from"], name: "platform_invitations_by_valid_from"
+    t.index ["valid_until"], name: "platform_invitations_by_valid_until"
   end
 
   create_table "better_together_platforms", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -867,72 +857,64 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_01_152501) do
     t.index ["slug"], name: "index_resources_on_slug", unique: true
   end
 
-  add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
-  add_foreign_key 'active_storage_variant_records', 'active_storage_blobs', column: 'blob_id'
-  add_foreign_key 'better_together_addresses', 'better_together_contact_details', column: 'contact_detail_id'
-  add_foreign_key 'better_together_ai_log_translations', 'better_together_people', column: 'initiator_id'
-  add_foreign_key 'better_together_communities', 'better_together_people', column: 'creator_id'
-  add_foreign_key 'better_together_content_blocks', 'better_together_people', column: 'creator_id'
-  add_foreign_key 'better_together_content_page_blocks', 'better_together_content_blocks', column: 'block_id'
-  add_foreign_key 'better_together_content_page_blocks', 'better_together_pages', column: 'page_id'
-  add_foreign_key 'better_together_content_platform_blocks', 'better_together_content_blocks', column: 'block_id'
-  add_foreign_key 'better_together_content_platform_blocks', 'better_together_platforms', column: 'platform_id'
-  add_foreign_key 'better_together_conversation_participants', 'better_together_conversations',
-                  column: 'conversation_id'
-  add_foreign_key 'better_together_conversation_participants', 'better_together_people', column: 'person_id'
-  add_foreign_key 'better_together_conversations', 'better_together_people', column: 'creator_id'
-  add_foreign_key 'better_together_email_addresses', 'better_together_contact_details', column: 'contact_detail_id'
-  add_foreign_key 'better_together_geography_continents', 'better_together_communities', column: 'community_id'
-  add_foreign_key 'better_together_geography_countries', 'better_together_communities', column: 'community_id'
-  add_foreign_key 'better_together_geography_country_continents', 'better_together_geography_continents',
-                  column: 'continent_id'
-  add_foreign_key 'better_together_geography_country_continents', 'better_together_geography_countries',
-                  column: 'country_id'
-  add_foreign_key 'better_together_geography_region_settlements', 'better_together_geography_regions',
-                  column: 'region_id'
-  add_foreign_key 'better_together_geography_region_settlements', 'better_together_geography_settlements',
-                  column: 'settlement_id'
-  add_foreign_key 'better_together_geography_regions', 'better_together_communities', column: 'community_id'
-  add_foreign_key 'better_together_geography_regions', 'better_together_geography_countries', column: 'country_id'
-  add_foreign_key 'better_together_geography_regions', 'better_together_geography_states', column: 'state_id'
-  add_foreign_key 'better_together_geography_settlements', 'better_together_communities', column: 'community_id'
-  add_foreign_key 'better_together_geography_settlements', 'better_together_geography_countries', column: 'country_id'
-  add_foreign_key 'better_together_geography_settlements', 'better_together_geography_states', column: 'state_id'
-  add_foreign_key 'better_together_geography_states', 'better_together_communities', column: 'community_id'
-  add_foreign_key 'better_together_geography_states', 'better_together_geography_countries', column: 'country_id'
-  add_foreign_key 'better_together_messages', 'better_together_conversations', column: 'conversation_id'
-  add_foreign_key 'better_together_messages', 'better_together_people', column: 'sender_id'
-  add_foreign_key 'better_together_navigation_items', 'better_together_navigation_areas', column: 'navigation_area_id'
-  add_foreign_key 'better_together_navigation_items', 'better_together_navigation_items', column: 'parent_id'
-  add_foreign_key 'better_together_pages', 'better_together_navigation_areas', column: 'sidebar_nav_id'
-  add_foreign_key 'better_together_people', 'better_together_communities', column: 'community_id'
-  add_foreign_key 'better_together_person_community_memberships', 'better_together_communities', column: 'joinable_id'
-  add_foreign_key 'better_together_person_community_memberships', 'better_together_people', column: 'member_id'
-  add_foreign_key 'better_together_person_community_memberships', 'better_together_roles', column: 'role_id'
-  add_foreign_key 'better_together_person_platform_memberships', 'better_together_people', column: 'member_id'
-  add_foreign_key 'better_together_person_platform_memberships', 'better_together_platforms', column: 'joinable_id'
-  add_foreign_key 'better_together_person_platform_memberships', 'better_together_roles', column: 'role_id'
-  add_foreign_key 'better_together_phone_numbers', 'better_together_contact_details', column: 'contact_detail_id'
-  add_foreign_key 'better_together_platform_invitations', 'better_together_people', column: 'invitee_id'
-  add_foreign_key 'better_together_platform_invitations', 'better_together_people', column: 'inviter_id'
-  add_foreign_key 'better_together_platform_invitations', 'better_together_platforms', column: 'invitable_id'
-  add_foreign_key 'better_together_platform_invitations', 'better_together_roles', column: 'community_role_id'
-  add_foreign_key 'better_together_platform_invitations', 'better_together_roles', column: 'platform_role_id'
-  add_foreign_key 'better_together_platforms', 'better_together_communities', column: 'community_id'
-  add_foreign_key 'better_together_role_resource_permissions', 'better_together_resource_permissions',
-                  column: 'resource_permission_id'
-  add_foreign_key 'better_together_role_resource_permissions', 'better_together_roles', column: 'role_id'
-  add_foreign_key 'better_together_social_media_accounts', 'better_together_contact_details',
-                  column: 'contact_detail_id'
-  add_foreign_key 'better_together_website_links', 'better_together_contact_details', column: 'contact_detail_id'
-  add_foreign_key 'better_together_wizard_step_definitions', 'better_together_wizards', column: 'wizard_id'
-  add_foreign_key 'better_together_wizard_steps', 'better_together_people', column: 'creator_id'
-  add_foreign_key 'better_together_wizard_steps', 'better_together_wizard_step_definitions',
-                  column: 'wizard_step_definition_id'
-  add_foreign_key 'better_together_wizard_steps', 'better_together_wizards', column: 'wizard_id'
-  add_foreign_key 'journey_items', 'better_together_categories', column: 'journey_stage_id'
-  add_foreign_key 'journey_items', 'journeys'
-  add_foreign_key 'journey_stage_topics', 'better_together_categories', column: 'journey_stage_id'
-  add_foreign_key 'journey_stage_topics', 'better_together_categories', column: 'topic_id'
-  add_foreign_key 'journeys', 'better_together_people', column: 'person_id'
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "better_together_addresses", "better_together_contact_details", column: "contact_detail_id"
+  add_foreign_key "better_together_ai_log_translations", "better_together_people", column: "initiator_id"
+  add_foreign_key "better_together_communities", "better_together_people", column: "creator_id"
+  add_foreign_key "better_together_content_blocks", "better_together_people", column: "creator_id"
+  add_foreign_key "better_together_content_page_blocks", "better_together_content_blocks", column: "block_id"
+  add_foreign_key "better_together_content_page_blocks", "better_together_pages", column: "page_id"
+  add_foreign_key "better_together_content_platform_blocks", "better_together_content_blocks", column: "block_id"
+  add_foreign_key "better_together_content_platform_blocks", "better_together_platforms", column: "platform_id"
+  add_foreign_key "better_together_conversation_participants", "better_together_conversations", column: "conversation_id"
+  add_foreign_key "better_together_conversation_participants", "better_together_people", column: "person_id"
+  add_foreign_key "better_together_conversations", "better_together_people", column: "creator_id"
+  add_foreign_key "better_together_email_addresses", "better_together_contact_details", column: "contact_detail_id"
+  add_foreign_key "better_together_geography_continents", "better_together_communities", column: "community_id"
+  add_foreign_key "better_together_geography_countries", "better_together_communities", column: "community_id"
+  add_foreign_key "better_together_geography_country_continents", "better_together_geography_continents", column: "continent_id"
+  add_foreign_key "better_together_geography_country_continents", "better_together_geography_countries", column: "country_id"
+  add_foreign_key "better_together_geography_region_settlements", "better_together_geography_regions", column: "region_id"
+  add_foreign_key "better_together_geography_region_settlements", "better_together_geography_settlements", column: "settlement_id"
+  add_foreign_key "better_together_geography_regions", "better_together_communities", column: "community_id"
+  add_foreign_key "better_together_geography_regions", "better_together_geography_countries", column: "country_id"
+  add_foreign_key "better_together_geography_regions", "better_together_geography_states", column: "state_id"
+  add_foreign_key "better_together_geography_settlements", "better_together_communities", column: "community_id"
+  add_foreign_key "better_together_geography_settlements", "better_together_geography_countries", column: "country_id"
+  add_foreign_key "better_together_geography_settlements", "better_together_geography_states", column: "state_id"
+  add_foreign_key "better_together_geography_states", "better_together_communities", column: "community_id"
+  add_foreign_key "better_together_geography_states", "better_together_geography_countries", column: "country_id"
+  add_foreign_key "better_together_messages", "better_together_conversations", column: "conversation_id"
+  add_foreign_key "better_together_messages", "better_together_people", column: "sender_id"
+  add_foreign_key "better_together_navigation_items", "better_together_navigation_areas", column: "navigation_area_id"
+  add_foreign_key "better_together_navigation_items", "better_together_navigation_items", column: "parent_id"
+  add_foreign_key "better_together_pages", "better_together_navigation_areas", column: "sidebar_nav_id"
+  add_foreign_key "better_together_people", "better_together_communities", column: "community_id"
+  add_foreign_key "better_together_person_community_memberships", "better_together_communities", column: "joinable_id"
+  add_foreign_key "better_together_person_community_memberships", "better_together_people", column: "member_id"
+  add_foreign_key "better_together_person_community_memberships", "better_together_roles", column: "role_id"
+  add_foreign_key "better_together_person_platform_memberships", "better_together_people", column: "member_id"
+  add_foreign_key "better_together_person_platform_memberships", "better_together_platforms", column: "joinable_id"
+  add_foreign_key "better_together_person_platform_memberships", "better_together_roles", column: "role_id"
+  add_foreign_key "better_together_phone_numbers", "better_together_contact_details", column: "contact_detail_id"
+  add_foreign_key "better_together_platform_invitations", "better_together_people", column: "invitee_id"
+  add_foreign_key "better_together_platform_invitations", "better_together_people", column: "inviter_id"
+  add_foreign_key "better_together_platform_invitations", "better_together_platforms", column: "invitable_id"
+  add_foreign_key "better_together_platform_invitations", "better_together_roles", column: "community_role_id"
+  add_foreign_key "better_together_platform_invitations", "better_together_roles", column: "platform_role_id"
+  add_foreign_key "better_together_platforms", "better_together_communities", column: "community_id"
+  add_foreign_key "better_together_role_resource_permissions", "better_together_resource_permissions", column: "resource_permission_id"
+  add_foreign_key "better_together_role_resource_permissions", "better_together_roles", column: "role_id"
+  add_foreign_key "better_together_social_media_accounts", "better_together_contact_details", column: "contact_detail_id"
+  add_foreign_key "better_together_website_links", "better_together_contact_details", column: "contact_detail_id"
+  add_foreign_key "better_together_wizard_step_definitions", "better_together_wizards", column: "wizard_id"
+  add_foreign_key "better_together_wizard_steps", "better_together_people", column: "creator_id"
+  add_foreign_key "better_together_wizard_steps", "better_together_wizard_step_definitions", column: "wizard_step_definition_id"
+  add_foreign_key "better_together_wizard_steps", "better_together_wizards", column: "wizard_id"
+  add_foreign_key "journey_items", "better_together_categories", column: "journey_stage_id"
+  add_foreign_key "journey_items", "journeys"
+  add_foreign_key "journey_stage_topics", "better_together_categories", column: "journey_stage_id"
+  add_foreign_key "journey_stage_topics", "better_together_categories", column: "topic_id"
+  add_foreign_key "journeys", "better_together_people", column: "person_id"
 end
