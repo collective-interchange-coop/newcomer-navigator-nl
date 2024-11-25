@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: 1a0ae294e6b3c43fb096994423b3406c5ed89a36
+  revision: 58fec01f7e5890e38c139f7ea34c7a9fa58c0baf
   branch: wip/encrypted-rich-text-messages
   specs:
     better_together (0.6.0)
