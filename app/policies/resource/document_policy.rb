@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Resource
-  class DocumentPolicy < ResourcePolicy
+  class DocumentPolicy < ResourcePolicy # rubocop:todo Style/Documentation
     def download?
       true
     end

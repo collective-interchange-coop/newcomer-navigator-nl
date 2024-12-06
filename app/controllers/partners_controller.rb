@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PartnersController < BetterTogether::CommunitiesController
+class PartnersController < BetterTogether::CommunitiesController # rubocop:todo Style/Documentation
   def index
     authorize resource_class
     @partners = policy_scope(resource_collection)
@@ -11,7 +11,7 @@ class PartnersController < BetterTogether::CommunitiesController
     authorize_partner
   end
 
-  def create
+  def create # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
     @partner = resource_class.new(partner_params)
     authorize_partner
 
@@ -37,7 +37,7 @@ class PartnersController < BetterTogether::CommunitiesController
     end
   end
 
-  def update
+  def update # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
     authorize_partner
 
     respond_to do |format|

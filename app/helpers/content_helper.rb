@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module ContentHelper
+module ContentHelper # rubocop:todo Style/Documentation
   def render_disclaimer_content
     disclaimer = BetterTogether::Content::RichText.find_by(identifier: 'disclaimer-message')
 

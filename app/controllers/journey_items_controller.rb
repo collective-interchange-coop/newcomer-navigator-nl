@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class JourneyItemsController < ApplicationController
+class JourneyItemsController < ApplicationController # rubocop:todo Style/Documentation
   before_action :set_journey
 
   def index
     @journey_items = @journey.journey_items
   end
 
-  def create
+  def create # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
     @journey_item = @journey.journey_items.new(journey_item_params)
 
     if @journey_item.save
@@ -27,7 +27,7 @@ class JourneyItemsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
     @journey_item = JourneyItem.find(params[:id])
 
     if @journey_item.destroy

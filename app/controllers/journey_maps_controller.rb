@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-class JourneyMapsController < ApplicationController
+class JourneyMapsController < ApplicationController # rubocop:todo Style/Documentation
   before_action :set_journey_map_and_stage
   before_action :set_topic
 
-  def show
+  def show # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
     @pages = BetterTogether::Page.with_journey_stages(@journey_stage&.id)
                                  .with_topics(@topic&.id)
 

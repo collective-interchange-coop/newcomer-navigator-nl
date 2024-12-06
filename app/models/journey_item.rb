@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class JourneyItem < ApplicationRecord
+class JourneyItem < ApplicationRecord # rubocop:todo Style/Documentation
   include BetterTogether::Positioned
   belongs_to :journey
   belongs_to :journey_stage, optional: true

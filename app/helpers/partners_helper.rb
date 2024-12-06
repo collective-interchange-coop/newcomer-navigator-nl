@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-module PartnersHelper
+module PartnersHelper # rubocop:todo Style/Documentation
 end

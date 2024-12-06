@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module NewToNlTopic
+module NewToNlTopic # rubocop:todo Style/Documentation
   extend ::ActiveSupport::Concern
 
   included do
@@ -8,8 +8,10 @@ module NewToNlTopic
     class_attribute :_extra_topic_permitted_attributes, default: []
   end
 
-  class_methods do
-    def has_many_topics
+  class_methods do # rubocop:todo Metrics/BlockLength
+    # rubocop:todo Naming/PredicateName
+    def has_many_topics # rubocop:todo Metrics/MethodLength, Naming/PredicateName
+      # rubocop:enable Naming/PredicateName
       has_many :topic_categorizations, lambda {
         where(category_type: 'Topic')
       }, class_name: 'BetterTogether::Categorization', as: :categorizable, dependent: :destroy
@@ -27,7 +29,9 @@ module NewToNlTopic
       end
     end
 
-    def has_one_topic
+    # rubocop:todo Naming/PredicateName
+    def has_one_topic # rubocop:todo Metrics/MethodLength, Naming/PredicateName
+      # rubocop:enable Naming/PredicateName
       has_one :topic_categorization, lambda {
         where(category_type: 'Topic')
       }, class_name: 'BetterTogether::Categorization', as: :categorizable, dependent: :destroy
@@ -49,7 +53,8 @@ module NewToNlTopic
       super + _extra_topic_permitted_attributes
     end
 
-    def with_topics(topic_ids)
+    # rubocop:todo Metrics/MethodLength
+    def with_topics(topic_ids) # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
       topic_ids = [topic_ids] if topic_ids.is_a?(String)
 
       # Define Arel tables
@@ -68,5 +73,6 @@ module NewToNlTopic
             .join_sources
       ).where(categorization[:category_id].in(topic_ids))
     end
+    # rubocop:enable Metrics/MethodLength
   end
 end

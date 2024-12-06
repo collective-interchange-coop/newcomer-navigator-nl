@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class JourneyMap < BetterTogether::Content::Template
+class JourneyMap < BetterTogether::Content::Template # rubocop:todo Style/Documentation
   include NewToNlJourneyStage
 
   has_one_journey_stage(required: true)

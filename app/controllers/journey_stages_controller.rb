@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class JourneyStagesController < BetterTogether::CategoriesController
+class JourneyStagesController < BetterTogether::CategoriesController # rubocop:todo Style/Documentation
   protected
 
   def resource_class

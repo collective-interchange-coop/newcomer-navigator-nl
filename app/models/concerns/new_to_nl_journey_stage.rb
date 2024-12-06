@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module NewToNlJourneyStage
+module NewToNlJourneyStage # rubocop:todo Style/Documentation
   extend ::ActiveSupport::Concern
 
   included do
@@ -8,8 +8,10 @@ module NewToNlJourneyStage
     class_attribute :_extra_journey_stage_permitted_attributes, default: []
   end
 
-  class_methods do
-    def has_many_journey_stages
+  class_methods do # rubocop:todo Metrics/BlockLength
+    # rubocop:todo Naming/PredicateName
+    def has_many_journey_stages # rubocop:todo Metrics/MethodLength, Naming/PredicateName
+      # rubocop:enable Naming/PredicateName
       has_many :journey_stage_categorizations, lambda {
         where(category_type: 'JourneyStage')
       }, class_name: 'BetterTogether::Categorization', as: :categorizable, dependent: :destroy
@@ -27,7 +29,9 @@ module NewToNlJourneyStage
       end
     end
 
-    def has_one_journey_stage(required: false)
+    # rubocop:todo Naming/PredicateName
+    def has_one_journey_stage(required: false) # rubocop:todo Metrics/MethodLength, Naming/PredicateName
+      # rubocop:enable Naming/PredicateName
       has_one :journey_stage_categorization, lambda {
         where(category_type: 'JourneyStage')
       }, class_name: 'BetterTogether::Categorization', as: :categorizable, dependent: :destroy
@@ -51,7 +55,8 @@ module NewToNlJourneyStage
       super + _extra_journey_stage_permitted_attributes
     end
 
-    def with_journey_stages(journey_stage_ids)
+    # rubocop:todo Metrics/MethodLength
+    def with_journey_stages(journey_stage_ids) # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
       journey_stage_ids = [journey_stage_ids] if journey_stage_ids.is_a?(String)
 
       # Define Arel tables
@@ -70,5 +75,6 @@ module NewToNlJourneyStage
             .join_sources
       ).where(categorization[:category_id].in(journey_stage_ids))
     end
+    # rubocop:enable Metrics/MethodLength
   end
 end
