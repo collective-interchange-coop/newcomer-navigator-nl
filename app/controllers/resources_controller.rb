@@ -48,7 +48,6 @@ class ResourcesController < BetterTogether::FriendlyResourceController
     if @resource.update(resource_params)
       redirect_to edit_resource_path(@resource), notice: 'Resource was successfully updated.', status: :see_other
     else
-      raise
       render :edit, status: :unprocessable_entity
     end
   end
