@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: d55d97da750aa9f3a1b6411a99acf90f366ca7b9
+  revision: 07c97d2b8715697b39dfc60e1cc6a0ab37fa4ecf
   branch: wip/new-to-nl-2
   specs:
     better_together (0.6.0)
@@ -338,7 +338,7 @@ GEM
       ruby-progressbar (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    google-protobuf (4.28.3-x86_64-linux)
+    google-protobuf (4.29.0-x86_64-linux)
       bigdecimal
       rake (>= 13)
     groupdate (6.5.1)
@@ -414,7 +414,7 @@ GEM
     mini_magick (4.13.2)
     mini_mime (1.1.5)
     minitest (5.25.2)
-    mobility (1.2.9)
+    mobility (1.3.1)
       i18n (>= 0.6.10, < 2)
       request_store (~> 1.0)
     mobility-actiontext (1.1.1)
@@ -539,7 +539,7 @@ GEM
       activemodel (>= 5.0)
       reform (>= 2.3.1, < 3.0.0)
     regexp_parser (2.9.2)
-    reline (0.5.11)
+    reline (0.5.12)
       io-console (~> 0.5)
     representable (3.2.0)
       declarative (< 0.1.0)
