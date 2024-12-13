@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'journeyable'
-module NewToNlContentBlock
+module NewToNlContentBlock # rubocop:todo Style/Documentation
   extend ::ActiveSupport::Concern
 
   included do

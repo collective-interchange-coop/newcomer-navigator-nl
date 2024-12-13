@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module NewToNlContentTemplate
+module NewToNlContentTemplate # rubocop:todo Style/Documentation
   extend ::ActiveSupport::Concern
 
   included do

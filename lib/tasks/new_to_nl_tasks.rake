@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-namespace :new_to_nl do
+namespace :new_to_nl do # rubocop:todo Metrics/BlockLength
   desc 'seed Journey Stages'
   task seed_journey_stages: :environment do
     Mobility.with_locale(:en) do
@@ -61,7 +61,7 @@ namespace :new_to_nl do
     end
   end
 
-  def journey_stage_topics_data
+  def journey_stage_topics_data # rubocop:todo Metrics/MethodLength
     {
       'pre-arrival': %w[
         newfoundland-and-labrador immigration housing insurance employment language
@@ -78,7 +78,7 @@ namespace :new_to_nl do
     }.freeze
   end
 
-  def topics_data
+  def topics_data # rubocop:todo Metrics/MethodLength
     # TODO: Add Arrival topic - Modify categories identifer unique index
     {
       'arrival': {

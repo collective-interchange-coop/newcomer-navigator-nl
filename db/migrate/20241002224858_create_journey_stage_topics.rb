@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateJourneyStageTopics < ActiveRecord::Migration[7.1]
+class CreateJourneyStageTopics < ActiveRecord::Migration[7.1] # rubocop:todo Style/Documentation
   def change
     create_bt_table :journey_stage_topics, prefix: nil do |t|
       t.bt_references :journey_stage, target_table: :better_together_categories

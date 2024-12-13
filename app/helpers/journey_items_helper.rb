@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-module JourneyItemsHelper
+module JourneyItemsHelper # rubocop:todo Style/Documentation
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module JourneyMapHelper
+module JourneyMapHelper # rubocop:todo Style/Documentation
   def distribute_topic_indices(topics, max_slots = 14)
     total_topics = topics.length
     return (0...max_slots).to_a if total_topics == max_slots

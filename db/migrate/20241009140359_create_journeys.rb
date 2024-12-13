@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateJourneys < ActiveRecord::Migration[7.1]
+class CreateJourneys < ActiveRecord::Migration[7.1] # rubocop:todo Style/Documentation
   def change
     create_bt_table :journeys, prefix: nil do |t|
       t.bt_references :person, null: false

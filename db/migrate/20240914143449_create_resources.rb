@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateResources < ActiveRecord::Migration[7.1]
+class CreateResources < ActiveRecord::Migration[7.1] # rubocop:todo Style/Documentation
   def change
     create_bt_table :resources do |t|
       t.bt_identifier

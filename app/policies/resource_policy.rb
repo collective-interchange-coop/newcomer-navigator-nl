@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ResourcePolicy < ApplicationPolicy
+class ResourcePolicy < ApplicationPolicy # rubocop:todo Style/Documentation
   def index?
     true
   end

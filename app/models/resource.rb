@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Resource < ApplicationRecord
+class Resource < ApplicationRecord # rubocop:todo Style/Documentation
   include ::BetterTogether::Categorizable
   include ::BetterTogether::Identifier
   include ::BetterTogether::Privacy

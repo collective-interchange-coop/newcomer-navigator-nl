@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ResourcesController < BetterTogether::FriendlyResourceController
+class ResourcesController < BetterTogether::FriendlyResourceController # rubocop:todo Style/Documentation
   before_action :set_resource, only: %i[show edit update destroy download]
   before_action :authorize_resource, only: %i[show edit update destroy download]
   after_action :verify_authorized, except: :index
@@ -48,7 +48,6 @@ class ResourcesController < BetterTogether::FriendlyResourceController
     if @resource.update(resource_params)
       redirect_to edit_resource_path(@resource), notice: 'Resource was successfully updated.', status: :see_other
     else
-      raise
       render :edit, status: :unprocessable_entity
     end
   end
@@ -59,7 +58,7 @@ class ResourcesController < BetterTogether::FriendlyResourceController
     redirect_to resources_url, notice: 'Resource was successfully destroyed.', status: :see_other
   end
 
-  def download
+  def download # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
     if @resource.is_a?(Resource::Document) && @resource.file.attached?
       # Trigger the background job to log the download
       BetterTogether::Metrics::TrackDownloadJob.perform_later(
@@ -92,7 +91,7 @@ class ResourcesController < BetterTogether::FriendlyResourceController
   end
 
   # Only allow a list of trusted parameters through.
-  def resource_params
+  def resource_params # rubocop:todo Metrics/MethodLength
     root_param = if params[:resource_document]
                    :resource_document
                  elsif params[:resource_link]
