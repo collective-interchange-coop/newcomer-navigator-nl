@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-module Resource
-  class DocumentPolicy < ResourcePolicy # rubocop:todo Style/Documentation
-    def download?
-      true
-    end
+class Resource::DocumentPolicy < ResourcePolicy # rubocop:todo Style/Documentation
+  def download?
+    true
+  end
 
-    class Scope < ResourcePolicy::Scope
-    end
+  class Scope < ResourcePolicy::Scope
   end
 end
