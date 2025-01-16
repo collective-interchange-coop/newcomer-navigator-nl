@@ -138,7 +138,7 @@ ActiveRecord::Schema[7.1].define(version: 20_241_101_152_501) do # rubocop:todo 
     t.string 'identifier', limit: 100, null: false
     t.boolean 'host', default: false, null: false
     t.boolean 'protected', default: false, null: false
-    t.string 'privacy', limit: 50, default: 'public', null: false
+    t.string 'privacy', limit: 50, default: 'unlisted', null: false
     t.string 'slug'
     t.uuid 'creator_id'
     t.string 'type', default: 'BetterTogether::Community', null: false
@@ -528,9 +528,9 @@ ActiveRecord::Schema[7.1].define(version: 20_241_101_152_501) do # rubocop:todo 
     t.datetime 'updated_at', null: false
     t.string 'identifier', limit: 100, null: false
     t.string 'slug'
+    t.string 'privacy', limit: 50, default: 'unlisted', null: false
     t.uuid 'community_id', null: false
     t.jsonb 'preferences', default: {}, null: false
-    t.string 'privacy', limit: 50, default: 'unlisted', null: false
     t.index ['community_id'], name: 'by_person_community'
     t.index ['identifier'], name: 'index_better_together_people_on_identifier', unique: true
     t.index ['privacy'], name: 'by_better_together_people_privacy'
@@ -596,7 +596,7 @@ ActiveRecord::Schema[7.1].define(version: 20_241_101_152_501) do # rubocop:todo 
     t.uuid 'inviter_id', null: false
     t.uuid 'platform_role_id'
     t.string 'status', limit: 20, null: false
-    t.string 'locale', limit: 5, default: 'en', null: false
+    t.string 'locale', limit: 5, default: 'es', null: false
     t.string 'token', limit: 24, null: false
     t.datetime 'valid_from', null: false
     t.datetime 'valid_until'
@@ -626,7 +626,7 @@ ActiveRecord::Schema[7.1].define(version: 20_241_101_152_501) do # rubocop:todo 
     t.string 'identifier', limit: 100, null: false
     t.boolean 'host', default: false, null: false
     t.boolean 'protected', default: false, null: false
-    t.string 'privacy', limit: 50, default: 'public', null: false
+    t.string 'privacy', limit: 50, default: 'unlisted', null: false
     t.string 'slug'
     t.uuid 'community_id'
     t.string 'url', null: false
@@ -902,10 +902,10 @@ ActiveRecord::Schema[7.1].define(version: 20_241_101_152_501) do # rubocop:todo 
     t.index %w[recipient_type recipient_id], name: 'index_noticed_notifications_on_recipient'
   end
 
-  create_table 'resources', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+  create_table 'resources', force: :cascade do |t|
     t.string 'identifier', limit: 100, null: false
-    t.string 'locale', limit: 5, default: 'en', null: false
-    t.string 'privacy', limit: 50, default: 'public', null: false
+    t.string 'locale', limit: 5, default: 'es', null: false
+    t.string 'privacy', limit: 50, default: 'unlisted', null: false
     t.string 'slug'
     t.string 'type', default: 'Resource', null: false
     t.string 'url'
