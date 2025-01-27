@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_241_101_152_501) do # rubocop:todo Metrics/BlockLength
+ActiveRecord::Schema[7.1].define(version: 20_241_101_152_501) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -388,6 +388,7 @@ ActiveRecord::Schema[7.1].define(version: 20_241_101_152_501) do # rubocop:todo 
     t.integer 'lock_version', default: 0, null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.text 'content'
     t.uuid 'sender_id', null: false
     t.uuid 'conversation_id', null: false
     t.index ['conversation_id'], name: 'index_better_together_messages_on_conversation_id'
@@ -531,6 +532,7 @@ ActiveRecord::Schema[7.1].define(version: 20_241_101_152_501) do # rubocop:todo 
     t.string 'privacy', limit: 50, default: 'unlisted', null: false
     t.uuid 'community_id', null: false
     t.jsonb 'preferences', default: {}, null: false
+    t.string 'privacy', limit: 50, default: 'unlisted', null: false
     t.index ['community_id'], name: 'by_person_community'
     t.index ['identifier'], name: 'index_better_together_people_on_identifier', unique: true
     t.index ['privacy'], name: 'by_better_together_people_privacy'
@@ -902,10 +904,10 @@ ActiveRecord::Schema[7.1].define(version: 20_241_101_152_501) do # rubocop:todo 
     t.index %w[recipient_type recipient_id], name: 'index_noticed_notifications_on_recipient'
   end
 
-  create_table 'resources', force: :cascade do |t|
+  create_table 'resources', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
     t.string 'identifier', limit: 100, null: false
     t.string 'locale', limit: 5, default: 'es', null: false
-    t.string 'privacy', limit: 50, default: 'unlisted', null: false
+    t.string 'privacy', limit: 50, default: 'public', null: false
     t.string 'slug'
     t.string 'type', default: 'Resource', null: false
     t.string 'url'
