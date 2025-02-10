@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-
-class Resource::Document < Resource # rubocop:todo Style/Documentation
+# rubocop:todo Style/Documentation
+class Resource::Document < Resource # rubocop:todo Style/ClassAndModuleChildren, Style/Documentation
+  # rubocop:enable Style/Documentation
   MAX_FILE_SIZE_MB = ENV.fetch('MAX_FILE_SIZE_MB', 10).to_i.megabytes
 
   has_one_attached :file
