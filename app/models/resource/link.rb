@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class Resource::Link < Resource # rubocop:todo Style/Documentation
+# rubocop:todo Style/Documentation
+class Resource::Link < Resource # rubocop:todo Style/ClassAndModuleChildren, Style/Documentation
+  # rubocop:enable Style/Documentation
   validates :url, presence: true
 
   def self.model_name
