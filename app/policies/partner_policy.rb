@@ -5,6 +5,10 @@ class PartnerPolicy < BetterTogether::CommunityPolicy # rubocop:todo Style/Docum
     true
   end
 
+  def create?
+    permitted_to?('manage_platform')
+  end
+
   def destroy?
     permitted_to?('manage_platform')
   end
