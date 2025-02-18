@@ -4,15 +4,16 @@
   }
 
   .card-img-container {
-    height: 150px; /* Adjust height as needed */
+    // height: 150px; /* Adjust height as needed */
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+    padding-top: 1.5rem;
 
-  .card-img-top {
-    width: 80%;
-    max-height: 100%; /* Ensure image does not overflow container */
-    object-fit: contain; /* Keep image aspect ratio */
+    img.partner-card-img {
+      width: 100%;
+      max-height: 100%; /* Ensure image does not overflow container */
+      object-fit: contain; /* Keep image aspect ratio */
+    }
   }
 }
