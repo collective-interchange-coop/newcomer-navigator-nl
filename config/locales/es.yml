@@ -32,6 +32,8 @@ es:
     none_yet: "Aún no has añadido elementos a tu Viaje. Haz clic en el botón '+' en el contenido para añadirlo a tu Viaje."
   journeys:
     title: "Mi Viaje"
+  partner:
+    updated: 'Organización colaboradora actualizada'
   time:
     am: am
     formats:

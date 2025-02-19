@@ -1,6 +1,8 @@
 
 es:
   partners:
+    edit:
+      title: "Editando organización colaboradora"
     index:
       title: "Organizaciones Colaboradoras"
       new_btn_text: "Agregar organización colaboradora"
