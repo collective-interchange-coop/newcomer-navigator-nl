@@ -532,7 +532,6 @@ ActiveRecord::Schema[7.1].define(version: 20_241_101_152_501) do # rubocop:todo 
     t.string 'privacy', limit: 50, default: 'unlisted', null: false
     t.uuid 'community_id', null: false
     t.jsonb 'preferences', default: {}, null: false
-    t.string 'privacy', limit: 50, default: 'unlisted', null: false
     t.index ['community_id'], name: 'by_person_community'
     t.index ['identifier'], name: 'index_better_together_people_on_identifier', unique: true
     t.index ['privacy'], name: 'by_better_together_people_privacy'
