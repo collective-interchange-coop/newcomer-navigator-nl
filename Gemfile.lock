@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: 9be40ea2fb1bad93b3c6119bcd33222258cc2ce9
-  branch: wip/encrypted-rich-text-messages
+  revision: cca9d30e4baef582012fce7c6310c1ff51fcf172
+  branch: wip/new-to-nl-2
   specs:
     better_together (0.6.0)
       active_storage_svg_sanitizer
