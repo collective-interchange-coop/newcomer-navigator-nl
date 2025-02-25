@@ -1,47 +1,124 @@
-# Better Together
+# Newcomer Navigator NL
 
-[Join Us!](mailto:community@bettertogethersolutions.com?subject=Invitation) | [LinkedIn](https://www.linkedin.com/company/better-together-coop/)
+This is the place where the development of the site
+https://newcomernavigatornl.ca/ takes place.
 
-# We Are Better Together
+Newcomer Navigator NL is a digital platform dedicated to helping
+newcomers in Newfoundland and Labrador navigate the settlement process
+with confidence and ease.
 
-We are a community of and for community builders. Our members are working together to build a better tomorrow. We promote local resilience by encouraging people to communicate with and support one another and share their knowledge, skills, resources and time. 
+This is a project developed by:
 
-The Better Together Community Engine is currently in the design phase and is undergoing preliminary development. We are currently looking for people and organizations to join and help build the platform.
+ - [Collective Interchange](https://collectiveinterchange.com/)
+ - [Better Together](https://bebettertogether.ca/)
 
-## Cooperative Organization Structure
-Better Together was founded to collaboratively design, build and maintain a community platform owned and operated by its members. Better Together is a cooperative community where you belong and make the decisions. By operating as a cooperative, members will make decisions together through proposals, discussions and voting. 
+# Architecture
 
-## Partner Organizations
-Better together is proud to partner with its member organizations to support the development of the platform. If you would like to become a development partner, please get in touch.
+This is a site mainly supported by the GEM
+[community-engine-rails](https://github.com/better-together-org/community-engine-rails)
+which in its core it is a Rails application.  Read its README file in
+order to gain a better understanding of its Architecture.
 
-<a href="http://alpha.joatu.org/" target="_blank" title="Joatu"><img width="300" src="app/assets/images/partners/joatu.png" alt="Joatu" /></a>
-<a href="https://citsci.geog.mcgill.ca/" target="_blank" title="DRAW: Data Rescue Archives and Weather"><img width="300" src="app/assets/images/partners/DRAW.png" alt="DRAW: Data Rescue Archives and Weather"/></a>
+# Develop / Collaborate
 
-## Project Architecture
-The Better Together platform is designed to be a modular system. It can either be deployed as a standalone application for full functionality, or one or more of its independent plugins can be integrated into third-party applications for a subset of its features.
+In order to try and develop this site, you can build and run a
+development environment in your computer.
 
-### Better Together
-- Main wrapper application for the platform
+## Requirements
 
-### Better Together Community Engine
-- Access to all the platform features from all specific domain applications
+ * [Docker compose](https://docs.docker.com/engine/install/)
+ * A Rails Master Key.  This would be provided by the project leader.
 
-#### Gather Together
-- Provides mechanisms to both join and invite people to groups or other entities
-- People can create, join, and invite others to groups.
+### Recommended folder structure
 
-#### Communicate Together
-- Communication and social interaction component
-- Responsible for information publishing (Pages), discussions (Discussions, Posts, Comments)
+When cloning this repository, do it in a way that a folder named
+`collective-interchange` is its parent folder.
 
-#### Organize Together
-- Planning and Scheduling
-- Responsible for collaborative organization features, including Projects, Planning, and Scheduling
-- Will aid in finding available times and places
+Also, clone the repository of the `community-engine-rails` project in
+such a way that its path, relative to this repository, is
+`../../better-together/community-engine-rails`.
 
-#### Trade Together
-- Asset management and trade component
-- Responsible for managing inventory of assets (items), as well as trade among members
+In other words, clone both this repository (`newcomer-navigator-nl`)
+and the repository `community-engine-rails` and keep them with this
+folder structure:
 
-#### Decide Together
-- Decision making and history component
+```
+<common-root>
+|
++- collective-interchange
+|   \ - newcomer-navigator-nl (THIS REPO)
++- better-together
+    \ - community-engine-rails
+```
+
+## Building the development environment
+
+This instructions describe how to build this environment using Docker
+Compose.  It is possible to build the environment without Docker
+Compose but that is considered an advanced method not covered by this
+document.
+
+### Steps
+
+Install the "Rails Master Key".  Simply create a file named `.env` in
+the root folder of this repository, with the following content:
+
+```shell
+RAILS_MASTER_KEY=**********************
+```
+
+Substituting those asterisks (*) for the actual key (provided by the
+project leader).
+
+Then, run the following commands.
+
+Build the application image:
+
+```bash
+docker compose build
+```
+
+Bundle the gems:
+
+```bash
+docker compose run --rm app bundle
+```
+
+Setup the database:
+
+```bash
+docker compose run --rm app rails db:setup
+```
+
+Run the RSpec tests:
+
+```bash
+docker compose run --rm app rspec
+```
+
+## Working with the development environment
+
+### Launching the REPL console
+
+```bash
+bin/dc-console
+```
+
+### Running the app web server
+
+```bash
+bin/dc-up -d
+```
+
+Once the service is running, you can visit `http://localhost:3001` to
+interact with the webapp.
+
+### Monitor the logs
+
+```bash
+bin/dc-logs -f
+```
+
+### Check the Email Inbox
+
+Visit `http://localhost:8026`
