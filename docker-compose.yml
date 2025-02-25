@@ -27,6 +27,7 @@ x-app-shared: &app-shared
     - ../../better-together/community-engine-rails:/community-engine
     - bundler-gems:/usr/local/bundle/
   depends_on:
+    - elasticsearch
     - db
     - redis
   # user: $USER:$USER
