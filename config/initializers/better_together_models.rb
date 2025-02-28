@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 ActiveSupport::Reloader.to_prepare do
+  require_dependency 'better_together/content/block_attributes'
   require_dependency 'better_together/content/block'
   require_dependency 'better_together/content/template'
   require_dependency 'better_together/navigation_item'
