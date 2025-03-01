@@ -604,9 +604,9 @@ ActiveRecord::Schema[7.1].define(version: 20_250_301_172_150) do # rubocop:todo 
     t.datetime 'updated_at', null: false
     t.string 'identifier', limit: 100, null: false
     t.string 'slug'
-    t.string 'privacy', limit: 50, default: 'unlisted', null: false
     t.uuid 'community_id', null: false
     t.jsonb 'preferences', default: {}, null: false
+    t.string 'privacy', limit: 50, default: 'unlisted', null: false
     t.index ['community_id'], name: 'by_person_community'
     t.index ['identifier'], name: 'index_better_together_people_on_identifier', unique: true
     t.index ['privacy'], name: 'by_better_together_people_privacy'
@@ -659,7 +659,8 @@ ActiveRecord::Schema[7.1].define(version: 20_250_301_172_150) do # rubocop:todo 
     t.index ['privacy'], name: 'by_better_together_phone_numbers_privacy'
   end
 
-  create_table 'better_together_platform_invitations', id: :uuid, default: lambda { # rubocop:todo Metrics/BlockLength
+  # rubocop:todo Metrics/BlockLength
+  create_table 'better_together_platform_invitations', id: :uuid, default: lambda {
     'gen_random_uuid()'
   }, force: :cascade do |t|
     t.integer 'lock_version', default: 0, null: false
@@ -694,6 +695,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_301_172_150) do # rubocop:todo 
     t.index ['valid_from'], name: 'platform_invitations_by_valid_from'
     t.index ['valid_until'], name: 'platform_invitations_by_valid_until'
   end
+  # rubocop:enable Metrics/BlockLength
 
   create_table 'better_together_platforms', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
     t.integer 'lock_version', default: 0, null: false
@@ -994,10 +996,10 @@ ActiveRecord::Schema[7.1].define(version: 20_250_301_172_150) do # rubocop:todo 
     t.index %w[recipient_type recipient_id], name: 'index_noticed_notifications_on_recipient'
   end
 
-  create_table 'resources', force: :cascade do |t|
+  create_table 'resources', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
     t.string 'identifier', limit: 100, null: false
     t.string 'locale', limit: 5, default: 'es', null: false
-    t.string 'privacy', limit: 50, default: 'unlisted', null: false
+    t.string 'privacy', limit: 50, default: 'public', null: false
     t.string 'slug'
     t.string 'type', default: 'Resource', null: false
     t.string 'url'
