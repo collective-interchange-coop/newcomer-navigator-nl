@@ -167,7 +167,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_417_194_663) do # rubocop:todo 
     t.string 'identifier', limit: 100, null: false
     t.boolean 'host', default: false, null: false
     t.boolean 'protected', default: false, null: false
-    t.string 'privacy', limit: 50, default: 'unlisted', null: false
+    t.string 'privacy', limit: 50, default: 'public', null: false
     t.string 'slug'
     t.uuid 'creator_id'
     t.string 'type', default: 'BetterTogether::Community', null: false
