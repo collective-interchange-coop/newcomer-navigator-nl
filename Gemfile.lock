@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: 5e3207d96b7e5fbbb703070addf5f9c0e3a2045b
+  revision: 6498f39433159099f9c478786cd96cf613f7f504
   branch: main
   specs:
     better_together (0.6.0)
@@ -478,7 +478,7 @@ GEM
     pundit (2.4.0)
       activesupport (>= 3.0.0)
     racc (1.8.1)
-    rack (3.1.10)
+    rack (3.1.11)
     rack-cors (2.0.2)
       rack (>= 2.0.0)
     rack-mini-profiler (3.3.1)
@@ -698,9 +698,9 @@ GEM
     trailblazer-option (0.1.2)
     translate_enum (0.2.0)
       activesupport
-    turbo-rails (2.0.11)
-      actionpack (>= 6.0.0)
-      railties (>= 6.0.0)
+    turbo-rails (2.0.13)
+      actionpack (>= 7.1.0)
+      railties (>= 7.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uber (0.1.0)
@@ -708,7 +708,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unf (0.2.0)
     unicode-display_width (2.6.0)
-    uri (1.0.2)
+    uri (1.0.3)
     virtus (2.0.0)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
