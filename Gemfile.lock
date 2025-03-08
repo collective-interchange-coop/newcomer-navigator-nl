@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: 5e3207d96b7e5fbbb703070addf5f9c0e3a2045b
+  revision: 4070182aeb7c20f2e705064ff8d55c2f55ff7aad
   branch: main
   specs:
     better_together (0.6.0)
@@ -28,7 +28,7 @@ GIT
       mobility-actiontext (~> 1.1)
       noticed
       premailer-rails
-      pundit (>= 2.1, < 2.5)
+      pundit (>= 2.1, < 2.6)
       pundit-resources
       rack-cors (>= 1.1.1, < 2.1.0)
       rack-mini-profiler
@@ -254,8 +254,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.12.1)
+    devise-i18n (1.13.0)
       devise (>= 4.9.0)
+      rails-i18n
     devise-jwt (0.12.1)
       devise (~> 4.0)
       warden-jwt_auth (~> 0.10)
@@ -339,7 +340,7 @@ GEM
       ruby-progressbar (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    google-protobuf (4.29.3-x86_64-linux)
+    google-protobuf (4.30.0-x86_64-linux)
       bigdecimal
       rake (>= 13)
     groupdate (6.5.1)
@@ -475,10 +476,10 @@ GEM
     public_suffix (6.0.1)
     puma (6.6.0)
       nio4r (~> 2.0)
-    pundit (2.4.0)
+    pundit (2.5.0)
       activesupport (>= 3.0.0)
     racc (1.8.1)
-    rack (3.1.10)
+    rack (3.1.11)
     rack-cors (2.0.2)
       rack (>= 2.0.0)
     rack-mini-profiler (3.3.1)
@@ -698,9 +699,9 @@ GEM
     trailblazer-option (0.1.2)
     translate_enum (0.2.0)
       activesupport
-    turbo-rails (2.0.11)
-      actionpack (>= 6.0.0)
-      railties (>= 6.0.0)
+    turbo-rails (2.0.13)
+      actionpack (>= 7.1.0)
+      railties (>= 7.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uber (0.1.0)
@@ -708,7 +709,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unf (0.2.0)
     unicode-display_width (2.6.0)
-    uri (1.0.2)
+    uri (1.0.3)
     virtus (2.0.0)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
