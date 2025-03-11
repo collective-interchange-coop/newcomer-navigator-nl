@@ -9,7 +9,7 @@ gem 'asset_sync'
 gem 'aws-sdk-s3', require: false
 
 # Use the published version of better_together for production
-gem 'better_together', '~> 0.6.0',
+gem 'better_together', '~> 0.7.0',
     github: 'better-together-org/community-engine-rails',
     branch: 'main'
 
@@ -38,7 +38,7 @@ gem 'rails', '~> 7.1.3'
 # Redis for ActionCable and background jobs
 gem 'redis', '~> 5.4'
 # Sidekiq for background processing
-gem 'sidekiq', '~> 7.3.9'
+gem 'sidekiq', '~> 8.0.1'
 
 # Error and performance monitoring with Sentry
 gem 'sentry-rails'
@@ -78,7 +78,7 @@ group :development do
   # Facilitate I18n translation management
   gem 'i18n_generators'
   # Help with managing translation databasde
-  gem 'i18n-tasks', '~> 1.0.12'
+  gem 'i18n-tasks', '~> 1.0.15'
   # Listen for file system changes
   gem 'listen', '>= 3.0.5', '< 3.10'
   # Rack mini profiler for performance profiling

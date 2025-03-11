@@ -283,3 +283,185 @@ a.active {
     color: $dark-background-text-color;
   }
 }
+
+.content_hero .hero-content .hero-heading { 
+text-shadow: 1px 1px 2px #333333;
+}
+.content_hero .hero-content .hero-paragraph {
+text-shadow: 1px 1px 1px #333333;
+}
+.btn {
+box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
+}
+.hero-cta.btn {
+box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.tab-pane textarea {
+  min-height: 50vh;
+}
+
+.content-block.content_hero .hero-background .hero-content .mouse {
+display: none;
+}
+
+main.content div.position-relative div.position-absolute {
+left: initial !important;
+}
+
+main.content div.position-relative div.position-absolute .btn {
+font-size: 0.7em;
+}
+
+main.content div.position-relative div.position-absolute .btn.btn-secondary {
+font-size: 0.7em;
+}
+
+.content_rich_text a,
+trix-editor a,
+.trix-content a {
+text-decoration: none;
+}
+
+/* Journey Item Icon Colors */
+
+.journey-item.newfoundland-and-labrador .icon-bg {
+color: #404de0 !important; /* Electric Blue */
+}
+.journey-item.newfoundland-and-labrador .icon-outline {
+color: #333cb3 !important; /* Darker Electric Blue */
+}
+
+.journey-item.transportation .icon-bg {
+color: #7F8C8D !important; /* Grey */
+}
+.journey-item.transportation .icon-outline {
+color: #4E5E60 !important; /* Darker Grey */
+}
+
+.journey-item.immigration .icon-bg {
+color: #1ABC9C !important; /* Teal */
+}
+.journey-item.immigration .icon-outline {
+color: #169B82 !important; /* Darker Teal */
+}
+
+.journey-item.housing .icon-bg {
+color: #8B4513 !important; /* Brown */
+}
+.journey-item.housing .icon-outline {
+color: #6B3511 !important; /* Darker Brown */
+}
+
+.journey-item.bank-and-finance .icon-bg {
+color: #27AE60 !important; /* Green */
+}
+.journey-item.bank-and-finance .icon-outline {
+color: #1F8B50 !important; /* Darker Green */
+}
+
+.journey-item.arrival .icon-bg {
+color: #1ABC9C !important; /* Teal */
+}
+.journey-item.arrival .icon-outline {
+color: #169B82 !important; /* Darker Teal */
+}
+
+.journey-item.employment .icon-bg {
+color: #08893e !important; /* Dark Green */
+}
+.journey-item.employment .icon-outline {
+color: #06682F !important; /* Darker Dark Green */
+}
+
+.journey-item.health-and-wellness .icon-bg {
+color: #E74C3C !important; /* Red */
+}
+.journey-item.health-and-wellness .icon-outline {
+color: #C0392B !important; /* Darker Red */
+}
+
+.journey-item.language .icon-bg {
+color: #8E44AD !important; /* Violet */
+}
+.journey-item.language .icon-outline {
+color: #71398A !important; /* Darker Violet */
+}
+
+.journey-item.community-and-connections .icon-bg {
+color: #F39C12 !important; /* Orange */
+}
+.journey-item.community-and-connections .icon-outline {
+color: #C87F0F !important; /* Darker Orange */
+}
+
+.journey-item.family .icon-bg {
+color: #E91E63 !important; /* Pink */
+}
+.journey-item.family .icon-outline {
+color: #C2185B !important; /* Darker Pink */
+}
+
+.journey-item.education .icon-bg {
+color: #F1C40F !important; /* Yellow */
+}
+.journey-item.education .icon-outline {
+color: #C49B0E !important; /* Darker Yellow */
+}
+
+.journey-item.entrepreneurship .icon-bg {
+color: #9B59B6 !important; /* Purple */
+}
+.journey-item.entrepreneurship .icon-outline {
+color: #7E4793 !important; /* Darker Purple */
+}
+
+.journey-item.training .icon-bg {
+color: #3498DB !important; /* Light Blue */
+}
+.journey-item.training .icon-outline {
+color: #2A80B9 !important; /* Darker Light Blue */
+}
+
+.journey-item.travel .icon-bg {
+color: #5DADE2 !important; /* Sky Blue */
+}
+.journey-item.travel .icon-outline {
+color: #4A93B2 !important; /* Darker Sky Blue */
+}
+
+.card.journey-stage > .card-body {
+max-height: 50vh;
+}
+
+.card.journey-stage.pre-arrival .card-body > img {
+max-height: 100%;
+}
+
+.map-canvas .journey-item h3 {
+font-weight: bold;
+font-size: 12px;
+text-shadow: 1px 1px 2px #fff;
+}
+
+#navbarNavDropdown .navbar-nav {
+align-items: center;
+}
+
+.navbar {
+--bs-navbar-toggler-padding-x: 0.25rem;
+}
+
+#user-nav a.host-community {
+display: none;
+}
+
+#navbarNavDropdown.show {
+overflow-y: auto;
+max-height: 92vh;
+}
+
+.notification form[action*="mark_as_read"] .btn[type="submit"] {
+z-index: 1200;
+position: relative;
+}
