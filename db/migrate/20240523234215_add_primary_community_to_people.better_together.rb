@@ -13,6 +13,9 @@ class AddPrimaryCommunityToPeople < ActiveRecord::Migration[7.0]
 
     reversible do |dir|
       dir.up do
+        # Create a default community (considered the "Primary
+        # community") to any existing person without one.  This
+        # happens via a Person model's callback on save.
         BetterTogether::Person.where(community_id: nil).each(&:save!)
       end
     end
