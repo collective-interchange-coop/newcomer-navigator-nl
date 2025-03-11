@@ -88,4 +88,8 @@ Rails.application.configure do # rubocop:todo Metrics/BlockLength
   # config.action_cable.disable_request_forgery_protection = true
 
   BetterErrors::Middleware.allow_ip! '0.0.0.0/0'
+
+  config.to_prepare do
+    FactoryBot.definition_file_paths << File.join(BetterTogether::Engine.root, 'spec', 'factories')
+  end
 end
