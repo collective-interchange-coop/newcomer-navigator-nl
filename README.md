@@ -123,7 +123,7 @@ bin/dc-logs -f
 
 The database, named `new_to_nl_development` would be accessible on the
 port `5345` in the local host.  By default, the username is `postgres`
-and the password is namesake.  You can explore the database using
+and the password is also `postgres`.  You can explore the database using
 `pssql`:
 
 ```bash
