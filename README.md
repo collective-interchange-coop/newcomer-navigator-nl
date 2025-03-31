@@ -107,7 +107,7 @@ bin/dc-console
 ### Running the app web server
 
 ```bash
-bin/dc-up -d
+bin/dc-up
 ```
 
 Once the service is running, you can visit `http://localhost:3001` to
@@ -119,6 +119,44 @@ interact with the webapp.
 bin/dc-logs -f
 ```
 
+### Database
+
+The database, named `new_to_nl_development` would be accessible on the
+port `5345` in the local host.  By default, the username is `postgres`
+and the password is also `postgres`.  You can explore the database using
+`pssql`:
+
+```bash
+psql -h localhost new_to_nl_development postgres
+```
+
 ### Check the Email Inbox
 
 Visit `http://localhost:8026`
+
+### Pulling new code
+
+After pulling new code with `git pull` or similar, it is possible that
+new dependencies has been added to the project, and new database
+definitions, in the form of migrations, can be also present.
+
+To update the dependencies, use `bundle`:
+
+```bash
+bin/dc-run bundle
+```
+
+To check if there are new migrations, run:
+
+```
+bin/dc-run rails db:migrate:status
+```
+
+And to apply them, run:
+
+```
+bin/dc-run rails db:migrate
+```
+
+If you don't do any of those tasks, you will not be able to use the
+system if those changes were needed.
