@@ -16,14 +16,28 @@
     }
 
     // Add scroll event listener to update progress bar width
-    window.onscroll = function() {
+    function debounce(func, wait) {
+      var winScroll = document.documentElement.scrollTop;
+      return function(...args) {
+        const context = this;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(context, args), wait);
+      };
+    }
+
+    function updateProgressBar() {
       var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       var scrolled = (winScroll / height) * 100;
 
       // Update the custom progress bar width based on scroll
-      document.getElementById("custom-progress-bar").style.width = scrolled + "%";
-    };
+      var progressBar = document.getElementById("custom-progress-bar");
+      if (progressBar) {
+        progressBar.style.width = scrolled + "%";
+      }
+    }
+
+    window.addEventListener('scroll', debounce(updateProgressBar, 50));
   }
 
   // Run the function on initial page load
