@@ -4,6 +4,8 @@
 # Creates a db table to track and retrieve the PageViewReport data
 class CreateBetterTogetherMetricsPageViewReports < ActiveRecord::Migration[7.1]
   def change
+    return if table_exists? :better_together_metrics_page_view_reports
+
     create_bt_table :page_view_reports, prefix: :better_together_metrics do |t|
       t.jsonb   :filters,             null: false, default: {}
       t.boolean :sort_by_total_views, null: false, default: false

@@ -4,6 +4,8 @@
 # Creates a db table to track and retrieve the LinkClickReport data
 class CreateBetterTogetherMetricsLinkClickReports < ActiveRecord::Migration[7.1]
   def change
+    return if table_exists? :better_together_metrics_link_click_reports
+
     create_bt_table :link_click_reports, prefix: :better_together_metrics do |t|
       t.jsonb   :filters,                null: false, default: {}
       t.boolean :sort_by_total_clicks,   null: false, default: false
