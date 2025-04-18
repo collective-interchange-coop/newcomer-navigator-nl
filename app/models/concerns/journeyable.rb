@@ -10,15 +10,14 @@ module Journeyable # rubocop:todo Style/Documentation
     def journey_items
       super
     rescue ActiveRecord::AssociationNotFoundError
-      self.becomes(self.class.base_class).journey_items
+      becomes(self.class.base_class).journey_items
     end
 
     def journey
       super
     rescue ActiveRecord::AssociationNotFoundError
-      self.becomes(self.class.base_class).journey
+      becomes(self.class.base_class).journey
     end
-
   end
 
   def journeyable?
