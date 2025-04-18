@@ -4,10 +4,10 @@
       <div class="card-img-container">
         <% if policy(partner).show? %>
           <%= link_to partner_path(partner) do %>
-            <%= image_tag rails_representation_url(partner.optimized_profile_image), class: 'partner-card-img' %>
+            <%= image_tag rails_storage_proxy_url(partner.optimized_profile_image), class: 'partner-card-img' %>
           <% end %>
         <% else %>
-          <%= image_tag rails_representation_url(partner.optimized_profile_image), class: 'partner-card-img' %>
+          <%= image_tag rails_storage_proxy_url(partner.optimized_profile_image), class: 'partner-card-img' %>
         <% end %>
       </div>
     <% end %>
