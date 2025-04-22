@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: 1f0d15503cdfe3230a457850273f67f7319b1ad6
+  revision: 7f611531446777381e800f59790622673d94204b
   branch: main
   specs:
     better_together (0.8.1)
@@ -119,7 +119,7 @@ GEM
       rails-html-sanitizer (~> 1.6)
     active_storage_svg_sanitizer (0.1.0)
       rails (>= 5.2)
-    active_storage_validations (2.0.2)
+    active_storage_validations (2.0.3)
       activejob (>= 6.1.4)
       activemodel (>= 6.1.4)
       activestorage (>= 6.1.4)
@@ -166,8 +166,6 @@ GEM
       mime-types (>= 2.99)
       unf
     ast (2.4.2)
-    autoprefixer-rails (10.4.21.0)
-      execjs (~> 2)
     aws-eventstream (1.3.1)
     aws-partitions (1.1052.0)
     aws-sdk-core (3.219.0)
@@ -202,8 +200,7 @@ GEM
       debug_inspector (>= 1.2.0)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
-    bootstrap (5.3.3)
-      autoprefixer-rails (>= 9.1.0)
+    bootstrap (5.3.5)
       popper_js (>= 2.11.8, < 3)
     brakeman (7.0.0)
       racc
@@ -456,7 +453,7 @@ GEM
     mutex_m (0.3.0)
     net-http (0.6.0)
       uri
-    net-imap (0.5.6)
+    net-imap (0.5.7)
       date
       net-protocol
     net-pop (0.1.2)
@@ -467,7 +464,7 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.4)
-    nokogiri (1.18.7-x86_64-linux-gnu)
+    nokogiri (1.18.8-x86_64-linux-gnu)
       racc (~> 1.4)
     noticed (2.6.0)
       rails (>= 6.1.0)
@@ -657,7 +654,7 @@ GEM
       ffi (~> 1.12)
       logger
     rubyzip (2.4.1)
-    sass-embedded (1.86.3-x86_64-linux-gnu)
+    sass-embedded (1.87.0-x86_64-linux-gnu)
       google-protobuf (~> 4.30)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -698,8 +695,9 @@ GEM
     spring-watcher-listen (2.1.0)
       listen (>= 2.7, < 4.0)
       spring (>= 4)
-    sprockets (4.2.1)
+    sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
+      logger
       rack (>= 2.2.4, < 4)
     sprockets-rails (3.5.2)
       actionpack (>= 6.1)
@@ -708,7 +706,7 @@ GEM
     stackprof (0.2.27)
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
-    stringio (3.1.6)
+    stringio (3.1.7)
     sync (0.5.0)
     term-ansicolor (1.8.0)
       tins (~> 1.0)
