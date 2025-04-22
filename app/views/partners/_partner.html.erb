@@ -1,6 +1,16 @@
 <div id="<%= dom_id(partner) %>" class="col mb-4">
   <div class="card mb-3 partner-card shadow-sm border-0 h-100">
-    <% if partner.profile_image.attached? %>
+    <% if partner.logo.attached? %>
+      <div class="card-img-container">
+        <% if policy(partner).show? %>
+          <%= link_to partner_path(partner) do %>
+            <%= image_tag rails_storage_proxy_url(partner.logo), class: 'partner-card-img' %>
+          <% end %>
+        <% else %>
+          <%= image_tag rails_storage_proxy_url(partner.logo), class: 'partner-card-img' %>
+        <% end %>
+      </div>
+    <% elsif partner.profile_image.attached? %>
       <div class="card-img-container">
         <% if policy(partner).show? %>
           <%= link_to partner_path(partner) do %>
