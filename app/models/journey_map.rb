@@ -5,7 +5,7 @@ class JourneyMap < BetterTogether::Content::Template # rubocop:todo Style/Docume
 
   has_one_journey_stage(required: true)
 
-  AVAILABLE_TEMPLATES = %w[
+  self.available_templates = %w[
     better_together/content/blocks/template/journey_map
   ].freeze
 
