@@ -7,15 +7,27 @@ module Journeyable # rubocop:todo Style/Documentation
     has_many :journey_items, as: :journeyable, class_name: 'JourneyItem'
     has_many :journeys, through: :journey_items, class_name: 'Journey'
 
-    def journeyable?
-      case self.class.name
-      when 'BetterTogether::Content::Hero',
-           'BetterTogether::Content::Css',
-           'JourneyMap'
-        false
-      else
-        true
-      end
+    def journey_items
+      super
+    rescue ActiveRecord::AssociationNotFoundError
+      becomes(self.class.base_class).journey_items
+    end
+
+    def journey
+      super
+    rescue ActiveRecord::AssociationNotFoundError
+      becomes(self.class.base_class).journey
+    end
+  end
+
+  def journeyable?
+    case self.class.name
+    when 'BetterTogether::Content::Hero',
+         'BetterTogether::Content::Css',
+         'JourneyMap'
+      false
+    else
+      true
     end
   end
 end
