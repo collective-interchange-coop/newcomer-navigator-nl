@@ -1,16 +1,70 @@
 ---
 fr:
-  helpers:
-    select:
-      prompt: Veuillez sélectionner
-    submit:
-      create: Créer un(e) %{model}
-      submit: Enregistrer ce(tte) %{model}
-      update: Modifier ce(tte) %{model}
-  time:
-    am: am
-    formats:
-      default: "%d %B %Y %Hh %Mmin %Ss"
-      long: "%A %d %B %Y %Hh%M"
-      short: "%d %b %Hh%M"
-    pm: pm
+  globals:
+    add_member: Add member
+    attached_file: Fichier joint
+    back_to_list: Back to list
+    confirm_delete: Confirm delete
+    delete: Delete
+    download: Télécharger
+    edit: Edit
+    no_publish_date: Pas de date de publication
+    open: Open
+    tabs:
+      about: About
+      contact: Contact
+      members: Members
+    view: View
+  hints:
+    journey_stages:
+      select_multiple: Select multiple
+    resource:
+      author: Nom de l'auteur de la ressource.
+      description: Fournissez une description détaillée de la ressource.
+      file: Joindre un document lié à la ressource.
+      file_size: Le fichier doit faire moins de %{size} Mo.
+      locale: Sélectionnez la langue de la ressource.
+      name: Entrez le nom de la ressource.
+      privacy: Spécifiez le niveau de confidentialité de la ressource.
+      published_at: Définissez la date et l'heure de publication de la ressource.
+        Les ressources ne seront visibles que si elles ont une date de publication
+        dans le passé. Vous pouvez utiliser cela pour contrôler quand les ressources
+        deviennent disponibles en sélectionnant une date future.
+      slug: Entrez un identifiant compatible avec les URL.
+      type: Sélectionnez le type de la ressource.
+      url: Fournissez l'URL externe de la ressource.
+    topics:
+      select_multiple: Select multiple
+  journey_items:
+    none_yet: Vous n'avez pas encore ajouté d'éléments à votre parcours. Cliquez sur
+      le bouton '+' sur le contenu pour l'ajouter à votre parcours.
+    tooltips:
+      add: Ajouter au parcours
+      remove: Retirer du parcours
+  journeys:
+    title: Mon parcours
+  partners:
+    confirm_delete: Confirm delete
+    edit:
+      title: Title
+    index:
+      new_btn_text: New btn text
+      no_partners_message: No partners message
+      title: Title
+    new:
+      title: Title
+  resources:
+    actions:
+      back_to_index: Back to index
+      confirm_destroy: Confirm destroy
+    edit:
+      back_to_resources: Back to resources
+      show_resource: Show resource
+      title: Title
+    index:
+      new_resource: New resource
+      no_resources_message: No resources message
+      title: Title
+    new:
+      back_to_resources: Back to resources
+      title: Title

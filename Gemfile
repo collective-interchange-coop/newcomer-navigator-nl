@@ -77,7 +77,8 @@ group :development do
   gem 'bundler-audit', require: false
   # Facilitate I18n translation management
   gem 'i18n_generators'
-  # Help with managing translation databasde
+  # Help with managing translation database
+  gem 'easy_translate'
   gem 'i18n-tasks', '~> 1.0.15'
   # Listen for file system changes
   gem 'listen', '>= 3.0.5', '< 3.10'

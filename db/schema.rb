@@ -167,7 +167,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_417_194_663) do # rubocop:todo 
     t.string 'identifier', limit: 100, null: false
     t.boolean 'host', default: false, null: false
     t.boolean 'protected', default: false, null: false
-    t.string 'privacy', limit: 50, default: 'public', null: false
+    t.string 'privacy', limit: 50, default: 'unlisted', null: false
     t.string 'slug'
     t.uuid 'creator_id'
     t.string 'type', default: 'BetterTogether::Community', null: false
@@ -742,9 +742,9 @@ ActiveRecord::Schema[7.1].define(version: 20_250_417_194_663) do # rubocop:todo 
     t.datetime 'updated_at', null: false
     t.string 'identifier', limit: 100, null: false
     t.string 'slug'
+    t.string 'privacy', limit: 50, default: 'unlisted', null: false
     t.uuid 'community_id', null: false
     t.jsonb 'preferences', default: {}, null: false
-    t.string 'privacy', limit: 50, default: 'unlisted', null: false
     t.index ['community_id'], name: 'by_person_community'
     t.index ['identifier'], name: 'index_better_together_people_on_identifier', unique: true
     t.index ['privacy'], name: 'by_better_together_people_privacy'
