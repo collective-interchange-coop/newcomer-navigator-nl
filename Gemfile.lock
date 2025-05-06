@@ -667,7 +667,7 @@ GEM
       ffi (~> 1.9)
     sassc-embedded (1.80.4)
       sass-embedded (~> 1.80)
-    securerandom (0.4.1)
+    securerandom (0.3.2)
     selenium-webdriver (4.32.0)
       base64 (~> 0.2)
       logger (~> 1.4)
