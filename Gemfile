@@ -125,4 +125,4 @@ group :test do
   gem 'simplecov', require: false
 end
 
-gem "ostruct", "~> 0.6.1"
+gem 'ostruct', '~> 0.6.1'
