@@ -26,41 +26,54 @@ en:
       locale: Choose the language for this resource.
       name: Enter the resource's name.
       privacy: Define the privacy settings for this resource.
-      published_at: Specify when this resource should be published. Resources will only be visible if the publish date is in the past. Use a future date to schedule availability.
+      published_at: Specify when this resource should be published. Resources will
+        only be visible if the publish date is in the past. Use a future date to schedule
+        availability.
       slug: Provide a URL-friendly identifier for this resource.
       type: Select the resource type.
       url: Enter the external URL for this resource.
     topics:
       select_multiple: You can select multiple topics.
   journey_items:
-    none_yet: You haven't added any items to your Journey yet. Click the '+' button on content to include it in your Journey.
+    none_yet: You haven't added any items to your Journey yet. Click the '+' button
+      on content to include it in your Journey.
     tooltips:
       add: Add this item to your Journey.
       remove: Remove this item from your Journey.
   journey_stages:
-    title: In any stage of your journey, we can guide you
-    pre-arrival:
-      title: Pre-Arrival
-      image_alt: Pre-Arrival Image
-      button: Get ready to come to NL
     arrival:
-      title: Arrival
-      image_alt: Arrival Image
       button: Your first steps in NL
+      image_alt: Arrival Image
+      title: Arrival
+    pre-arrival:
+      button: Get ready to come to NL
+      image_alt: Pre-Arrival Image
+      title: Pre-Arrival
     settlement:
-      title: Settlement
-      image_alt: Settlement Image
       button: Ready to settle in NL
+      image_alt: Settlement Image
+      title: Settlement
+    title: In any stage of your journey, we can guide you
   journeys:
     title: My Personal Journey
   partners:
-    confirm_delete: Are you sure you want to delete this partner?
+    confirm_delete: Are you sure you want to remove this partner?
     edit:
       title: Edit Partner Details
     index:
-      new_btn_text: Add New Partner
-      no_partners_message: No partners have been added yet.
-      title: Our Partners
+      alphabetical_note: 'These are our Partner Organizations (Alphabetical order):'
+      description: 'In the "Partner Organizations" section, you''ll find information
+        about groups that help newcomers and immigrants in Newfoundland and Labrador.
+        These organizations offer many different kinds of help, like finding jobs,
+        going to school, making friends, and getting legal advice. By talking to these
+        groups, newcomers can get help with settling in, finding good jobs, learning
+        new things, and becoming part of their new communities. This group of organizations
+        is here to help you every step of the way.
+
+        '
+      new_btn_text: Add Partner Organization
+      no_partners_message: There are no partner organizations yet. Why not add one?
+      title: Partner Organizations
     new:
       title: Add a New Partner
   resources:

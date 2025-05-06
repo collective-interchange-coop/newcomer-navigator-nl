@@ -1,23 +1,23 @@
 ---
 es:
   globals:
-    add_member: Add member
+    add_member: Agregar miembro
     attached_file: Archivo adjunto
-    back_to_list: Back to list
-    confirm_delete: Confirm delete
-    delete: Delete
+    back_to_list: Volver a la lista
+    confirm_delete: Confirmar eliminación
+    delete: Eliminar
     download: Descargar
-    edit: Edit
+    edit: Editar
     no_publish_date: Sin fecha de publicación
-    open: Open
+    open: Abrir
     tabs:
-      about: About
-      contact: Contact
-      members: Members
-    view: View
+      about: Acerca de
+      contact: Contacto
+      members: Miembros
+    view: Ver
   hints:
     journey_stages:
-      select_multiple: Select multiple
+      select_multiple: Seleccione múltiples
     resource:
       author: Nombre del autor del recurso.
       description: Proporcione una descripción detallada del recurso.
@@ -34,51 +34,62 @@ es:
       type: Seleccione el tipo de recurso.
       url: Proporcione la URL externa para el recurso.
     topics:
-      select_multiple: Select multiple
+      select_multiple: Seleccione múltiples
   journey_items:
     none_yet: Aún no has añadido elementos a tu Viaje. Haz clic en el botón '+' en
       el contenido para añadirlo a tu Viaje.
     tooltips:
       add: Agregar al Viaje
       remove: Eliminar del Viaje
+  journey_stages:
+    arrival:
+      button: Tus primeros pasos en NL
+      image_alt: Imagen de Arribo
+      title: Arribo
+    pre-arrival:
+      button: Prepárate para venir a NL
+      image_alt: Imagen de Pre-Arribo
+      title: Pre-Arribo
+    settlement:
+      button: Listo para establecerte en NL
+      image_alt: Imagen de establecerte
+      title: Asentamiento
+    title: En cualquier etapa de tu viaje, podemos guiarte
   journeys:
     title: Mi Viaje
-  journey_stages:
-    title: En cualquier etapa de tu viaje, podemos guiarte
-    pre-arrival:
-      title: Pre-Arribo
-      image_alt: Imagen de Pre-Arribo
-      button: Prepárate para venir a NL
-    arrival:
-      title: Arribo
-      image_alt: Imagen de Arribo
-      button: Tus primeros pasos en NL
-    settlement:
-      title: Asentamiento
-      image_alt: Imagen de establecerte
-      button: Listo para establecerte en NL
   partners:
-    confirm_delete: Confirm delete
+    confirm_delete: "¿Estás seguro de que deseas eliminar esta organización asociada?"
     edit:
-      title: Edit Partner
+      title: Editar organización asociada
     index:
-      new:
-        title: Nueva organización asociada
-      new_btn_text: Nuevo socio
+      alphabetical_note: 'Estas son nuestras Organizaciones Asociadas (orden alfabético):'
+      description: 'En la sección "Organizaciones Asociadas", encontrarás información
+        sobre grupos que ayudan a recién llegados e inmigrantes en Terranova y Labrador.
+        Estas organizaciones ofrecen diferentes tipos de ayuda, como encontrar empleo,
+        acceder a educación, hacer amigos y recibir asesoramiento legal. Al contactar
+        a estos grupos, los recién llegados pueden obtener apoyo para establecerse,
+        encontrar buenos empleos, aprender nuevas cosas y formar parte de sus nuevas
+        comunidades. Este conjunto de organizaciones está aquí para ayudarte en cada
+        paso del camino.
+
+        '
+      new_btn_text: Nueva organización asociada
       no_partners_message: No hay organizaciones asociadas
-      resources:
-        actions:
-          back_to_index: Volver al índice
-          confirm_destroy: Confirmar eliminación
-          edit:
-            back_to_resources: Volver a los recursos
-            show_resource: Mostrar recurso
-            title: Editar recurso
-          index:
-            new_resource: Nuevo recurso
-            no_resources_message: No hay recursos
-            title: Recursos
-          new:
-            back_to_resources: Volver a los recursos
-            title: Nuevo recurso
       title: Organizaciones asociadas
+    new:
+      title: Nueva organización asociada
+  resources:
+    actions:
+      back_to_index: Volver al índice
+      confirm_destroy: Confirmar eliminación
+    edit:
+      back_to_resources: Volver a los recursos
+      show_resource: Mostrar recurso
+      title: Editar recurso
+    index:
+      new_resource: Nuevo recurso
+      no_resources_message: No hay recursos
+      title: Recursos
+    new:
+      back_to_resources: Volver a los recursos
+      title: Nuevo recurso

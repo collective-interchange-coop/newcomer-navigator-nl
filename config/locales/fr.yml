@@ -1,23 +1,23 @@
 ---
 fr:
   globals:
-    add_member: Add member
+    add_member: Ajouter un membre
     attached_file: Fichier joint
-    back_to_list: Back to list
-    confirm_delete: Confirm delete
-    delete: Delete
+    back_to_list: Retour à la liste
+    confirm_delete: Confirmer la suppression
+    delete: Supprimer
     download: Télécharger
-    edit: Edit
+    edit: Modifier
     no_publish_date: Pas de date de publication
-    open: Open
+    open: Ouvrir
     tabs:
-      about: About
+      about: À propos
       contact: Contact
-      members: Members
-    view: View
+      members: Membres
+    view: Voir
   hints:
     journey_stages:
-      select_multiple: Select multiple
+      select_multiple: Sélectionnez plusieurs
     resource:
       author: Nom de l'auteur de la ressource.
       description: Fournissez une description détaillée de la ressource.
@@ -34,51 +34,62 @@ fr:
       type: Sélectionnez le type de la ressource.
       url: Fournissez l'URL externe de la ressource.
     topics:
-      select_multiple: Select multiple
+      select_multiple: Sélectionnez plusieurs
   journey_items:
     none_yet: Vous n'avez pas encore ajouté d'éléments à votre parcours. Cliquez sur
       le bouton '+' sur le contenu pour l'ajouter à votre parcours.
     tooltips:
       add: Ajouter au parcours
       remove: Retirer du parcours
+  journey_stages:
+    arrival:
+      button: Vos premiers pas aux Pays-Bas
+      image_alt: Image d'Arrivée
+      title: Arrivée
+    pre-arrival:
+      button: Préparez-vous à venir aux Pays-Bas
+      image_alt: Image de Pré-Arrivée
+      title: Pré-Arrivée
+    settlement:
+      button: Prêt à vous installer aux Pays-Bas
+      image_alt: Image d'Installation
+      title: Installation
+    title: À chaque étape de votre parcours, nous pouvons vous guider
   journeys:
     title: Mon parcours
-  journey_stages:
-    title: À chaque étape de votre parcours, nous pouvons vous guider
-    pre-arrival:
-      title: Pré-Arrivée
-      image_alt: Image de Pré-Arrivée
-      button: Préparez-vous à venir aux Pays-Bas
-    arrival:
-      title: Arrivée
-      image_alt: Image d'Arrivée
-      button: Vos premiers pas aux Pays-Bas
-    settlement:
-      title: Installation
-      image_alt: Image d'Installation
-      button: Prêt à vous installer aux Pays-Bas
   partners:
-    confirm_delete: Confirmer la suppression
+    confirm_delete: Êtes-vous sûr de vouloir supprimer ce partenaire ?
     edit:
       title: Modifier l'organisation partenaire
     index:
+      alphabetical_note: 'Voici nos Organisations Partenaires (ordre alphabétique):'
+      description: 'Dans la section "Organisations Partenaires", vous trouverez des
+        informations sur les groupes qui aident les nouveaux arrivants et les immigrants
+        à Terre-Neuve-et-Labrador. Ces organisations offrent différents types d''aide,
+        comme trouver un emploi, accéder à l''éducation, se faire des amis et obtenir
+        des conseils juridiques. En contactant ces groupes, les nouveaux arrivants
+        peuvent obtenir un soutien pour s''établir, trouver de bons emplois, apprendre
+        de nouvelles choses et faire partie de leurs nouvelles communautés. Ce groupe
+        d''organisations est là pour vous aider à chaque étape.
+
+        '
       new_btn_text: Nouvelle organisation partenaire
       no_partners_message: Aucune organisation partenaire trouvée
       title: Organisations partenaires
     new:
       title: Nouvelle organisation partenaire
-    resources:
-      actions:
-        back_to_index: Retour à l'index
-        confirm_destroy: Confirmer la suppression
-      edit:
-        back_to_resources: Retour aux ressources
-        show_resource: Afficher la ressource
-        title: Modifier la ressource
-      index:
-        new_resource: Nouvelle ressource
-        no_resources_message: Aucune ressource trouvée
-        title: Ressources
-      new:
-        back_to_resources: Retour aux ressources
-        title: Nouvelle ressource
+  resources:
+    actions:
+      back_to_index: Retour à l'index
+      confirm_destroy: Confirmer la suppression
+    edit:
+      back_to_resources: Retour aux ressources
+      show_resource: Afficher la ressource
+      title: Modifier la ressource
+    index:
+      new_resource: Nouvelle ressource
+      no_resources_message: Aucune ressource trouvée
+      title: Ressources
+    new:
+      back_to_resources: Retour aux ressources
+      title: Nouvelle ressource
