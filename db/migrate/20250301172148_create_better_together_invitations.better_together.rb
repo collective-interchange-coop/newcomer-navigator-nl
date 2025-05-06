@@ -4,6 +4,8 @@
 # Creates invitations table
 class CreateBetterTogetherInvitations < ActiveRecord::Migration[7.0]
   def change # rubocop:todo Metrics/MethodLength, Metrics/AbcSize
+    return if table_exists? :better_together_invitations
+
     create_bt_table :invitations do |t| # rubocop:todo Metrics/BlockLength
       t.string 'type', default: 'BetterTogether::Invitation', null: false
       t.string :status,
