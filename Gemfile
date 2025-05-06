@@ -64,6 +64,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   # Fuubar for fancy test progress bar
   gem 'fuubar'
+  gem 'i18n-tasks', '~> 1.0.15'
   # Pry for a powerful shell alternative to IRB
   gem 'pry'
   # RuboCop for static code analysis
@@ -79,7 +80,6 @@ group :development do
   gem 'i18n_generators'
   # Help with managing translation database
   gem 'easy_translate'
-  gem 'i18n-tasks', '~> 1.0.15'
   # Listen for file system changes
   gem 'listen', '>= 3.0.5', '< 3.10'
   # Rack mini profiler for performance profiling
