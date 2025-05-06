@@ -1,70 +1,80 @@
 ---
 en:
   globals:
-    add_member: Add member
-    attached_file: Attached file
-    back_to_list: Back to list
-    confirm_delete: Confirm delete
-    delete: Delete
-    download: Download
-    edit: Edit
-    no_publish_date: No publish date
-    open: Open
+    add_member: Add a new member
+    attached_file: File attached
+    back_to_list: Return to the list
+    confirm_delete: Are you sure you want to delete this?
+    delete: Remove
+    download: Download file
+    edit: Edit details
+    no_publish_date: Publish date not set
+    open: Open item
     tabs:
-      about: About
-      contact: Contact
+      about: About Us
+      contact: Contact Us
       members: Members
-    view: View
+    view: View details
   hints:
     journey_stages:
-      select_multiple: Select multiple
+      select_multiple: You can select multiple options.
     resource:
-      author: Name of the author of the resource.
-      description: Provide a detailed description of the resource.
-      file: Attach a document related to the resource.
-      file_size: File must be less than %{size} MB.
-      locale: Select the language of the resource.
-      name: Enter the name of the resource.
-      privacy: Specify the privacy level of the resource.
-      published_at: Set the date and time when the resource was published. Resources
-        will only be visible if they have a published date that is in the past. You
-        can use this to control when resources become available by selecting a future
-        date.
-      slug: Enter a URL-friendly identifier.
-      type: Select the type of the resource.
-      url: Provide the external URL for the resource.
+      author: Enter the name of the resource's author.
+      description: Provide a detailed description of this resource.
+      file: Attach a relevant document for this resource.
+      file_size: The file size must not exceed %{size} MB.
+      locale: Choose the language for this resource.
+      name: Enter the resource's name.
+      privacy: Define the privacy settings for this resource.
+      published_at: Specify when this resource should be published. Resources will only be visible if the publish date is in the past. Use a future date to schedule availability.
+      slug: Provide a URL-friendly identifier for this resource.
+      type: Select the resource type.
+      url: Enter the external URL for this resource.
     topics:
-      select_multiple: Select multiple
+      select_multiple: You can select multiple topics.
   journey_items:
-    none_yet: You haven't added any items to your Journey yet. Click on the '+' button
-      on content to add it to your Journey.
+    none_yet: You haven't added any items to your Journey yet. Click the '+' button on content to include it in your Journey.
     tooltips:
-      add: Add to Journey
-      remove: Remove from Journey
+      add: Add this item to your Journey.
+      remove: Remove this item from your Journey.
+  journey_stages:
+    title: In any stage of your journey, we can guide you
+    pre-arrival:
+      title: Pre-Arrival
+      image_alt: Pre-Arrival Image
+      button: Get ready to come to NL
+    arrival:
+      title: Arrival
+      image_alt: Arrival Image
+      button: Your first steps in NL
+    settlement:
+      title: Settlement
+      image_alt: Settlement Image
+      button: Ready to settle in NL
   journeys:
-    title: My Journey
+    title: My Personal Journey
   partners:
-    confirm_delete: Confirm delete
+    confirm_delete: Are you sure you want to delete this partner?
     edit:
-      title: Title
+      title: Edit Partner Details
     index:
-      new_btn_text: New btn text
-      no_partners_message: No partners message
-      title: Title
+      new_btn_text: Add New Partner
+      no_partners_message: No partners have been added yet.
+      title: Our Partners
     new:
-      title: Title
+      title: Add a New Partner
   resources:
     actions:
-      back_to_index: Back to index
-      confirm_destroy: Confirm destroy
+      back_to_index: Return to the resource list
+      confirm_destroy: Are you sure you want to delete this resource?
     edit:
-      back_to_resources: Back to resources
-      show_resource: Show resource
-      title: Title
+      back_to_resources: Return to the resource list
+      show_resource: View this resource
+      title: Edit Resource Details
     index:
-      new_resource: New resource
-      no_resources_message: No resources message
-      title: Title
+      new_resource: Add a New Resource
+      no_resources_message: No resources have been added yet.
+      title: Resource Library
     new:
-      back_to_resources: Back to resources
-      title: Title
+      back_to_resources: Return to the resource list
+      title: Create a New Resource

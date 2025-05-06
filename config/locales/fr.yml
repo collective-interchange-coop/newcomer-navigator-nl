@@ -43,28 +43,42 @@ fr:
       remove: Retirer du parcours
   journeys:
     title: Mon parcours
+  journey_stages:
+    title: À chaque étape de votre parcours, nous pouvons vous guider
+    pre-arrival:
+      title: Pré-Arrivée
+      image_alt: Image de Pré-Arrivée
+      button: Préparez-vous à venir aux Pays-Bas
+    arrival:
+      title: Arrivée
+      image_alt: Image d'Arrivée
+      button: Vos premiers pas aux Pays-Bas
+    settlement:
+      title: Installation
+      image_alt: Image d'Installation
+      button: Prêt à vous installer aux Pays-Bas
   partners:
-    confirm_delete: Confirm delete
+    confirm_delete: Confirmer la suppression
     edit:
-      title: Title
+      title: Modifier l'organisation partenaire
     index:
-      new_btn_text: New btn text
-      no_partners_message: No partners message
-      title: Title
+      new_btn_text: Nouvelle organisation partenaire
+      no_partners_message: Aucune organisation partenaire trouvée
+      title: Organisations partenaires
     new:
-      title: Title
-  resources:
-    actions:
-      back_to_index: Back to index
-      confirm_destroy: Confirm destroy
-    edit:
-      back_to_resources: Back to resources
-      show_resource: Show resource
-      title: Title
-    index:
-      new_resource: New resource
-      no_resources_message: No resources message
-      title: Title
-    new:
-      back_to_resources: Back to resources
-      title: Title
+      title: Nouvelle organisation partenaire
+    resources:
+      actions:
+        back_to_index: Retour à l'index
+        confirm_destroy: Confirmer la suppression
+      edit:
+        back_to_resources: Retour aux ressources
+        show_resource: Afficher la ressource
+        title: Modifier la ressource
+      index:
+        new_resource: Nouvelle ressource
+        no_resources_message: Aucune ressource trouvée
+        title: Ressources
+      new:
+        back_to_resources: Retour aux ressources
+        title: Nouvelle ressource

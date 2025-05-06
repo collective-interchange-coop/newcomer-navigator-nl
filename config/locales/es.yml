@@ -43,28 +43,42 @@ es:
       remove: Eliminar del Viaje
   journeys:
     title: Mi Viaje
+  journey_stages:
+    title: En cualquier etapa de tu viaje, podemos guiarte
+    pre-arrival:
+      title: Pre-Arribo
+      image_alt: Imagen de Pre-Arribo
+      button: Prepárate para venir a NL
+    arrival:
+      title: Arribo
+      image_alt: Imagen de Arribo
+      button: Tus primeros pasos en NL
+    settlement:
+      title: Asentamiento
+      image_alt: Imagen de establecerte
+      button: Listo para establecerte en NL
   partners:
     confirm_delete: Confirm delete
     edit:
-      title: Title
+      title: Edit Partner
     index:
-      new_btn_text: New btn text
-      no_partners_message: No partners message
-      title: Title
-    new:
-      title: Title
-  resources:
-    actions:
-      back_to_index: Back to index
-      confirm_destroy: Confirm destroy
-    edit:
-      back_to_resources: Back to resources
-      show_resource: Show resource
-      title: Title
-    index:
-      new_resource: New resource
-      no_resources_message: No resources message
-      title: Title
-    new:
-      back_to_resources: Back to resources
-      title: Title
+      new:
+        title: Nueva organización asociada
+      new_btn_text: Nuevo socio
+      no_partners_message: No hay organizaciones asociadas
+      resources:
+        actions:
+          back_to_index: Volver al índice
+          confirm_destroy: Confirmar eliminación
+          edit:
+            back_to_resources: Volver a los recursos
+            show_resource: Mostrar recurso
+            title: Editar recurso
+          index:
+            new_resource: Nuevo recurso
+            no_resources_message: No hay recursos
+            title: Recursos
+          new:
+            back_to_resources: Volver a los recursos
+            title: Nuevo recurso
+      title: Organizaciones asociadas
