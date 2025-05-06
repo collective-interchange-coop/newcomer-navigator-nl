@@ -267,7 +267,7 @@ GEM
     disposable (0.6.3)
       declarative (>= 0.0.9, < 1.0.0)
       representable (>= 3.1.1, < 4)
-    docile (1.4.0)
+    docile (1.4.1)
     domain_name (0.6.20240107)
     drb (2.2.1)
     dry-auto_inject (1.1.0)
@@ -302,8 +302,8 @@ GEM
     excon (1.2.5)
       logger
     execjs (2.10.0)
-    factory_bot (6.5.0)
-      activesupport (>= 5.0.0)
+    factory_bot (6.5.1)
+      activesupport (>= 6.1.0)
     factory_bot_rails (6.4.4)
       factory_bot (~> 6.5)
       railties (>= 5.0.0)
@@ -317,6 +317,7 @@ GEM
       multipart-post (~> 2.0)
     faraday-net_http (3.4.0)
       net-http (>= 0.5.0)
+    ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-x86_64-linux-gnu)
     fog-aws (3.31.0)
       base64 (~> 0.2.0)
@@ -350,6 +351,9 @@ GEM
       csv (>= 3.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    google-protobuf (4.30.2-aarch64-linux)
+      bigdecimal
+      rake (>= 13)
     google-protobuf (4.30.2-x86_64-linux)
       bigdecimal
       rake (>= 13)
@@ -360,7 +364,7 @@ GEM
       reline
     htmlentities (4.3.4)
     http-accept (1.7.0)
-    http-cookie (1.0.5)
+    http-cookie (1.0.8)
       domain_name (~> 0.5)
     humanize_boolean (0.0.2)
       i18n
@@ -440,7 +444,7 @@ GEM
     mime-types (3.6.2)
       logger
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2025.0415)
+    mime-types-data (3.2025.0429)
     mini_magick (5.2.0)
       benchmark
       logger
@@ -452,7 +456,7 @@ GEM
     mobility-actiontext (1.1.1)
       actiontext (>= 6.0)
       mobility (~> 1.2)
-    msgpack (1.7.2)
+    msgpack (1.7.5)
     multi_json (1.15.0)
     multipart-post (2.4.1)
     mutex_m (0.3.0)
@@ -469,12 +473,15 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.4)
+    nokogiri (1.18.8-aarch64-linux-gnu)
+      racc (~> 1.4)
     nokogiri (1.18.8-x86_64-linux-gnu)
       racc (~> 1.4)
     noticed (2.6.1)
       rails (>= 6.1.0)
     optimist (3.1.0)
     orm_adapter (0.5.0)
+    ostruct (0.6.1)
     parallel (1.27.0)
     parser (3.3.8.0)
       ast (~> 2.4.1)
@@ -605,10 +612,10 @@ GEM
       rspec-mocks (~> 3.13.0)
     rspec-core (3.13.3)
       rspec-support (~> 3.13.0)
-    rspec-expectations (3.13.3)
+    rspec-expectations (3.13.4)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-mocks (3.13.2)
+    rspec-mocks (3.13.4)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-rails (7.1.1)
@@ -677,6 +684,8 @@ GEM
       ffi (~> 1.12)
       logger
     rubyzip (2.4.1)
+    sass-embedded (1.87.0-aarch64-linux-gnu)
+      google-protobuf (~> 4.30)
     sass-embedded (1.87.0-x86_64-linux-gnu)
       google-protobuf (~> 4.30)
     sassc (2.4.0)
@@ -789,6 +798,7 @@ GEM
     zeitwerk (2.7.2)
 
 PLATFORMS
+  aarch64-linux
   x86_64-linux
 
 DEPENDENCIES
@@ -813,6 +823,7 @@ DEPENDENCIES
   i18n-tasks (~> 1.0.15)
   i18n_generators
   listen (>= 3.0.5, < 3.10)
+  ostruct (~> 0.6.1)
   pg (>= 0.18, < 2.0)
   pry
   puma (~> 6.6)
@@ -847,7 +858,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 3.2.4p170
+   ruby 3.4.3p32
 
 BUNDLED WITH
-   2.4.19
+   2.6.7

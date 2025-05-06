@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.2.4'
+ruby '3.4.3'
 
 gem 'asset_sync'
 gem 'aws-sdk-s3', require: false
@@ -33,6 +33,8 @@ gem 'pundit-resources', '~> 1.1.4', github: 'better-together-org/pundit-resource
 
 # Core Rails gem
 gem 'rack-protection'
+# Rack mini profiler for performance profiling
+gem 'rack-mini-profiler'
 gem 'rails', '~> 7.1.3'
 
 # Redis for ActionCable and background jobs
@@ -82,8 +84,6 @@ group :development do
   gem 'easy_translate'
   # Listen for file system changes
   gem 'listen', '>= 3.0.5', '< 3.10'
-  # Rack mini profiler for performance profiling
-  gem 'rack-mini-profiler'
   # Readline implementation for Ruby
   gem 'rb-readline'
   # Spring for fast Rails actions via pre-loading
@@ -124,3 +124,5 @@ group :test do
   # SimpleCov for test coverage analysis
   gem 'simplecov', require: false
 end
+
+gem "ostruct", "~> 0.6.1"
