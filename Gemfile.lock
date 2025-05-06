@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: b612566d6ffb38f6418d1c52b2ca1d3f81747f53
-  branch: dev
+  revision: 7e31b09c477480e177f59966ce7d596e6ff87e01
+  branch: main
   specs:
     better_together (0.8.1)
       active_storage_svg_sanitizer
@@ -683,7 +683,7 @@ GEM
       ffi (~> 1.9)
     sassc-embedded (1.80.4)
       sass-embedded (~> 1.80)
-    securerandom (0.3.2)
+    securerandom (0.4.1)
     selenium-webdriver (4.32.0)
       base64 (~> 0.2)
       logger (~> 1.4)
