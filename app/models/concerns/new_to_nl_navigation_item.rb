@@ -4,7 +4,7 @@ module NewToNlNavigationItem # rubocop:todo Style/Documentation
   extend ::ActiveSupport::Concern
 
   included do
-    route_names.merge({
+    self.route_names = self.route_names.merge({
                         partners: 'partners_path',
                         resources: 'resources_path'
                       })
