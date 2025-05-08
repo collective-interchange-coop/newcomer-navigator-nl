@@ -4,6 +4,8 @@
 # Creates authorships table
 class CreateBetterTogetherAuthorships < ActiveRecord::Migration[7.0]
   def change # rubocop:todo Metrics/MethodLength
+    return if table_exists? :better_together_authorships
+
     create_bt_table :authorships do |t|
       t.bt_position
       t.bt_references :authorable,

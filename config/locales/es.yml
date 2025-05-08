@@ -1,42 +1,95 @@
 ---
 es:
   globals:
-    attached_file: "Archivo adjunto"
-    download: "Descargar"
-    no_publish_date: "Sin fecha de publicación"
-    no_author: "Sin autor"
-  helpers:
-    select:
-      prompt: Por favor seleccione
-    submit:
-      create: Crear %{model}
-      submit: Guardar %{model}
-      update: Actualizar %{model}
+    add_member: Agregar miembro
+    attached_file: Archivo adjunto
+    back_to_list: Volver a la lista
+    confirm_delete: Confirmar eliminación
+    delete: Eliminar
+    download: Descargar
+    edit: Editar
+    no_publish_date: Sin fecha de publicación
+    open: Abrir
+    tabs:
+      about: Acerca de
+      contact: Contacto
+      members: Miembros
+    view: Ver
   hints:
+    journey_stages:
+      select_multiple: Seleccione múltiples
     resource:
-      name: "Ingrese el nombre del recurso."
-      description: "Proporcione una descripción detallada del recurso."
-      slug: "Ingrese un identificador compatible con URL."
-      type: "Seleccione el tipo de recurso."
-      url: "Proporcione la URL externa para el recurso."
-      file: "Adjunte un documento relacionado con el recurso."
-      file_size: "El archivo debe ser menor de %{size} MB."
-      privacy: "Especifique el nivel de privacidad del recurso."
-      locale: "Seleccione el idioma del recurso."
-      published_at: "Establezca la fecha y hora en que se publicó el recurso. Los recursos solo serán visibles si tienen una fecha de publicación que esté en el pasado. Puede usar esto para controlar cuándo los recursos estarán disponibles seleccionando una fecha futura."
-      author: "Nombre del autor del recurso."
+      author: Nombre del autor del recurso.
+      description: Proporcione una descripción detallada del recurso.
+      file: Adjunte un documento relacionado con el recurso.
+      file_size: El archivo debe ser menor de %{size} MB.
+      locale: Seleccione el idioma del recurso.
+      name: Ingrese el nombre del recurso.
+      privacy: Especifique el nivel de privacidad del recurso.
+      published_at: Establezca la fecha y hora en que se publicó el recurso. Los recursos
+        solo serán visibles si tienen una fecha de publicación que esté en el pasado.
+        Puede usar esto para controlar cuándo los recursos estarán disponibles seleccionando
+        una fecha futura.
+      slug: Ingrese un identificador compatible con URL.
+      type: Seleccione el tipo de recurso.
+      url: Proporcione la URL externa para el recurso.
+    topics:
+      select_multiple: Seleccione múltiples
   journey_items:
+    none_yet: Aún no has añadido elementos a tu Viaje. Haz clic en el botón '+' en
+      el contenido para añadirlo a tu Viaje.
     tooltips:
-      add: "Agregar al Viaje"
-      remove: "Eliminar del Viaje"
-    none_yet: "Aún no has añadido elementos a tu Viaje. Haz clic en el botón '+' en el contenido para añadirlo a tu Viaje."
+      add: Agregar al Viaje
+      remove: Eliminar del Viaje
+  journey_stages:
+    arrival:
+      button: Tus primeros pasos en NL
+      image_alt: Imagen de Arribo
+      title: Arribo
+    pre-arrival:
+      button: Prepárate para venir a NL
+      image_alt: Imagen de Pre-Arribo
+      title: Pre-Arribo
+    settlement:
+      button: Listo para establecerte en NL
+      image_alt: Imagen de establecerte
+      title: Asentamiento
+    title: En cualquier etapa de tu viaje, podemos guiarte
   journeys:
-    title: "Mi Viaje"
-  partner:
-    updated: 'Organización colaboradora actualizada'
-  time:
-    am: am
-    formats:
-      date_picker: "%d/%m/%Y"
-      datetime_picker: "%d/%m/%Y %H:%M" # 24-hour format
-    pm: pm
+    title: Mi Viaje
+  partners:
+    confirm_delete: "¿Estás seguro de que deseas eliminar esta organización asociada?"
+    edit:
+      title: Editar organización asociada
+    index:
+      alphabetical_note: 'Estas son nuestras Organizaciones Asociadas (orden alfabético):'
+      description: 'En la sección "Organizaciones Asociadas", encontrarás información
+        sobre grupos que ayudan a recién llegados e inmigrantes en Terranova y Labrador.
+        Estas organizaciones ofrecen diferentes tipos de ayuda, como encontrar empleo,
+        acceder a educación, hacer amigos y recibir asesoramiento legal. Al contactar
+        a estos grupos, los recién llegados pueden obtener apoyo para establecerse,
+        encontrar buenos empleos, aprender nuevas cosas y formar parte de sus nuevas
+        comunidades. Este conjunto de organizaciones está aquí para ayudarte en cada
+        paso del camino.
+
+        '
+      new_btn_text: Nueva organización asociada
+      no_partners_message: No hay organizaciones asociadas
+      title: Organizaciones asociadas
+    new:
+      title: Nueva organización asociada
+  resources:
+    actions:
+      back_to_index: Volver al índice
+      confirm_destroy: Confirmar eliminación
+    edit:
+      back_to_resources: Volver a los recursos
+      show_resource: Mostrar recurso
+      title: Editar recurso
+    index:
+      new_resource: Nuevo recurso
+      no_resources_message: No hay recursos
+      title: Recursos
+    new:
+      back_to_resources: Volver a los recursos
+      title: Nuevo recurso

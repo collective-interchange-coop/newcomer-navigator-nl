@@ -1,0 +1,16 @@
+<div class="container my-3">
+  <h2 class="fw-light text-center mb-4"><%= t('journey_stages.title') %></h2>
+  <div class="row row-cols-1 row-cols-md-3">
+    <% ['pre-arrival', 'arrival', 'settlement'].each do |stage| %>
+      <div class="col mb-3">
+        <a href="<%= render_page_path(stage) %>" class="card journey-stage <%= stage %> hover-effect mb-4 shadow-sm h-100 text-center">
+          <div class="card-body">
+            <h4 class="card-title"><%= t("journey_stages.#{stage}.title") %></h4>
+            <%= image_tag "journey_stages/#{stage}.svg", class: 'card-img-top mb-3', alt: t("journey_stages.#{stage}.image_alt") %>
+            <button class="btn btn-info"><%= t("journey_stages.#{stage}.button") %></button>
+          </div>
+        </a>
+      </div>
+    <% end %>
+  </div>
+</div>

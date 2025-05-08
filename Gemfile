@@ -3,13 +3,13 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.2.4'
+ruby '3.4.3'
 
 gem 'asset_sync'
 gem 'aws-sdk-s3', require: false
 
 # Use the published version of better_together for production
-gem 'better_together', '~> 0.6.0',
+gem 'better_together', '~> 0.8.0',
     github: 'better-together-org/community-engine-rails',
     branch: 'dev'
 
@@ -33,12 +33,14 @@ gem 'pundit-resources', '~> 1.1.4', github: 'better-together-org/pundit-resource
 
 # Core Rails gem
 gem 'rack-protection'
+# Rack mini profiler for performance profiling
+gem 'rack-mini-profiler'
 gem 'rails', '~> 7.1.3'
 
 # Redis for ActionCable and background jobs
 gem 'redis', '~> 5.4'
 # Sidekiq for background processing
-gem 'sidekiq', '~> 7.3.9'
+gem 'sidekiq', '~> 8.0.3'
 
 # Error and performance monitoring with Sentry
 gem 'sentry-rails'
@@ -64,6 +66,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   # Fuubar for fancy test progress bar
   gem 'fuubar'
+  gem 'i18n-tasks', '~> 1.0.15'
   # Pry for a powerful shell alternative to IRB
   gem 'pry'
   # RuboCop for static code analysis
@@ -77,12 +80,10 @@ group :development do
   gem 'bundler-audit', require: false
   # Facilitate I18n translation management
   gem 'i18n_generators'
-  # Help with managing translation databasde
-  gem 'i18n-tasks', '~> 1.0.12'
+  # Help with managing translation database
+  gem 'easy_translate'
   # Listen for file system changes
   gem 'listen', '>= 3.0.5', '< 3.10'
-  # Rack mini profiler for performance profiling
-  gem 'rack-mini-profiler'
   # Readline implementation for Ruby
   gem 'rb-readline'
   # Spring for fast Rails actions via pre-loading
@@ -105,7 +106,11 @@ group :test do
   # # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'webdrivers'
   # RuboCop RSpec for RSpec-specific code analysis
+  gem 'rubocop-capybara'
+  gem 'rubocop-factory_bot'
+  gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'rubocop-rspec_rails'
   # RSpec for unit testing
   gem 'rspec'
   # RSpec Rails integration
@@ -119,3 +124,5 @@ group :test do
   # SimpleCov for test coverage analysis
   gem 'simplecov', require: false
 end
+
+gem "ostruct", "~> 0.6.1"

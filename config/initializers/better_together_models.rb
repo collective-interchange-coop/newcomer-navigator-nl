@@ -8,12 +8,7 @@ ActiveSupport::Reloader.to_prepare do
   require_dependency 'better_together/page'
   require_dependency 'better_together/person'
 
-  BetterTogether::Content::Block.include(NewToNlContentBlock)
-  BetterTogether::Content::Block::SUBCLASSES.each do |subclass|
-    # The Journeyable associations were not available in the subclasses when
-    # I only included the Journeyable concern in the Block base
-    subclass.include(Journeyable)
-  end
+  BetterTogether::Content::Block.include(Journeyable)
   BetterTogether::Content::Template.include(NewToNlContentTemplate)
   BetterTogether::NavigationItem.include(NewToNlNavigationItem)
   BetterTogether::Page.include(Journeyable)
