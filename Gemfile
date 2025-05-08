@@ -23,6 +23,8 @@ gem 'bootsnap', '>= 1.7.0', require: false
 
 gem 'fog-aws'
 
+gem 'ostruct', '~> 0.6.1'
+
 # Database adapter for PostgreSQL
 gem 'pg', '>= 0.18', '< 2.0'
 # Puma as the app server
@@ -124,5 +126,3 @@ group :test do
   # SimpleCov for test coverage analysis
   gem 'simplecov', require: false
 end
-
-gem "ostruct", "~> 0.6.1"

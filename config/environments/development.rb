@@ -87,9 +87,7 @@ Rails.application.configure do # rubocop:todo Metrics/BlockLength
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
-  if defined?(BetterErrors)
-    BetterErrors::Middleware.allow_ip! '0.0.0.0/0'
-  end
+  BetterErrors::Middleware.allow_ip! '0.0.0.0/0' if defined?(BetterErrors)
 
   if defined?(FactoryBot)
     config.to_prepare do
