@@ -12,6 +12,13 @@
   </div>
 
   <p><%= t('.description') %></p>
+
+  <% if partners_map %>
+    <section class="partners-map my-4">
+      <%= render partial: 'better_together/shared/map', locals: { map: partners_map } %>
+    </section>
+  <% end %>
+
   <p><%= t('.alphabetical_note') %></p>
 
   <% if @partners&.size > 0 %>
