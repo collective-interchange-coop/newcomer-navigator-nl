@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_250_417_194_663) do # rubocop:todo Metrics/BlockLength
+ActiveRecord::Schema[7.1].define(version: 20_250_508_191_818) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -126,7 +126,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_417_194_663) do # rubocop:todo 
     t.uuid 'community_id', null: false
     t.uuid 'creator_id'
     t.string 'identifier', limit: 100, null: false
-    t.string 'locale', limit: 5, default: 'es', null: false
+    t.string 'locale', limit: 5, default: 'en', null: false
     t.string 'privacy', limit: 50, default: 'private', null: false
     t.boolean 'protected', default: false, null: false
     t.index ['community_id'], name: 'by_better_together_calendars_community'
@@ -167,7 +167,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_417_194_663) do # rubocop:todo 
     t.string 'identifier', limit: 100, null: false
     t.boolean 'host', default: false, null: false
     t.boolean 'protected', default: false, null: false
-    t.string 'privacy', limit: 50, default: 'public', null: false
+    t.string 'privacy', limit: 50, default: 'private', null: false
     t.string 'slug'
     t.uuid 'creator_id'
     t.string 'type', default: 'BetterTogether::Community', null: false
@@ -344,7 +344,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_417_194_663) do # rubocop:todo 
     t.datetime 'updated_at', null: false
     t.uuid 'creator_id'
     t.string 'identifier', limit: 100, null: false
-    t.string 'locale', limit: 5, default: 'es', null: false
+    t.string 'locale', limit: 5, default: 'en', null: false
     t.string 'privacy', limit: 50, default: 'private', null: false
     t.boolean 'protected', default: false, null: false
     t.geography 'center', limit: { srid: 4326, type: 'st_point', geographic: true }
@@ -465,6 +465,23 @@ ActiveRecord::Schema[7.1].define(version: 20_250_417_194_663) do # rubocop:todo 
     t.index %w[identity_type identity_id], name: 'by_identity'
   end
 
+  create_table 'better_together_infrastructure_building_connections', id: :uuid, default: lambda {
+    'gen_random_uuid()'
+  }, force: :cascade do |t|
+    t.integer 'lock_version', default: 0, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.uuid 'building_id', null: false
+    t.string 'connection_type', null: false
+    t.uuid 'connection_id', null: false
+    t.integer 'position', null: false
+    t.boolean 'primary_flag', default: false, null: false
+    t.index ['building_id'], name: 'bt_building_connections_building'
+    t.index %w[connection_id primary_flag], name: 'index_bt_building_connections_on_connection_id_and_primary',
+                                            unique: true, where: '(primary_flag IS TRUE)'
+    t.index %w[connection_type connection_id], name: 'bt_building_connections_connection'
+  end
+
   create_table 'better_together_infrastructure_buildings', id: :uuid, default: lambda {
     'gen_random_uuid()'
   }, force: :cascade do |t|
@@ -536,7 +553,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_417_194_663) do # rubocop:todo 
     t.datetime 'valid_until'
     t.datetime 'last_sent'
     t.datetime 'accepted_at'
-    t.string 'locale', limit: 5, default: 'es', null: false
+    t.string 'locale', limit: 5, default: 'en', null: false
     t.string 'token', limit: 24, null: false
     t.string 'invitable_type', null: false
     t.uuid 'invitable_id', null: false
@@ -741,9 +758,9 @@ ActiveRecord::Schema[7.1].define(version: 20_250_417_194_663) do # rubocop:todo 
     t.datetime 'updated_at', null: false
     t.string 'identifier', limit: 100, null: false
     t.string 'slug'
+    t.string 'privacy', limit: 50, default: 'private', null: false
     t.uuid 'community_id', null: false
     t.jsonb 'preferences', default: {}, null: false
-    t.string 'privacy', limit: 50, default: 'unlisted', null: false
     t.index ['community_id'], name: 'by_person_community'
     t.index ['identifier'], name: 'index_better_together_people_on_identifier', unique: true
     t.index ['privacy'], name: 'by_better_together_people_privacy'
@@ -846,6 +863,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_417_194_663) do # rubocop:todo 
     t.index ['platform_role_id'], name: 'platform_invitations_by_platform_role'
     t.index ['status'], name: 'platform_invitations_by_status'
     t.index ['token'], name: 'platform_invitations_by_token', unique: true
+    t.index ['type'], name: 'platform_invitations_by_type'
     t.index ['valid_from'], name: 'platform_invitations_by_valid_from'
     t.index ['valid_until'], name: 'platform_invitations_by_valid_until'
   end
@@ -857,7 +875,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_417_194_663) do # rubocop:todo 
     t.string 'identifier', limit: 100, null: false
     t.boolean 'host', default: false, null: false
     t.boolean 'protected', default: false, null: false
-    t.string 'privacy', limit: 50, default: 'public', null: false
+    t.string 'privacy', limit: 50, default: 'private', null: false
     t.string 'slug'
     t.uuid 'community_id'
     t.string 'url', null: false
@@ -1220,6 +1238,8 @@ ActiveRecord::Schema[7.1].define(version: 20_250_417_194_663) do # rubocop:todo 
   add_foreign_key 'better_together_geography_spaces', 'better_together_people', column: 'creator_id'
   add_foreign_key 'better_together_geography_states', 'better_together_communities', column: 'community_id'
   add_foreign_key 'better_together_geography_states', 'better_together_geography_countries', column: 'country_id'
+  add_foreign_key 'better_together_infrastructure_building_connections', 'better_together_infrastructure_buildings',
+                  column: 'building_id'
   add_foreign_key 'better_together_infrastructure_buildings', 'better_together_addresses', column: 'address_id'
   add_foreign_key 'better_together_infrastructure_buildings', 'better_together_communities', column: 'community_id'
   add_foreign_key 'better_together_infrastructure_buildings', 'better_together_people', column: 'creator_id'
