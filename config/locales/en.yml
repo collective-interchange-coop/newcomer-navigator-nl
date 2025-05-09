@@ -1,5 +1,9 @@
 ---
 en:
+  better_together:
+    communities:
+      tabs:
+        categories: Categories
   globals:
     add_member: Add a new member
     attached_file: File attached

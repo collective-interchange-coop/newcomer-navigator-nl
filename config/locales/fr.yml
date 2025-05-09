@@ -1,5 +1,9 @@
 ---
 fr:
+  better_together:
+    communities:
+      tabs:
+        categories: Catégories
   globals:
     add_member: Ajouter un membre
     attached_file: Fichier joint
