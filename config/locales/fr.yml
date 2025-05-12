@@ -61,6 +61,8 @@ fr:
     title: À chaque étape de votre parcours, nous pouvons vous guider
   journeys:
     title: Mon parcours
+  partner:
+    updated: L'organisation partenaire a été mise à jour avec succès
   partners:
     confirm_delete: Êtes-vous sûr de vouloir supprimer ce partenaire ?
     edit:

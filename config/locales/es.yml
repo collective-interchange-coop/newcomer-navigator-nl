@@ -61,6 +61,8 @@ es:
     title: En cualquier etapa de tu viaje, podemos guiarte
   journeys:
     title: Mi Viaje
+  partner:
+    updated: La organización asociada fue actualizada con éxito
   partners:
     confirm_delete: "¿Estás seguro de que deseas eliminar esta organización asociada?"
     edit:
