@@ -1,9 +1,11 @@
 
 <%# locals: (model:, form:)%>
 
-<!-- Categories Tab -->
-<div class="nav-tab-pane tab-pane fade" id="community-categories" role="tabpanel" aria-labelledby="community-categories-tab">
-  <div class="mb-3">
-    <%= render partial: 'shared/new_to_nl_category_fields', locals: { model:, form: } if permitted_to?(:manage_platform) %>
+<% if model.is_a?(Partner) %>
+  <!-- Categories Tab -->
+  <div class="nav-tab-pane tab-pane fade" id="community-categories" role="tabpanel" aria-labelledby="community-categories-tab">
+    <div class="mb-3">
+      <%= render partial: 'shared/new_to_nl_category_fields', locals: { model:, form: } if permitted_to?(:manage_platform) %>
+    </div>
   </div>
-</div>
+<% end %>

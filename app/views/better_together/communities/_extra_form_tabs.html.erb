@@ -1,6 +1,8 @@
 
 <%# locals: (model:, form:)%>
 
-<button class="nav-link" id="community-categories-tab" data-bs-toggle="pill" data-bs-target="#community-categories" type="button" role="tab" aria-controls="community-categories" aria-selected="false" data-better_together--tabs-target="tab">
-  <%= t('better_together.communities.tabs.categories') %>
-</button>
+<% if model.is_a?(Partner) %>
+  <button class="nav-link" id="community-categories-tab" data-bs-toggle="pill" data-bs-target="#community-categories" type="button" role="tab" aria-controls="community-categories" aria-selected="false" data-better_together--tabs-target="tab">
+    <%= t('better_together.communities.tabs.categories') %>
+  </button>
+<% end %>
