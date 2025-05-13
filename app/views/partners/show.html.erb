@@ -45,8 +45,8 @@
     <hr aria-hidden="true">
     <div class="row">
       <!-- Community tabbed section with members -->
-      <section class="mb-4 col-12 col-lg-6 col-xl-8">
-        <div class="card tabbed-section" data-controller="better_together--tabs" }>
+      <section class="mb-4 col-12 <%= 'col-lg-6 col-xl-8' if @resource.map&.spaces&.any? %>">
+        <div class="card tabbed-section" data-controller="better_together--tabs">
           <div class="card-header">
             <!-- Navigation tabs -->
             <%# Initialize the active tab state with accessible attributes %>
