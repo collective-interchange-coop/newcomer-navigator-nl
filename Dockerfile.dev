@@ -25,8 +25,6 @@ RUN apt-get update -qq \
   git nano postgresql-client libpq-dev libssl-dev libyaml-dev \
   apt-transport-https ca-certificates libvips42
 
-RUN apt-get remove -y libxml2 libxml2-dev
-
 # Copy built libxml2 binaries
 COPY --from=libxml2-bin /opt/libxml2 /opt/libxml2
 

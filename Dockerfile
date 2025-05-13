@@ -91,8 +91,6 @@ RUN apt-get update -qq \
   && rm -rf /var/lib/apt/lists/* \
   && mkdir -p tmp/pids && chmod -R 755 tmp
 
-RUN apt-get remove -y libxml2
-
 # Copy built libxml2 binaries
 COPY --from=libxml2-bin /opt/libxml2 /opt/libxml2
 
