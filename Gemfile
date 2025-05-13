@@ -11,7 +11,7 @@ gem 'aws-sdk-s3', require: false
 # Use the published version of better_together for production
 gem 'better_together', '~> 0.8.0',
     github: 'better-together-org/community-engine-rails',
-    branch: 'main'
+    branch: 'dev'
 
 # Use the local development version of better_together
 # gem 'better_together', path: '/community-engine'
@@ -22,6 +22,8 @@ gem 'bcrypt', '~> 3.1.20'
 gem 'bootsnap', '>= 1.7.0', require: false
 
 gem 'fog-aws'
+
+gem 'ostruct', '~> 0.6.1'
 
 # Database adapter for PostgreSQL
 gem 'pg', '>= 0.18', '< 2.0'
@@ -124,5 +126,3 @@ group :test do
   # SimpleCov for test coverage analysis
   gem 'simplecov', require: false
 end
-
-gem 'ostruct', '~> 0.6.1'

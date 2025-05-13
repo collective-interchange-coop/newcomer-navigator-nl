@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: 7e31b09c477480e177f59966ce7d596e6ff87e01
-  branch: main
+  revision: 0eb08f6bd3c0f124b8e657fdb84691e0f734ea1f
+  branch: dev
   specs:
     better_together (0.8.1)
       active_storage_svg_sanitizer
@@ -33,6 +33,7 @@ GIT
       premailer-rails
       pundit (>= 2.1, < 2.6)
       pundit-resources
+      rack-attack
       rack-cors (>= 1.1.1, < 2.1.0)
       rack-mini-profiler
       rails (>= 5.2.2, < 7.2.0)
@@ -401,7 +402,7 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jmespath (1.6.2)
-    json (2.11.3)
+    json (2.12.0)
     json-schema (5.1.1)
       addressable (~> 2.8)
       bigdecimal (~> 3.1)
@@ -429,7 +430,7 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     logger (1.7.0)
-    loofah (2.24.0)
+    loofah (2.24.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
@@ -503,7 +504,7 @@ GEM
     pry (0.15.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    psych (5.2.4)
+    psych (5.2.6)
       date
       stringio
     public_suffix (6.0.2)
@@ -512,7 +513,9 @@ GEM
     pundit (2.5.0)
       activesupport (>= 3.0.0)
     racc (1.8.1)
-    rack (3.1.13)
+    rack (3.1.14)
+    rack-attack (6.7.0)
+      rack (>= 1.0, < 4)
     rack-cors (2.0.2)
       rack (>= 2.0.0)
     rack-mini-profiler (3.3.1)
@@ -684,9 +687,9 @@ GEM
       ffi (~> 1.12)
       logger
     rubyzip (2.4.1)
-    sass-embedded (1.87.0-aarch64-linux-gnu)
+    sass-embedded (1.88.0-aarch64-linux-gnu)
       google-protobuf (~> 4.30)
-    sass-embedded (1.87.0-x86_64-linux-gnu)
+    sass-embedded (1.88.0-x86_64-linux-gnu)
       google-protobuf (~> 4.30)
     sassc (2.4.0)
       ffi (~> 1.9)

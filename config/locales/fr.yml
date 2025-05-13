@@ -1,5 +1,9 @@
 ---
 fr:
+  better_together:
+    communities:
+      tabs:
+        categories: Catégories
   globals:
     add_member: Ajouter un membre
     attached_file: Fichier joint
@@ -57,6 +61,8 @@ fr:
     title: À chaque étape de votre parcours, nous pouvons vous guider
   journeys:
     title: Mon parcours
+  partner:
+    updated: L'organisation partenaire a été mise à jour avec succès
   partners:
     confirm_delete: Êtes-vous sûr de vouloir supprimer ce partenaire ?
     edit:

@@ -1,5 +1,9 @@
 ---
 en:
+  better_together:
+    communities:
+      tabs:
+        categories: Categories
   globals:
     add_member: Add a new member
     attached_file: File attached
@@ -56,6 +60,8 @@ en:
     title: In any stage of your journey, we can guide you
   journeys:
     title: My Personal Journey
+  partner:
+    updated: Partner was sucessfully updated
   partners:
     confirm_delete: Are you sure you want to remove this partner?
     edit:

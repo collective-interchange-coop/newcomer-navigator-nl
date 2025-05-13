@@ -43,107 +43,95 @@
   <div class="container mt-4">
     <!-- Membership section -->
     <hr aria-hidden="true">
-
-    <!-- Community tabbed section with members -->
-    <section class="card tabbed-section">
-
-      <div class="card-header">
-        <!-- Navigation tabs -->
-        <%# Initialize the active tab state with accessible attributes %>
-        <%= content_tag :div, id: 'communityTabs', class: 'nav nav-tabs card-header-tabs', role: 'tablist', aria_label: 'Community Sections' do %>
-          <%= link_to t('globals.tabs.about'), '#about', class: 'nav-link active', id: 'about-tab', data: { bs_toggle: 'tab', bs_target: '#about', bs_parent: '#profileSections' }, role: 'tab', aria_controls: 'about', aria_selected: 'true', tabindex: '0' %>
-          <%= link_to t('globals.tabs.contact'), '#contact', class: 'nav-link', id: 'contact-tab', data: { bs_toggle: 'tab', bs_target: '#contact', bs_parent: '#profileSections' }, role: 'tab', aria_controls: 'contact', aria_selected: 'true', tabindex: '-1' %>
-          <%= link_to t('globals.tabs.members'), '#members', class: 'nav-link', id: 'members-tab', data: { bs_toggle: 'tab', bs_target: '#members', bs_parent: '#profileSections' }, role: 'tab', aria_controls: 'members', aria_selected: 'false', tabindex: '-1' %>
-        <% end %>
-      </div>
-
-      <%# Accordion content with accessible attributes and flexbox layout %>
-      <div class="card-body" id="profileSections" role="tabpanel">
-        <!-- Person About Section -->
-        <section id="about" class="row collapse show" aria-labelledby="about-tab" aria-expanded="true" data-bs-parent="#platformTabs">
-          <div class="col-md-12">
-            <!-- Description Section -->
-            <p class="card-text text-muted">
-              <%= @resource.description_html.presence || @resource.description.presence || 'No description available.' %>
-            </p>
+    <div class="row">
+      <!-- Community tabbed section with members -->
+      <section class="mb-4 col-12 col-lg-6 col-xl-8">
+        <div class="card tabbed-section" data-controller="better_together--tabs" }>
+          <div class="card-header">
+            <!-- Navigation tabs -->
+            <%# Initialize the active tab state with accessible attributes %>
+            <%= content_tag :div, id: 'communityTabs', class: 'nav nav-tabs card-header-tabs', role: 'tablist', aria_label: 'Community Sections' do %>
+              <%= link_to t('globals.tabs.about'), '#about', class: 'nav-link active', id: 'about-tab', data: { bs_toggle: 'tab', bs_target: '#about', bs_parent: '#profileSections' }, 'data-better_together--tabs-target' => 'tab', role: 'tab', aria_controls: 'about', aria_selected: 'true', tabindex: '0' %>
+              <%= link_to t('globals.tabs.contact'), '#contact', class: 'nav-link', id: 'contact-tab', data: { bs_toggle: 'tab', bs_target: '#contact', bs_parent: '#profileSections' }, 'data-better_together--tabs-target' => 'tab', role: 'tab', aria_controls: 'contact', aria_selected: 'true', tabindex: '-1' %>
+              <%= link_to t('globals.tabs.members'), '#members', class: 'nav-link', id: 'members-tab', data: { bs_toggle: 'tab', bs_target: '#members', bs_parent: '#profileSections' }, 'data-better_together--tabs-target' => 'tab', role: 'tab', aria_controls: 'members', aria_selected: 'false', tabindex: '-1' %>
+            <% end %>
           </div>
-        </section>
 
-        <!-- Person Contact Section -->
-        <section id="contact" class="row collapse" aria-labelledby="contact-tab" aria-expanded="true" data-bs-parent="#platformTabs">
-          <div class="col-md-12">
-            <%= render partial: 'better_together/contact_details/about_section', locals: { contactable: @resource } %>
-          </div>
-        </section>
+          <%# Accordion content with accessible attributes and flexbox layout %>
+          <div class="card-body" id="profileSections" role="tabpanel">
+            <!-- Person About Section -->
+            <section id="about" class="row nav-tab-pane collapse show" aria-labelledby="about-tab" aria-expanded="true" data-bs-parent="#communityTabs">
+              <div class="col-md-12">
+                <!-- Description Section -->
+                <p class="card-text text-muted">
+                  <%= @resource.description_html.presence || @resource.description.presence || 'No description available.' %>
+                </p>
+              </div>
+            </section>
 
-        <div id="members" class="collapse" aria-labelledby="members-tab" aria-expanded="true" data-bs-parent="#communityTabs">
-          <% if policy(BetterTogether::PersonCommunityMembership).create? %>
-            <!-- Add Member Button -->
-            <div class="mb-3" data-controller="better_together--new-person-community-membership">
-              <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addMemberModal">
-                <i class="fas fa-user-plus"></i> <%= t('globals.add_member') %>
-              </button>
+            <!-- Person Contact Section -->
+            <section id="contact" class="row nav-tab-pane collapse" aria-labelledby="contact-tab" aria-expanded="true" data-bs-parent="#communityTabs">
+              <div class="col-md-12">
+                <%= render partial: 'better_together/contact_details/about_section', locals: { contactable: @resource } %>
+                <%= render partial: 'better_together/infrastructure/building_connections/connection_buildings', locals: { connection: @resource } %>
+              </div>
+            </section>
 
-              <!-- Add Member Modal -->
-              <div class="modal fade" id="addMemberModal" tabindex="-1" aria-labelledby="addMemberModalLabel" data-better_together--new-person-community-membership-target="modal" data-action="turbo:submit-end->better_together--new-person-community-membership#handleSuccess">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="addMemberModalLabel">Add New Member</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <!-- Your form or other modal content here -->
-                      <%= form_with model: [ @resource, ::BetterTogether::PersonCommunityMembership.new ], url: community_person_community_memberships_path(@resource.id), data: { turbo_frame: "modal_form" }, local: true do |form| %>
-                        <!-- Rendering error messages here -->
-                        <%= turbo_frame_tag 'form_errors' %>
+            <div id="members" class="nav-tab-pane collapse" aria-labelledby="members-tab" aria-expanded="true" data-bs-parent="#communityTabs">
+              <% if policy(BetterTogether::PersonCommunityMembership).create? %>
+                <!-- Add Member Button -->
+                <div class="mb-3" data-controller="better_together--new-person-community-membership">
+                  <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addMemberModal">
+                    <i class="fas fa-user-plus"></i> <%= t('globals.add_member') %>
+                  </button>
 
-                        <div class="mb-3" id="member_select">
-                          <%= form.label :member_id, "Select Person *", class: "form-label" %>
-                          <%= form.collection_select :member_id, ::BetterTogether::Person.where.not(id: @resource.person_community_memberships.select(:member_id)), :id, :name, { prompt: "Select a person" }, { class: "form-select", required: true } %>
+                  <!-- Add Member Modal -->
+                  <div class="modal fade" id="addMemberModal" tabindex="-1" aria-labelledby="addMemberModalLabel" data-better_together--new-person-community-membership-target="modal" data-action="turbo:submit-end->better_together--new-person-community-membership#handleSuccess">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="addMemberModalLabel">Add New Member</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                        <div class="modal-body">
+                          <!-- Your form or other modal content here -->
+                          <%= form_with model: [ @resource, ::BetterTogether::PersonCommunityMembership.new ], url: community_person_community_memberships_path(@resource.id), data: { turbo_frame: "modal_form" }, local: true do |form| %>
+                            <!-- Rendering error messages here -->
+                            <%= turbo_frame_tag 'form_errors' %>
 
-                        <div class="mb-3">
-                          <%= form.label :role_id, "Select Role *", class: "form-label" %>
-                          <%= form.collection_select :role_id, ::BetterTogether::Role.where(resource_type: "BetterTogether::Community"), :id, :name, { prompt: "Select a role" }, { class: "form-select", required: true } %>
+                            <div class="mb-3" id="member_select">
+                              <%= form.label :member_id, "Select Person *", class: "form-label" %>
+                              <%= form.collection_select :member_id, ::BetterTogether::Person.where.not(id: @resource.person_community_memberships.select(:member_id)), :id, :name, { prompt: "Select a person" }, { class: "form-select", required: true } %>
+                            </div>
+
+                            <div class="mb-3">
+                              <%= form.label :role_id, "Select Role *", class: "form-label" %>
+                              <%= form.collection_select :role_id, ::BetterTogether::Role.where(resource_type: "BetterTogether::Community"), :id, :name, { prompt: "Select a role" }, { class: "form-select", required: true } %>
+                            </div>
+                            <div class="mb-3">
+                              <%= form.submit "Add", class: "btn btn-primary" %>
+                            </div>
+                          <% end %>
                         </div>
-                        <div class="mb-3">
-                          <%= form.submit "Add", class: "btn btn-primary" %>
-                        </div>
-                      <% end %>
+                      </div>
                     </div>
                   </div>
                 </div>
+              <% end %>
+              <div id="members_list" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+                <%= render partial: 'better_together/person_community_memberships/person_community_membership_member', collection: @resource.person_community_memberships, as: :membership %>
               </div>
             </div>
-          <% end %>
-          <div id="members_list" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
-            <%= render partial: 'better_together/person_community_memberships/person_community_membership_member', collection: @resource.person_community_memberships, as: :membership %>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <% if @resource.map&.spaces&.any? %>
+        <section id="map" class="col-12 col-lg-6 col-xl-4 pb-2">
+          <h3 class="my-2 hidden-sm hidden-md hidden-lg hidden-xl"><i class="fas fa-map-marker-alt text-secondary"></i> Location Map</h3>
+          <%= render partial: 'better_together/shared/map', locals: { map: @resource.map } %>
+        </section>
+      <% end %>
+    </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  document.addEventListener("DOMContentLoaded", function() {
-    // Check if URL hash is present and corresponds to a tab
-    var hash = window.location.hash;
-    if (hash) {
-      // Activate the tab corresponding to the hash
-      var selectedTab = document.querySelector(`a[data-bs-target="${hash}"]`);
-      if (selectedTab) {
-        new bootstrap.Tab(selectedTab).show();
-      }
-    }
-
-    // Update URL hash when tab is changed
-    var tabLinks = document.querySelectorAll('#communityTabs a[data-bs-toggle="tab"]');
-    tabLinks.forEach(function(link) {
-      link.addEventListener('shown.bs.tab', function(event) {
-        window.location.hash = event.target.getAttribute('data-bs-target');
-      });
-    });
-  });
-</script>

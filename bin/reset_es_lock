@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# These commands are used to unlock the ElasticSearch index for writing after set to read-only
+# due to low disk space or other reasons
+curl -XPUT -H "Content-Type: application/json" http://localhost:9202/_cluster/settings -d '{ "transient": { "cluster.routing.allocation.disk.threshold_enabled": false } }';
+curl -XPUT -H "Content-Type: application/json" http://localhost:9202/_all/_settings -d '{"index.blocks.read_only_allow_delete": null}';
+
+
