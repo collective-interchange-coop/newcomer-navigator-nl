@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: 516634435f4b0d9015d4f0f2409fb0428cd98194
+  revision: 0eb08f6bd3c0f124b8e657fdb84691e0f734ea1f
   branch: dev
   specs:
     better_together (0.8.1)
@@ -33,6 +33,7 @@ GIT
       premailer-rails
       pundit (>= 2.1, < 2.6)
       pundit-resources
+      rack-attack
       rack-cors (>= 1.1.1, < 2.1.0)
       rack-mini-profiler
       rails (>= 5.2.2, < 7.2.0)
@@ -513,6 +514,8 @@ GEM
       activesupport (>= 3.0.0)
     racc (1.8.1)
     rack (3.1.14)
+    rack-attack (6.7.0)
+      rack (>= 1.0, < 4)
     rack-cors (2.0.2)
       rack (>= 2.0.0)
     rack-mini-profiler (3.3.1)
