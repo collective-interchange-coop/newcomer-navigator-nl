@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: 19d8b046ebd92b368020e26c6b8753d52723877b
+  revision: d0110da5cd225d00b8efd0946500aadb973f45f4
   branch: mailer-improvements
   specs:
     better_together (0.8.1)
