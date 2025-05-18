@@ -5,8 +5,8 @@ module NewToNlNavigationItem # rubocop:todo Style/Documentation
 
   included do
     self.route_names = route_names.merge({
-                                           partners: 'partners_path',
-                                           resources: 'resources_path'
+                                           partners: 'partners_url',
+                                           resources: 'resources_url'
                                          })
   end
 end
