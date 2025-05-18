@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: 7f4ba361ac557d05b3b46b5c8296de9123c25dfe
+  revision: 3c395f6068aba5d1c93130bf8157c7033d9de72a
   branch: dev
   specs:
     better_together (0.8.1)
@@ -353,10 +353,8 @@ GEM
     globalid (1.2.1)
       activesupport (>= 6.1)
     google-protobuf (4.31.0-aarch64-linux-gnu)
-    google-protobuf (4.31.0-aarch64-linux-gnu)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.31.0-x86_64-linux-gnu)
     google-protobuf (4.31.0-x86_64-linux-gnu)
       bigdecimal
       rake (>= 13)
@@ -481,7 +479,6 @@ GEM
     nokogiri (1.18.8-x86_64-linux-gnu)
       racc (~> 1.4)
     noticed (2.7.0)
-    noticed (2.7.0)
       rails (>= 6.1.0)
     optimist (3.1.0)
     orm_adapter (0.5.0)
@@ -516,7 +513,7 @@ GEM
     pundit (2.5.0)
       activesupport (>= 3.0.0)
     racc (1.8.1)
-    rack (3.1.14)
+    rack (3.1.15)
     rack-attack (6.7.0)
       rack (>= 1.0, < 4)
     rack-cors (2.0.2)
@@ -690,10 +687,6 @@ GEM
       ffi (~> 1.12)
       logger
     rubyzip (2.4.1)
-    sass-embedded (1.89.0-aarch64-linux-gnu)
-      google-protobuf (~> 4.31)
-    sass-embedded (1.89.0-x86_64-linux-gnu)
-      google-protobuf (~> 4.31)
     sass-embedded (1.89.0-aarch64-linux-gnu)
       google-protobuf (~> 4.31)
     sass-embedded (1.89.0-x86_64-linux-gnu)
