@@ -3,7 +3,7 @@
 namespace :nn_nl do # rubocop:todo Metrics/BlockLength
   desc 'Migrate Partner Addresses to Buildings'
   task migrate_partner_buildings: :environment do # rubocop:todo Metrics/BlockLength
-    Mobility.with_locale(:en) do
+    Mobility.with_locale(:en) do # rubocop:todo Metrics/BlockLength
       partners = Partner.joins(:addresses).includes(:buildings)
                         .where.not(addresses: { line1: nil })
                         .where(buildings: { address_id: nil })
