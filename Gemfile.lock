@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: 07d89bcc561824159611d21f098063febbfaaa53
+  revision: 9d8eb0c6b86a267b7e5e66650e9ffdc2ecc0c284
   branch: main
   specs:
     better_together (0.8.1)
@@ -513,7 +513,7 @@ GEM
     pundit (2.5.0)
       activesupport (>= 3.0.0)
     racc (1.8.1)
-    rack (3.1.14)
+    rack (3.1.15)
     rack-attack (6.7.0)
       rack (>= 1.0, < 4)
     rack-cors (2.0.2)
