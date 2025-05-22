@@ -15,8 +15,8 @@ en:
     no_publish_date: Publish date not set
     open: Open item
     tabs:
-      about: About Us
-      contact: Contact Us
+      about: About
+      contact: Contact
       members: Members
     view: View details
   hints:
