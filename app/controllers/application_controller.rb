@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
-class ApplicationController < ::BetterTogether::ApplicationController # rubocop:todo Style/Documentation
-  protected
+# Inherits directly from BetterTogether's Application Controller
+class ApplicationController < ::BetterTogether::ApplicationController
 
-  def error_reporting(exception)
-    # Send exception to Sentry
-    Sentry.capture_exception(exception)
-  end
 end
