@@ -4,3 +4,5 @@
 
 //= link_directory ../../javascript .js
 //= link_directory ../../javascript/controllers .js
+
+//= link controllers/journey_map_controller.js
