@@ -12,8 +12,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_250_521_142_344) do # rubocop:todo Metrics/BlockLength
+ActiveRecord::Schema[7.1].define(version: 20_250_521_142_344) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
   enable_extension 'postgis'
 
@@ -389,6 +390,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_521_142_344) do # rubocop:todo 
     t.jsonb 'metadata', default: {}, null: false
     t.string 'mappable_type'
     t.uuid 'mappable_id'
+    t.string 'type', default: 'BetterTogether::Geography::Map', null: false
     t.index ['creator_id'], name: 'by_better_together_geography_maps_creator'
     t.index ['identifier'], name: 'index_better_together_geography_maps_on_identifier', unique: true
     t.index ['locale'], name: 'by_better_together_geography_maps_locale'
