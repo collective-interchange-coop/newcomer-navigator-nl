@@ -9,13 +9,12 @@ module NewToNlJourneyStage # rubocop:todo Style/Documentation
   end
 
   class_methods do # rubocop:todo Metrics/BlockLength
-    # rubocop:todo Naming/PredicateName
-    def has_many_journey_stages # rubocop:todo Metrics/MethodLength, Naming/PredicateName
-      # rubocop:enable Naming/PredicateName
+    def has_many_journey_stages # rubocop:todo Metrics/MethodLength, Naming/PredicatePrefix
       has_many :journey_stage_categorizations, lambda {
         where(category_type: 'JourneyStage')
       }, class_name: 'BetterTogether::Categorization', as: :categorizable, dependent: :destroy
-      has_many :journey_stages, through: :journey_stage_categorizations, source: :category, source_type: 'JourneyStage'
+      has_many :journey_stages, through: :journey_stage_categorizations, source: :category,
+                                source_type: 'JourneyStage'
 
       # Add the permitted attributes for this method dynamically
       self._extra_journey_stage_permitted_attributes += [{ journey_stage_ids: [] }]
@@ -29,9 +28,7 @@ module NewToNlJourneyStage # rubocop:todo Style/Documentation
       end
     end
 
-    # rubocop:todo Naming/PredicateName
-    def has_one_journey_stage(required: false) # rubocop:todo Metrics/MethodLength, Naming/PredicateName
-      # rubocop:enable Naming/PredicateName
+    def has_one_journey_stage(required: false) # rubocop:todo Metrics/MethodLength, Naming/PredicatePrefix
       has_one :journey_stage_categorization, lambda {
         where(category_type: 'JourneyStage')
       }, class_name: 'BetterTogether::Categorization', as: :categorizable, dependent: :destroy
@@ -41,7 +38,6 @@ module NewToNlJourneyStage # rubocop:todo Style/Documentation
 
       # Add the permitted attributes for this method dynamically
       self._extra_journey_stage_permitted_attributes += %i[journey_stage_id]
-
       define_method :journey_stage_id do
         journey_stage&.id
       end

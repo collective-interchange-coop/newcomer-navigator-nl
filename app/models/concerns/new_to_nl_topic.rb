@@ -9,9 +9,7 @@ module NewToNlTopic # rubocop:todo Style/Documentation
   end
 
   class_methods do # rubocop:todo Metrics/BlockLength
-    # rubocop:todo Naming/PredicateName
-    def has_many_topics # rubocop:todo Metrics/MethodLength, Naming/PredicateName
-      # rubocop:enable Naming/PredicateName
+    def has_many_topics # rubocop:todo Metrics/MethodLength, Naming/PredicatePrefix
       has_many :topic_categorizations, lambda {
         where(category_type: 'Topic')
       }, class_name: 'BetterTogether::Categorization', as: :categorizable, dependent: :destroy
@@ -29,9 +27,7 @@ module NewToNlTopic # rubocop:todo Style/Documentation
       end
     end
 
-    # rubocop:todo Naming/PredicateName
-    def has_one_topic # rubocop:todo Metrics/MethodLength, Naming/PredicateName
-      # rubocop:enable Naming/PredicateName
+    def has_one_topic # rubocop:todo Metrics/MethodLength, Naming/PredicatePrefix
       has_one :topic_categorization, lambda {
         where(category_type: 'Topic')
       }, class_name: 'BetterTogether::Categorization', as: :categorizable, dependent: :destroy
@@ -39,7 +35,6 @@ module NewToNlTopic # rubocop:todo Style/Documentation
 
       # Add the permitted attributes for this method dynamically
       self._extra_topic_permitted_attributes += %i[topic_id]
-
       define_method :topic_id do
         topic&.id
       end

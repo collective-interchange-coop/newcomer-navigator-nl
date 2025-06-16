@@ -12,7 +12,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo Metrics/BlockLength
+# rubocop:todo Metrics/BlockLength
+ActiveRecord::Schema[7.1].define(version: 20_250_616_162_822) do # rubocop:todo Metrics/BlockLength
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -59,6 +60,23 @@ ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo 
     t.index %w[blob_id variation_digest], name: 'index_active_storage_variant_records_uniqueness', unique: true
   end
 
+  create_table 'better_together_activities', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.integer 'lock_version', default: 0, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'trackable_type'
+    t.uuid 'trackable_id'
+    t.string 'owner_type'
+    t.uuid 'owner_id'
+    t.string 'key'
+    t.jsonb 'parameters'
+    t.string 'recipient_type'
+    t.uuid 'recipient_id'
+    t.index %w[owner_type owner_id], name: 'bt_activities_by_owner'
+    t.index %w[recipient_type recipient_id], name: 'bt_activities_by_recipient'
+    t.index %w[trackable_type trackable_id], name: 'bt_activities_by_trackable'
+  end
+
   create_table 'better_together_addresses', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
     t.integer 'lock_version', default: 0, null: false
     t.datetime 'created_at', null: false
@@ -72,7 +90,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo 
     t.string 'state_province_name'
     t.string 'postal_code'
     t.string 'country_name'
-    t.string 'privacy', limit: 50, default: 'unlisted', null: false
+    t.string 'privacy', limit: 50, default: 'private', null: false
     t.uuid 'contact_detail_id'
     t.boolean 'primary_flag', default: false, null: false
     t.index %w[contact_detail_id primary_flag], name: 'index_bt_addresses_on_contact_detail_id_and_primary',
@@ -126,7 +144,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo 
     t.uuid 'community_id', null: false
     t.uuid 'creator_id'
     t.string 'identifier', limit: 100, null: false
-    t.string 'locale', limit: 5, default: 'en', null: false
+    t.string 'locale', limit: 5, default: 'es', null: false
     t.string 'privacy', limit: 50, default: 'private', null: false
     t.boolean 'protected', default: false, null: false
     t.index ['community_id'], name: 'by_better_together_calendars_community'
@@ -134,6 +152,28 @@ ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo 
     t.index ['identifier'], name: 'index_better_together_calendars_on_identifier', unique: true
     t.index ['locale'], name: 'by_better_together_calendars_locale'
     t.index ['privacy'], name: 'by_better_together_calendars_privacy'
+  end
+
+  create_table 'better_together_calls_for_interest', id: :uuid, default: lambda {
+    'gen_random_uuid()'
+  }, force: :cascade do |t|
+    t.integer 'lock_version', default: 0, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'type', default: 'BetterTogether::CallForInterest', null: false
+    t.uuid 'creator_id'
+    t.string 'identifier', limit: 100, null: false
+    t.string 'privacy', limit: 50, default: 'private', null: false
+    t.string 'interestable_type'
+    t.uuid 'interestable_id'
+    t.datetime 'starts_at'
+    t.datetime 'ends_at'
+    t.index ['creator_id'], name: 'by_better_together_calls_for_interest_creator'
+    t.index ['ends_at'], name: 'bt_calls_for_interest_by_ends_at'
+    t.index ['identifier'], name: 'index_better_together_calls_for_interest_on_identifier', unique: true
+    t.index %w[interestable_type interestable_id], name: 'index_better_together_calls_for_interest_on_interestable'
+    t.index ['privacy'], name: 'by_better_together_calls_for_interest_privacy'
+    t.index ['starts_at'], name: 'bt_calls_for_interest_by_starts_at'
   end
 
   create_table 'better_together_categories', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
@@ -158,6 +198,18 @@ ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo 
     t.uuid 'categorizable_id', null: false
     t.index %w[categorizable_type categorizable_id], name: 'index_better_together_categorizations_on_categorizable'
     t.index %w[category_type category_id], name: 'index_better_together_categorizations_on_category'
+  end
+
+  create_table 'better_together_comments', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.integer 'lock_version', default: 0, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'commentable_type', null: false
+    t.uuid 'commentable_id', null: false
+    t.uuid 'creator_id'
+    t.text 'content', default: '', null: false
+    t.index %w[commentable_type commentable_id], name: 'bt_comments_on_commentable'
+    t.index ['creator_id'], name: 'by_better_together_comments_creator'
   end
 
   create_table 'better_together_communities', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
@@ -205,7 +257,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo 
     t.jsonb 'media_settings', default: {}, null: false
     t.jsonb 'content_data', default: {}
     t.uuid 'creator_id'
-    t.string 'privacy', limit: 50, default: 'unlisted', null: false
+    t.string 'privacy', limit: 50, default: 'private', null: false
     t.boolean 'visible', default: true, null: false
     t.jsonb 'content_area_settings', default: {}, null: false
     t.index ['creator_id'], name: 'by_better_together_content_blocks_creator'
@@ -266,7 +318,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo 
     t.datetime 'updated_at', null: false
     t.string 'email', null: false
     t.string 'label', null: false
-    t.string 'privacy', limit: 50, default: 'unlisted', null: false
+    t.string 'privacy', limit: 50, default: 'private', null: false
     t.uuid 'contact_detail_id', null: false
     t.boolean 'primary_flag', default: false, null: false
     t.index %w[contact_detail_id primary_flag], name: 'index_bt_email_addresses_on_contact_detail_id_and_primary',
@@ -579,8 +631,6 @@ ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo 
     t.index ['identifier'], name: 'index_better_together_infrastructure_rooms_on_identifier', unique: true
     t.index ['privacy'], name: 'by_better_together_infrastructure_rooms_privacy'
   end
-
-  # rubocop:todo Metrics/BlockLength
   create_table 'better_together_invitations', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
     t.integer 'lock_version', default: 0, null: false
     t.datetime 'created_at', null: false
@@ -615,7 +665,6 @@ ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo 
     t.index ['valid_from'], name: 'by_valid_from'
     t.index ['valid_until'], name: 'by_valid_until'
   end
-  # rubocop:enable Metrics/BlockLength
 
   create_table 'better_together_jwt_denylists', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
     t.integer 'lock_version', default: 0, null: false
@@ -779,7 +828,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo 
     t.text 'meta_description'
     t.string 'keywords'
     t.datetime 'published_at'
-    t.string 'privacy', default: 'public', null: false
+    t.string 'privacy', default: 'private', null: false
     t.string 'layout'
     t.string 'template'
     t.uuid 'sidebar_nav_id'
@@ -796,9 +845,9 @@ ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo 
     t.datetime 'updated_at', null: false
     t.string 'identifier', limit: 100, null: false
     t.string 'slug'
-    t.string 'privacy', limit: 50, default: 'private', null: false
     t.uuid 'community_id', null: false
     t.jsonb 'preferences', default: {}, null: false
+    t.string 'privacy', limit: 50, default: 'private', null: false
     t.index ['community_id'], name: 'by_person_community'
     t.index ['identifier'], name: 'index_better_together_people_on_identifier', unique: true
     t.index ['privacy'], name: 'by_better_together_people_privacy'
@@ -842,7 +891,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo 
     t.datetime 'updated_at', null: false
     t.string 'number', null: false
     t.string 'label', null: false
-    t.string 'privacy', limit: 50, default: 'unlisted', null: false
+    t.string 'privacy', limit: 50, default: 'private', null: false
     t.uuid 'contact_detail_id', null: false
     t.boolean 'primary_flag', default: false, null: false
     t.index %w[contact_detail_id primary_flag], name: 'index_bt_phone_numbers_on_contact_detail_id_and_primary',
@@ -999,7 +1048,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo 
     t.string 'platform', null: false
     t.string 'handle', null: false
     t.string 'url'
-    t.string 'privacy', limit: 50, default: 'public', null: false
+    t.string 'privacy', limit: 50, default: 'private', null: false
     t.uuid 'contact_detail_id', null: false
     t.index %w[contact_detail_id platform], name: 'index_bt_sma_on_contact_detail_and_platform', unique: true
     t.index ['contact_detail_id'], name: 'idx_on_contact_detail_id_6380b64b3b'
@@ -1052,7 +1101,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo 
     t.datetime 'updated_at', null: false
     t.string 'url', null: false
     t.string 'label', null: false
-    t.string 'privacy', limit: 50, default: 'unlisted', null: false
+    t.string 'privacy', limit: 50, default: 'private', null: false
     t.uuid 'contact_detail_id', null: false
     t.index ['contact_detail_id'], name: 'index_better_together_website_links_on_contact_detail_id'
     t.index ['privacy'], name: 'by_better_together_website_links_privacy'
@@ -1222,7 +1271,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo 
   create_table 'resources', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
     t.string 'identifier', limit: 100, null: false
     t.string 'locale', limit: 5, default: 'en', null: false
-    t.string 'privacy', limit: 50, default: 'public', null: false
+    t.string 'privacy', limit: 50, default: 'private', null: false
     t.string 'slug'
     t.string 'type', default: 'Resource', null: false
     t.string 'url'
@@ -1244,6 +1293,8 @@ ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo 
   add_foreign_key 'better_together_authorships', 'better_together_people', column: 'author_id'
   add_foreign_key 'better_together_calendars', 'better_together_communities', column: 'community_id'
   add_foreign_key 'better_together_calendars', 'better_together_people', column: 'creator_id'
+  add_foreign_key 'better_together_calls_for_interest', 'better_together_people', column: 'creator_id'
+  add_foreign_key 'better_together_comments', 'better_together_people', column: 'creator_id'
   add_foreign_key 'better_together_communities', 'better_together_people', column: 'creator_id'
   add_foreign_key 'better_together_content_blocks', 'better_together_people', column: 'creator_id'
   add_foreign_key 'better_together_content_page_blocks', 'better_together_content_blocks', column: 'block_id'
@@ -1331,3 +1382,4 @@ ActiveRecord::Schema[7.1].define(version: 20_250_604_200_446) do # rubocop:todo 
   add_foreign_key 'journey_stage_topics', 'better_together_categories', column: 'topic_id'
   add_foreign_key 'journeys', 'better_together_people', column: 'person_id'
 end
+# rubocop:enable Metrics/BlockLength
