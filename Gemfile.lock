@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: 8aab26e13e688a19e1e27e10b989133763f5a9e4
+  revision: a41e52bee55acc303f3df19348dc0bae02114051
   branch: main
   specs:
     better_together (0.8.1)
@@ -121,7 +121,7 @@ GEM
       rails-html-sanitizer (~> 1.6)
     active_storage_svg_sanitizer (0.1.0)
       rails (>= 5.2)
-    active_storage_validations (3.0.0)
+    active_storage_validations (3.0.1)
       activejob (>= 6.1.4)
       activemodel (>= 6.1.4)
       activestorage (>= 6.1.4)
@@ -405,7 +405,7 @@ GEM
       reline (>= 0.4.2)
     jmespath (1.6.2)
     json (2.12.2)
-    json-schema (5.1.1)
+    json-schema (5.2.1)
       addressable (~> 2.8)
       bigdecimal (~> 3.1)
     jsonapi-resources (0.10.7)
@@ -460,7 +460,7 @@ GEM
       actiontext (>= 6.0)
       mobility (~> 1.2)
     msgpack (1.8.0)
-    multi_json (1.15.0)
+    multi_json (1.16.0)
     multipart-post (2.4.1)
     mutex_m (0.3.0)
     net-http (0.6.0)
@@ -759,7 +759,7 @@ GEM
     thor (1.3.2)
     thread (0.2.2)
     thread_safe (0.3.6)
-    tilt (2.6.0)
+    tilt (2.6.1)
     timeout (0.4.3)
     tins (1.33.0)
       bigdecimal
