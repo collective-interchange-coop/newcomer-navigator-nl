@@ -23,7 +23,7 @@ gem 'bootsnap', '>= 1.7.0', require: false
 
 gem 'fog-aws'
 
-gem 'ostruct', '~> 0.6.2'
+gem 'ostruct', '~> 0.6.3'
 
 # Database adapter for PostgreSQL
 gem 'pg', '>= 0.18', '< 2.0'
