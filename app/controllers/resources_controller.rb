@@ -103,11 +103,17 @@ class ResourcesController < BetterTogether::FriendlyResourceController # rubocop
     params.require(root_param).permit(
       :type, :published_at, :author, :privacy, :language,
       *resource_class.localized_attribute_list,
-      *@resource.class.extra_permitted_attributes
+      *resource_class.extra_permitted_attributes
     )
   end
 
   def resource_class
-    Resource
+    if params[:resource_document]
+      Resource::Document
+    elsif params[:resource_link]
+      Resource::Link
+    else
+      Resource
+    end
   end
 end
