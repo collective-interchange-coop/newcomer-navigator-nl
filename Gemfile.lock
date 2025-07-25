@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: a41e52bee55acc303f3df19348dc0bae02114051
+  revision: 0cacb4f242bfabd30648d71dff74cb2863c3d7d0
   branch: main
   specs:
     better_together (0.8.1)
@@ -299,7 +299,7 @@ GEM
       base64
       faraday (>= 1, < 3)
       multi_json
-    erb (5.0.1)
+    erb (5.0.2)
     erubi (1.13.1)
     event_stream_parser (1.0.0)
     excon (1.2.7)
@@ -398,7 +398,7 @@ GEM
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
-    io-console (0.8.0)
+    io-console (0.8.1)
     irb (1.15.2)
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
@@ -448,8 +448,7 @@ GEM
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
     mime-types-data (3.2025.0527)
-    mini_magick (5.2.0)
-      benchmark
+    mini_magick (5.3.0)
       logger
     mini_mime (1.1.5)
     minitest (5.25.5)
