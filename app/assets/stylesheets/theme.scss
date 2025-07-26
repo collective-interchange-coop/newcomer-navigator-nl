@@ -146,6 +146,11 @@ textarea.form-control {
   }
 }
 
+#mobile-bar {
+  background: $nl-gradient;
+  color: $dark-background-text-color;
+}
+
 .navbar-nav .nav-link {
   position: relative;
   color: $blue-1;
@@ -444,7 +449,7 @@ font-size: 12px;
 text-shadow: 1px 1px 2px #fff;
 }
 
-#navbarNavDropdown .navbar-nav {
+#headerNav .navbar-nav {
 align-items: center;
 }
 
@@ -456,7 +461,7 @@ align-items: center;
 display: none;
 }
 
-#navbarNavDropdown.show {
+#headerNav.show {
 overflow-y: auto;
 max-height: 92vh;
 }
