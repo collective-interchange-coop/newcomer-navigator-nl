@@ -67,10 +67,10 @@ namespace :new_to_nl do # rubocop:todo Metrics/BlockLength
         newfoundland-and-labrador immigration housing insurance employment language
         community-and-connections family education travel
       ],
-      'arrival': %w[ =
-                     transportation arrival housing bank-and-finance insurance health-and-wellness
-                     employment community-and-connections language education family],
-      'settlement': %w[
+      arrival: %w[ =
+                   transportation arrival housing bank-and-finance insurance health-and-wellness
+                   employment community-and-connections language education family],
+      settlement: %w[
         transportation immigration housing bank-and-finance insurance employment
         health-and-wellness family language laws-and-rights community-and-connections
         training education entrepreneurship
@@ -81,7 +81,7 @@ namespace :new_to_nl do # rubocop:todo Metrics/BlockLength
   def topics_data # rubocop:todo Metrics/MethodLength
     # TODO: Add Arrival topic - Modify categories identifer unique index
     {
-      'arrival': {
+      arrival: {
         icon: 'fas fa-plane-arrival'
       },
       'bank-and-finance': {
@@ -90,31 +90,31 @@ namespace :new_to_nl do # rubocop:todo Metrics/BlockLength
       'community-and-connections': {
         icon: 'fas fa-people-group'
       },
-      'education': {
+      education: {
         icon: 'fas fa-graduation-cap'
       },
-      'employment': {
+      employment: {
         icon: 'fas fa-handshake'
       },
-      'entrepreneurship': {
+      entrepreneurship: {
         icon: 'fas fa-lightbulb'
       },
-      'family': {
+      family: {
         icon: 'fas fa-people-roof'
       },
       'health-and-wellness': {
         icon: 'fas fa-staff-snake'
       },
-      'housing': {
+      housing: {
         icon: 'fas fa-house'
       },
-      'immigration': {
+      immigration: {
         icon: 'fas fa-passport'
       },
-      'insurance': {
+      insurance: {
         icon: 'fas fa-umbrella'
       },
-      'language': {
+      language: {
         icon: 'fas fa-language'
       },
       'laws-and-rights': {
@@ -123,13 +123,13 @@ namespace :new_to_nl do # rubocop:todo Metrics/BlockLength
       'newfoundland-and-labrador': {
         icon: 'fas fa-map-location-dot'
       },
-      'training': {
+      training: {
         icon: 'fas fa-book'
       },
-      'transportation': {
+      transportation: {
         icon: 'fas fa-bus'
       },
-      'travel': {
+      travel: {
         icon: 'fas fa-truck-plane'
       }
     }

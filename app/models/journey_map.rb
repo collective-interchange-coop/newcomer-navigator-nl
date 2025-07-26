@@ -35,7 +35,7 @@ class JourneyMap < BetterTogether::Content::Template # rubocop:todo Style/Docume
   end
 
   def initialize(args = nil)
-    super(args)
+    super
 
     self.template_path = 'better_together/content/blocks/template/journey_map'
   end

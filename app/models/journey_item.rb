@@ -2,6 +2,7 @@
 
 class JourneyItem < ApplicationRecord # rubocop:todo Style/Documentation
   include BetterTogether::Positioned
+
   belongs_to :journey
   belongs_to :journey_stage, optional: true
   belongs_to :journeyable, polymorphic: true

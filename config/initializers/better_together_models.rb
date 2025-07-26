@@ -15,8 +15,8 @@ ActiveSupport::Reloader.to_prepare do
   BetterTogether::Geography::Map.include(NewcomerNavigatorNl::Map)
   BetterTogether::Page.include(Journeyable)
   BetterTogether::Page.include(NewToNlJourneyStage)
-  BetterTogether::Page.public_send(:has_many_journey_stages)
+  BetterTogether::Page.has_many_journey_stages
   BetterTogether::Page.include(NewToNlTopic)
-  BetterTogether::Page.public_send(:has_many_topics)
+  BetterTogether::Page.has_many_topics
   BetterTogether::Person.include(NewToNlPerson)
 end
