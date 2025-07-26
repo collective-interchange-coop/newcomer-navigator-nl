@@ -12,8 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-# rubocop:todo Metrics/BlockLength
-ActiveRecord::Schema[7.1].define(version: 20_250_616_162_822) do # rubocop:todo Metrics/BlockLength
+ActiveRecord::Schema[7.1].define(version: 20_250_726_002_725) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -69,10 +68,12 @@ ActiveRecord::Schema[7.1].define(version: 20_250_616_162_822) do # rubocop:todo 
     t.string 'owner_type'
     t.uuid 'owner_id'
     t.string 'key'
-    t.jsonb 'parameters'
+    t.jsonb 'parameters', default: '{}'
     t.string 'recipient_type'
     t.uuid 'recipient_id'
+    t.string 'privacy', limit: 50, default: 'private', null: false
     t.index %w[owner_type owner_id], name: 'bt_activities_by_owner'
+    t.index ['privacy'], name: 'by_better_together_activities_privacy'
     t.index %w[recipient_type recipient_id], name: 'bt_activities_by_recipient'
     t.index %w[trackable_type trackable_id], name: 'bt_activities_by_trackable'
   end
@@ -135,6 +136,24 @@ ActiveRecord::Schema[7.1].define(version: 20_250_616_162_822) do # rubocop:todo 
     t.uuid 'author_id', null: false
     t.index ['author_id'], name: 'by_authorship_author'
     t.index %w[authorable_type authorable_id], name: 'by_authorship_authorable'
+  end
+
+  create_table 'better_together_calendar_entries', id: :uuid, default: lambda {
+    'gen_random_uuid()'
+  }, force: :cascade do |t|
+    t.integer 'lock_version', default: 0, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.uuid 'calendar_id'
+    t.string 'schedulable_type'
+    t.uuid 'schedulable_id'
+    t.datetime 'starts_at', null: false
+    t.datetime 'ends_at'
+    t.decimal 'duration_minutes'
+    t.index ['calendar_id'], name: 'index_better_together_calendar_entries_on_calendar_id'
+    t.index ['ends_at'], name: 'bt_calendar_events_by_ends_at'
+    t.index %w[schedulable_type schedulable_id], name: 'index_better_together_calendar_entries_on_schedulable'
+    t.index ['starts_at'], name: 'bt_calendar_events_by_starts_at'
   end
 
   create_table 'better_together_calendars', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
@@ -434,7 +453,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_616_162_822) do # rubocop:todo 
     t.datetime 'updated_at', null: false
     t.uuid 'creator_id'
     t.string 'identifier', limit: 100, null: false
-    t.string 'locale', limit: 5, default: 'en', null: false
+    t.string 'locale', limit: 5, default: 'es', null: false
     t.string 'privacy', limit: 50, default: 'private', null: false
     t.boolean 'protected', default: false, null: false
     t.geography 'center', limit: { srid: 4326, type: 'st_point', geographic: true }
@@ -631,6 +650,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_616_162_822) do # rubocop:todo 
     t.index ['identifier'], name: 'index_better_together_infrastructure_rooms_on_identifier', unique: true
     t.index ['privacy'], name: 'by_better_together_infrastructure_rooms_privacy'
   end
+
   create_table 'better_together_invitations', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
     t.integer 'lock_version', default: 0, null: false
     t.datetime 'created_at', null: false
@@ -641,7 +661,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_616_162_822) do # rubocop:todo 
     t.datetime 'valid_until'
     t.datetime 'last_sent'
     t.datetime 'accepted_at'
-    t.string 'locale', limit: 5, default: 'en', null: false
+    t.string 'locale', limit: 5, default: 'es', null: false
     t.string 'token', limit: 24, null: false
     t.string 'invitable_type', null: false
     t.uuid 'invitable_id', null: false
@@ -916,7 +936,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_616_162_822) do # rubocop:todo 
     t.index ['space_id'], name: 'index_better_together_places_on_space_id'
   end
 
-  create_table 'better_together_platform_invitations', id: :uuid, default: lambda { # rubocop:todo Metrics/BlockLength
+  create_table 'better_together_platform_invitations', id: :uuid, default: lambda {
     'gen_random_uuid()'
   }, force: :cascade do |t|
     t.integer 'lock_version', default: 0, null: false
@@ -950,7 +970,6 @@ ActiveRecord::Schema[7.1].define(version: 20_250_616_162_822) do # rubocop:todo 
     t.index ['platform_role_id'], name: 'platform_invitations_by_platform_role'
     t.index ['status'], name: 'platform_invitations_by_status'
     t.index ['token'], name: 'platform_invitations_by_token', unique: true
-    t.index ['type'], name: 'platform_invitations_by_type'
     t.index ['valid_from'], name: 'platform_invitations_by_valid_from'
     t.index ['valid_until'], name: 'platform_invitations_by_valid_until'
   end
@@ -1291,6 +1310,7 @@ ActiveRecord::Schema[7.1].define(version: 20_250_616_162_822) do # rubocop:todo 
   add_foreign_key 'better_together_addresses', 'better_together_contact_details', column: 'contact_detail_id'
   add_foreign_key 'better_together_ai_log_translations', 'better_together_people', column: 'initiator_id'
   add_foreign_key 'better_together_authorships', 'better_together_people', column: 'author_id'
+  add_foreign_key 'better_together_calendar_entries', 'better_together_calendars', column: 'calendar_id'
   add_foreign_key 'better_together_calendars', 'better_together_communities', column: 'community_id'
   add_foreign_key 'better_together_calendars', 'better_together_people', column: 'creator_id'
   add_foreign_key 'better_together_calls_for_interest', 'better_together_people', column: 'creator_id'
@@ -1382,4 +1402,3 @@ ActiveRecord::Schema[7.1].define(version: 20_250_616_162_822) do # rubocop:todo 
   add_foreign_key 'journey_stage_topics', 'better_together_categories', column: 'topic_id'
   add_foreign_key 'journeys', 'better_together_people', column: 'person_id'
 end
-# rubocop:enable Metrics/BlockLength
