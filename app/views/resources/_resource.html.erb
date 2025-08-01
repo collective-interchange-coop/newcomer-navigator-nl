@@ -31,7 +31,10 @@
         <% end %>
       <% elsif resource.is_a?(Resource::Document) && resource.file.attached? %>
         <% if policy(resource).download? %>
-          <%= link_to download_resource_path(resource), class: "btn btn-outline-primary btn-sm", download: resource.file.filename.to_s do %>
+          <%= link_to download_resource_path(resource),
+                      class: "btn btn-outline-primary btn-sm",
+                      download: resource.file.filename.to_s,
+                      data: { turbo_prefetch: false } do %>
             <i class="fas fa-download"></i> <%= t('globals.download') %>
           <% end %>
         <% end %>
