@@ -60,14 +60,18 @@ class ResourcesController < BetterTogether::FriendlyResourceController # rubocop
 
   def download # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
     if @resource.is_a?(Resource::Document) && @resource.file.attached?
-      # Trigger the background job to log the download
-      BetterTogether::Metrics::TrackDownloadJob.perform_later(
-        @resource,                                     # Polymorphic resource model
-        @resource.file.filename.to_s,                  # Filename
-        @resource.file.content_type,                   # File type (content type)
-        @resource.file.byte_size,                      # File size
-        I18n.locale.to_s                               # Locale
-      )
+      prefetch = request.headers['Purpose'] == 'prefetch' ||
+                 request.headers['Sec-Purpose'] == 'prefetch'
+
+      unless prefetch
+        BetterTogether::Metrics::TrackDownloadJob.perform_later(
+          @resource,                                     # Polymorphic resource model
+          @resource.file.filename.to_s,                  # Filename
+          @resource.file.content_type,                   # File type (content type)
+          @resource.file.byte_size,                      # File size
+          I18n.locale.to_s                               # Locale
+        )
+      end
 
       send_data @resource.file.download,
                 filename: @resource.file.filename.to_s,
