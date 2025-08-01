@@ -45,7 +45,9 @@
   }
 
   function handlePrefetch(event) {
-    const link = event.target.closest('a[href]');
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const link = target.closest('a[href]');
     if (!link) return;
 
     const url = new URL(link.getAttribute('href'), window.location.href);
