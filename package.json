@@ -4,5 +4,8 @@
   "dependencies": {
     "@rails/actiontext": "^7.1.2",
     "trix": "^2.1.1"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0"
   }
 }
