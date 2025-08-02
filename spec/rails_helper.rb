@@ -7,6 +7,10 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
+ActiveJob::Base.queue_adapter = :test
+
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/factories/**/*.rb')].each { |f| require f }
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -34,6 +38,10 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
+  config.include Devise::Test::IntegrationHelpers, type: :feature
+  config.include Warden::Test::Helpers
+  config.after { Warden.test_reset! }
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{Rails.root}/spec/fixtures"
 
@@ -42,20 +50,18 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
-  config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
-  end
+  config.include RequestSpecHelper, type: :request
 
-  config.before do
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+    load Rails.root.join('db', 'seeds.rb')
     DatabaseCleaner.strategy = :transaction
   end
 
-  config.before do
-    DatabaseCleaner.start
-  end
-
-  config.after do
-    DatabaseCleaner.clean
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
   end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
@@ -77,4 +83,19 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+
+def create_table(table_name, &block)
+  ActiveRecord::Base.connection.create_table(table_name, &block)
+end
+
+def drop_table(table_name)
+  ActiveRecord::Base.connection.drop_table(table_name)
 end
