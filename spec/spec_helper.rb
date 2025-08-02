@@ -15,6 +15,32 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'capybara/rspec'
+require 'capybara-screenshot/rspec'
+require 'simplecov'
+require 'coveralls'
+
+Capybara.asset_host = ENV.fetch('APP_HOST', 'http://localhost:3000')
+
+Coveralls.wear!('rails')
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+  SimpleCov::Formatter::HTMLFormatter,
+  Coveralls::SimpleCov::Formatter
+])
+
+SimpleCov.start 'rails' do
+  add_filter '/bin/'
+  add_filter '/db/'
+  add_filter '/vendor/'
+  add_filter '/tmp/'
+  add_filter '/docker/'
+  add_filter '/script/'
+  add_filter '/log/'
+  add_filter '/public/'
+  add_filter '/deploy/'
+  add_filter '/spec/'
+end
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -45,6 +71,9 @@ RSpec.configure do |config|
   # inherited by the metadata hash of host groups and examples, rather than
   # triggering implicit auto-inclusion in groups with matching metadata.
   config.shared_context_metadata_behavior = :apply_to_host_groups
+
+  # Use Capybara DSL in feature specs
+  config.include Capybara::DSL
 
   # The settings below are suggested to provide a good initial experience
   # with RSpec, but feel free to customize to your heart's content.

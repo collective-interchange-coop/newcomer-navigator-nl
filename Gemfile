@@ -101,6 +101,7 @@ end
 group :test do
   # Capybara for integration testing
   gem 'capybara', '>= 2.15'
+  gem 'capybara-screenshot'
   # Coveralls for test coverage reporting
   gem 'coveralls'
   # Database cleaner for test database cleaning
@@ -125,4 +126,5 @@ group :test do
   gem 'shoulda-matchers'
   # SimpleCov for test coverage analysis
   gem 'simplecov', require: false
+  gem 'sqlite3', '~> 1.4'
 end

@@ -13,3 +13,4 @@ pin_all_from File.expand_path('../app/javascript/controllers', __dir__), under: 
 
 # Application entry point
 pin 'application', preload: true
+pin 'disable_download_prefetch'
