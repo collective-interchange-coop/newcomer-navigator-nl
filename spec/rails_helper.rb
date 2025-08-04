@@ -43,9 +43,12 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.before(:suite) do
-    FactoryBot.definition_file_paths << BetterTogether::Engine.root.join('spec/factories')
-    FactoryBot.definition_file_paths << Rails.root.join('spec/factories')
-    FactoryBot.find_definitions
+    FactoryBot.definition_file_paths = [
+      BetterTogether::Engine.root.join('spec/factories').to_s,
+      Rails.root.join('spec/factories').to_s,
+      Rails.root.join('test/factories').to_s
+    ]
+    FactoryBot.reload
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
   end
 
