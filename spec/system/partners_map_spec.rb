@@ -18,7 +18,7 @@ RSpec.describe 'Partners map', type: :system do
   end
 
   it 'renders the leaflet map on the index page' do
-    visit partners_path
+    visit partners_path(locale: I18n.locale)
     expect(page).to have_css('.partners-map .map[data-controller="better_together--map"]')
   end
 end

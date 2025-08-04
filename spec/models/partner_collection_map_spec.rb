@@ -40,8 +40,8 @@ RSpec.describe PartnerCollectionMap, type: :model do
 
   describe '#leaflet_points' do
     it 'returns unique flattened leaflet points from records', :aggregate_failures do
-      partner1 = connect_partner_with_space(latitude: 1.0, longitude: 2.0)
-      partner2 = connect_partner_with_space(latitude: 3.0, longitude: 4.0)
+      partner1, = connect_partner_with_space(latitude: 1.0, longitude: 2.0)
+      partner2, = connect_partner_with_space(latitude: 3.0, longitude: 4.0)
 
       allow(described_class).to receive(:records).and_return([partner1, partner2])
 
