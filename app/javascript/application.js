@@ -15,5 +15,6 @@
 // require_tree .
 
 import 'controllers';
+import 'disable_download_prefetch';
 
 console.log('initializing new to nl')

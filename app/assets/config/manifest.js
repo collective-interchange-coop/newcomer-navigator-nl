@@ -6,3 +6,4 @@
 //= link_directory ../../javascript/controllers .js
 
 //= link controllers/journey_map_controller.js
+//= link disable_download_prefetch.js
