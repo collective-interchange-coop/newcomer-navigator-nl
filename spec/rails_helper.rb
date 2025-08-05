@@ -58,7 +58,7 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
   end
 
-  config.around(:each) do |example|
+  config.around do |example|
     DatabaseCleaner.cleaning do
       example.run
     end
@@ -92,8 +92,8 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-def create_table(table_name, &block)
-  ActiveRecord::Base.connection.create_table(table_name, &block)
+def create_table(table_name, &)
+  ActiveRecord::Base.connection.create_table(table_name, &)
 end
 
 def drop_table(table_name)

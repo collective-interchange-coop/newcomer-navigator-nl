@@ -25,9 +25,9 @@ Capybara.asset_host = ENV.fetch('APP_HOST', 'http://localhost:3000')
 Coveralls.wear!('rails')
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
-  SimpleCov::Formatter::HTMLFormatter,
-  Coveralls::SimpleCov::Formatter
-])
+                                                                 SimpleCov::Formatter::HTMLFormatter,
+                                                                 Coveralls::SimpleCov::Formatter
+                                                               ])
 
 SimpleCov.start 'rails' do
   add_filter '/bin/'
