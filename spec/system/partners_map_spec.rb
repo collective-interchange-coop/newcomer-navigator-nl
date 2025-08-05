@@ -8,9 +8,12 @@ RSpec.describe 'Partners map', type: :system do
   end
 
   it 'renders the leaflet map on the index page' do
-    partner = create(:partner)
-    allow(partner).to receive(:leaflet_points).and_return([{ lat: 1.0, lng: 2.0 }])
-    allow(PartnerCollectionMap).to receive(:records).and_return([partner])
+    map = PartnerCollectionMap.new(identifier: 'partners')
+    allow(map).to receive(:leaflet_points).and_return([{ lat: 1.0, lng: 2.0 }])
+    allow(map).to receive(:center_for_leaflet).and_return([1.0, 2.0])
+    allow(map).to receive(:zoom).and_return(10)
+    allow(map).to receive(:viewport).and_return(nil)
+    allow(PartnerCollectionMap).to receive(:find_or_create_by).with(identifier: 'partners').and_return(map)
 
     visit partners_path(locale: I18n.locale)
 
