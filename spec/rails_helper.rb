@@ -59,7 +59,7 @@ RSpec.configure do |config|
     FactoryBot.reload
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
   end
-  
+
   config.include RequestSpecHelper, type: :request
 
   config.before(:suite) do

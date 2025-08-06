@@ -7,12 +7,10 @@ RSpec.describe 'Partners map', type: :system do
     driven_by(:rack_test)
   end
 
-  it 'renders the leaflet map on the index page' do
+  it 'renders the leaflet map on the index page' do # rubocop:todo RSpec/ExampleLength
     map = PartnerCollectionMap.new(identifier: 'partners')
-    allow(map).to receive(:leaflet_points).and_return([{ lat: 1.0, lng: 2.0 }])
-    allow(map).to receive(:center_for_leaflet).and_return([1.0, 2.0])
-    allow(map).to receive(:zoom).and_return(10)
-    allow(map).to receive(:viewport).and_return(nil)
+    allow(map).to receive_messages(leaflet_points: [{ lat: 1.0, lng: 2.0 }], center_for_leaflet: [1.0, 2.0], zoom: 10,
+                                   viewport: nil)
     allow(PartnerCollectionMap).to receive(:find_or_create_by).with(identifier: 'partners').and_return(map)
 
     visit partners_path(locale: I18n.locale)
