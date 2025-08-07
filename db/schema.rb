@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_07_26_002725) do
+ActiveRecord::Schema[7.1].define(version: 2025_08_07_015607) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -154,7 +154,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_26_002725) do
     t.uuid "community_id", null: false
     t.uuid "creator_id"
     t.string "identifier", limit: 100, null: false
-    t.string "locale", limit: 5, default: "en", null: false
+    t.string "locale", limit: 5, default: "es", null: false
     t.string "privacy", limit: 50, default: "private", null: false
     t.boolean "protected", default: false, null: false
     t.index ["community_id"], name: "by_better_together_calendars_community"
@@ -423,7 +423,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_26_002725) do
     t.datetime "updated_at", null: false
     t.uuid "creator_id"
     t.string "identifier", limit: 100, null: false
-    t.string "locale", limit: 5, default: "en", null: false
+    t.string "locale", limit: 5, default: "es", null: false
     t.string "privacy", limit: 50, default: "private", null: false
     t.boolean "protected", default: false, null: false
     t.geography "center", limit: {srid: 4326, type: "st_point", geographic: true}
@@ -612,7 +612,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_26_002725) do
     t.datetime "valid_until"
     t.datetime "last_sent"
     t.datetime "accepted_at"
-    t.string "locale", limit: 5, default: "en", null: false
+    t.string "locale", limit: 5, default: "es", null: false
     t.string "token", limit: 24, null: false
     t.string "invitable_type", null: false
     t.uuid "invitable_id", null: false
@@ -650,7 +650,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_26_002725) do
     t.integer "lock_version", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "content"
     t.uuid "sender_id", null: false
     t.uuid "conversation_id", null: false
     t.index ["conversation_id"], name: "index_better_together_messages_on_conversation_id"
@@ -716,6 +715,17 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_26_002725) do
     t.string "page_url"
     t.index ["locale"], name: "by_better_together_metrics_page_views_locale"
     t.index ["pageable_type", "pageable_id"], name: "index_better_together_metrics_page_views_on_pageable"
+  end
+
+  create_table "better_together_metrics_search_queries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "locale", limit: 5, default: "en", null: false
+    t.string "query", null: false
+    t.integer "results_count", null: false
+    t.datetime "searched_at", null: false
+    t.index ["locale"], name: "by_better_together_metrics_search_queries_locale"
   end
 
   create_table "better_together_metrics_shares", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -879,7 +889,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_26_002725) do
     t.uuid "inviter_id", null: false
     t.uuid "platform_role_id"
     t.string "status", limit: 20, null: false
-    t.string "locale", limit: 5, default: "es", null: false
+    t.string "locale", limit: 5, default: "en", null: false
     t.string "token", limit: 24, null: false
     t.datetime "valid_from", null: false
     t.datetime "valid_until"
@@ -887,9 +897,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_26_002725) do
     t.datetime "accepted_at"
     t.string "type", default: "BetterTogether::PlatformInvitation", null: false
     t.integer "session_duration_mins", default: 30, null: false
-    t.index ["accepted_at", "last_sent"], name: "better_together_platform_invitations_accepted_at_idx"
     t.index ["community_role_id"], name: "platform_invitations_by_community_role"
-    t.index ["created_at", "accepted_at"], name: "better_together_platform_invitations_created_at_idx"
     t.index ["invitable_id", "status"], name: "index_platform_invitations_on_invitable_id_and_status"
     t.index ["invitable_id"], name: "platform_invitations_by_invitable"
     t.index ["invitee_email", "invitable_id"], name: "idx_on_invitee_email_invitable_id_5a7d642388", unique: true
@@ -936,6 +944,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_26_002725) do
     t.string "privacy", limit: 50, default: "private", null: false
     t.string "slug", null: false
     t.datetime "published_at"
+    t.uuid "creator_id"
+    t.index ["creator_id"], name: "by_better_together_posts_creator"
     t.index ["identifier"], name: "index_better_together_posts_on_identifier", unique: true
     t.index ["privacy"], name: "by_better_together_posts_privacy"
     t.index ["published_at"], name: "by_post_publication_date"
@@ -1204,7 +1214,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_26_002725) do
 
   create_table "resources", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "identifier", limit: 100, null: false
-    t.string "locale", limit: 5, default: "es", null: false
+    t.string "locale", limit: 5, default: "en", null: false
     t.string "privacy", limit: 50, default: "private", null: false
     t.string "slug"
     t.string "type", default: "Resource", null: false
@@ -1292,6 +1302,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_26_002725) do
   add_foreign_key "better_together_platform_invitations", "better_together_roles", column: "community_role_id"
   add_foreign_key "better_together_platform_invitations", "better_together_roles", column: "platform_role_id"
   add_foreign_key "better_together_platforms", "better_together_communities", column: "community_id"
+  add_foreign_key "better_together_posts", "better_together_people", column: "creator_id"
   add_foreign_key "better_together_role_resource_permissions", "better_together_resource_permissions", column: "resource_permission_id"
   add_foreign_key "better_together_role_resource_permissions", "better_together_roles", column: "role_id"
   add_foreign_key "better_together_social_media_accounts", "better_together_contact_details", column: "contact_detail_id"
