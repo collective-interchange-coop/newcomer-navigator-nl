@@ -2,12 +2,15 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Partners map', type: :system do
+RSpec.describe 'Partners map', :js do
+  include DeviseSessionHelpers
+
   before do
-    driven_by(:rack_test)
+    configure_host_platform
+    login_as_platform_manager
   end
 
-  it 'renders the leaflet map on the index page' do # rubocop:todo RSpec/ExampleLength
+  scenario 'renders the leaflet map on the index page' do # rubocop:todo RSpec/ExampleLength
     map = PartnerCollectionMap.new(identifier: 'partners')
     allow(map).to receive_messages(leaflet_points: [{ lat: 1.0, lng: 2.0 }], center_for_leaflet: [1.0, 2.0], zoom: 10,
                                    viewport: nil)
