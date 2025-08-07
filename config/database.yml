@@ -25,6 +25,7 @@ development:
   <<: *default
   url: <%= ENV.fetch('DATABASE_URL') { 'postgis://postgres:postgres@new-to-nl-db/new_to_nl_development' } %>
 
+  # database: wayfinder
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
@@ -57,7 +58,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  url: <%= ENV.fetch('DATABASE_URL') { 'postgis:///new_to_nl_test' } %>
+  url: <%= ENV.fetch('DATABASE_URL') { 'postgis://postgres:postgres@new-to-nl-db/new_to_nl_test' } %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
