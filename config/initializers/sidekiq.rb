@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
-Sidekiq.configure_server do |config|
-  config.redis = { url: ENV.fetch('REDIS_URL', nil) }
-end
+if Rails.env.test?
+  require 'sidekiq/testing'
+  Sidekiq::Testing.inline!
+else
+  Sidekiq.configure_server do |config|
+    config.redis = { url: ENV.fetch('REDIS_URL', nil) }
+  end
 
-Sidekiq.configure_client do |config|
-  config.redis = { url: ENV.fetch('REDIS_URL', nil) }
+  Sidekiq.configure_client do |config|
+    config.redis = { url: ENV.fetch('REDIS_URL', nil) }
+  end
 end

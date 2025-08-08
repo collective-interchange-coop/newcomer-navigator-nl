@@ -11,6 +11,8 @@ Bundler.require(*Rails.groups)
 
 module NewToNl
   class Application < Rails::Application # rubocop:todo Style/Documentation
+    config.load_defaults 7.1
+
     # Initialize configuration defaults for originally generated Rails version.
     config.api_only = false
     config.session_store :cookie_store, key: '_bt_session'
@@ -37,8 +39,6 @@ module NewToNl
 
     I18n.enforce_available_locales = true
 
-    # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
 
     config.active_storage.analyzers = [
       ActiveStorage::Analyzer::ImageAnalyzer::Vips,
