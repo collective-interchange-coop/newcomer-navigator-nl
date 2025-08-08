@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Partners map', :js do
+RSpec.describe 'Partners map' do
   include DeviseSessionHelpers
 
   before do
@@ -16,7 +16,7 @@ RSpec.describe 'Partners map', :js do
                                    viewport: nil)
     allow(PartnerCollectionMap).to receive(:find_or_create_by).with(identifier: 'partners').and_return(map)
 
-    visit partners_path(locale: I18n.locale)
+    visit main_app.partners_path(locale: I18n.locale)
 
     expect(page).to have_css('.partners-map .map[data-controller="better_together--map"]')
   end

@@ -15,6 +15,7 @@ Capybara.register_driver :selenium_chrome_headless do |app|
       window-size=1400x1400
     ]
   )
+  # Generate a unique temporary directory for each session to avoid conflicts
   options.add_argument("--user-data-dir=#{Dir.mktmpdir}")
 
   Capybara::Selenium::Driver.new(
