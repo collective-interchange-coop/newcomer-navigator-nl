@@ -62,3 +62,4 @@ config/credentials/production.key
 /config/credentials/development.key
 /config/credentials/development.key.old
 config/credentials/test.key
+config/credentials/development.key.dontcommit
