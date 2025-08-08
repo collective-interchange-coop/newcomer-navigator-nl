@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_08_07_015607) do
+ActiveRecord::Schema[7.1].define(version: 2025_08_08_163507) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -816,10 +816,22 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_07_015607) do
     t.uuid "community_id", null: false
     t.jsonb "preferences", default: {}, null: false
     t.string "privacy", limit: 50, default: "private", null: false
+    t.jsonb "notification_preferences", default: {}, null: false
     t.index ["community_id"], name: "by_person_community"
     t.index ["identifier"], name: "index_better_together_people_on_identifier", unique: true
     t.index ["privacy"], name: "by_better_together_people_privacy"
     t.index ["slug"], name: "index_better_together_people_on_slug", unique: true
+  end
+
+  create_table "better_together_person_blocks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "blocker_id", null: false
+    t.uuid "blocked_id", null: false
+    t.index ["blocked_id"], name: "index_better_together_person_blocks_on_blocked_id"
+    t.index ["blocker_id", "blocked_id"], name: "unique_person_blocks", unique: true
+    t.index ["blocker_id"], name: "index_better_together_person_blocks_on_blocker_id"
   end
 
   create_table "better_together_person_community_memberships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -950,6 +962,17 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_07_015607) do
     t.index ["privacy"], name: "by_better_together_posts_privacy"
     t.index ["published_at"], name: "by_post_publication_date"
     t.index ["slug"], name: "index_better_together_posts_on_slug", unique: true
+  end
+
+  create_table "better_together_reports", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "reporter_id", null: false
+    t.uuid "reportable_id", null: false
+    t.string "reportable_type", null: false
+    t.text "reason"
+    t.index ["reporter_id"], name: "index_better_together_reports_on_reporter_id"
   end
 
   create_table "better_together_resource_permissions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -1286,6 +1309,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_07_015607) do
   add_foreign_key "better_together_navigation_items", "better_together_navigation_items", column: "parent_id"
   add_foreign_key "better_together_pages", "better_together_navigation_areas", column: "sidebar_nav_id"
   add_foreign_key "better_together_people", "better_together_communities", column: "community_id"
+  add_foreign_key "better_together_person_blocks", "better_together_people", column: "blocked_id"
+  add_foreign_key "better_together_person_blocks", "better_together_people", column: "blocker_id"
   add_foreign_key "better_together_person_community_memberships", "better_together_communities", column: "joinable_id"
   add_foreign_key "better_together_person_community_memberships", "better_together_people", column: "member_id"
   add_foreign_key "better_together_person_community_memberships", "better_together_roles", column: "role_id"
@@ -1303,6 +1328,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_07_015607) do
   add_foreign_key "better_together_platform_invitations", "better_together_roles", column: "platform_role_id"
   add_foreign_key "better_together_platforms", "better_together_communities", column: "community_id"
   add_foreign_key "better_together_posts", "better_together_people", column: "creator_id"
+  add_foreign_key "better_together_reports", "better_together_people", column: "reporter_id"
   add_foreign_key "better_together_role_resource_permissions", "better_together_resource_permissions", column: "resource_permission_id"
   add_foreign_key "better_together_role_resource_permissions", "better_together_roles", column: "role_id"
   add_foreign_key "better_together_social_media_accounts", "better_together_contact_details", column: "contact_detail_id"
