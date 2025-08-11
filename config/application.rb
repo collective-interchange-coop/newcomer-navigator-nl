@@ -11,7 +11,8 @@ Bundler.require(*Rails.groups)
 
 module NewToNl
   class Application < Rails::Application # rubocop:todo Style/Documentation
-    config.load_defaults 7.1
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 7.0
 
     # Initialize configuration defaults for originally generated Rails version.
     config.api_only = false
@@ -75,7 +76,6 @@ module NewToNl
 
     # Add engine manifest to precompile assets in production
     initializer 'assets' do |app|
-      # Ensure we are not modifying frozen arrays
       app.config.assets.precompile += %w[manifest.js]
       app.config.assets.paths = [root.join('app', 'assets', 'images'),
                                  root.join('app', 'javascript')] + app.config.assets.paths.to_a
