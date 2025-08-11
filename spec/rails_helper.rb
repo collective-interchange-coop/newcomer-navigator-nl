@@ -53,7 +53,7 @@ RSpec.configure do |config|
   config.include RequestSpecHelper, type: :request
 
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
     load Rails.root.join('db', 'seeds.rb')
     DatabaseCleaner.strategy = :transaction
   end
