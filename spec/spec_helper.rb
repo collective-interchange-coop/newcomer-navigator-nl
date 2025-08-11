@@ -15,19 +15,22 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
 require 'capybara/rspec'
 require 'capybara-screenshot/rspec'
 require 'simplecov'
 require 'coveralls'
 
-Capybara.asset_host = ENV.fetch('APP_HOST', 'http://localhost:3000')
+Capybara.asset_host = ENV.fetch('APP_HOST', 'http://localhost:3001')
 
 Coveralls.wear!('rails')
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
-                                                                 SimpleCov::Formatter::HTMLFormatter,
-                                                                 Coveralls::SimpleCov::Formatter
-                                                               ])
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
+  [
+    SimpleCov::Formatter::HTMLFormatter,
+    Coveralls::SimpleCov::Formatter
+  ]
+)
 
 SimpleCov.start 'rails' do
   add_filter '/bin/'
@@ -42,6 +45,8 @@ SimpleCov.start 'rails' do
   add_filter '/spec/'
 end
 RSpec.configure do |config|
+  # Use Capybara’s DSL in feature specs
+  config.include Capybara::DSL
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

@@ -14,7 +14,10 @@
 # @note This class is used for creating maps of venues in the application and rendered on the venues index view.
 class PartnerCollectionMap < PartnerMap
   def self.records
-    mappable_class.joins(buildings: [:space]).order(created_at: :desc)
+    mappable_class
+      .includes(buildings: [:space])
+      .joins(buildings: [:space])
+      .order(created_at: :desc)
   end
 
   def leaflet_points

@@ -12,6 +12,9 @@ Bundler.require(*Rails.groups)
 module NewToNl
   class Application < Rails::Application # rubocop:todo Style/Documentation
     # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 7.0
+
+    # Initialize configuration defaults for originally generated Rails version.
     config.api_only = false
     config.session_store :cookie_store, key: '_bt_session'
     config.middleware.use ActionDispatch::Cookies
@@ -36,9 +39,6 @@ module NewToNl
     # rubocop:enable Layout/LineLength
 
     I18n.enforce_available_locales = true
-
-    # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
 
     config.active_storage.analyzers = [
       ActiveStorage::Analyzer::ImageAnalyzer::Vips,
@@ -75,7 +75,6 @@ module NewToNl
 
     # Add engine manifest to precompile assets in production
     initializer 'assets' do |app|
-      # Ensure we are not modifying frozen arrays
       app.config.assets.precompile += %w[manifest.js]
       app.config.assets.paths = [root.join('app', 'assets', 'images'),
                                  root.join('app', 'javascript')] + app.config.assets.paths.to_a
