@@ -40,7 +40,6 @@ module NewToNl
 
     I18n.enforce_available_locales = true
 
-
     config.active_storage.analyzers = [
       ActiveStorage::Analyzer::ImageAnalyzer::Vips,
       ActiveStorage::Analyzer::ImageAnalyzer::ImageMagick,
