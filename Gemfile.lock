@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: 39784991ceae9ef16bac415014b6f3bd2cda9471
+  revision: 79863d3a1c502663808ed25446f58b1c60736ef5
   branch: main
   specs:
     better_together (0.8.1)
@@ -697,7 +697,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
       rubocop-rspec (~> 3.5)
-    ruby-openai (8.1.0)
+    ruby-openai (8.2.0)
       event_stream_parser (>= 0.3.0, < 2.0.0)
       faraday (>= 1)
       faraday-multipart (>= 1)
