@@ -39,7 +39,7 @@ class ResourcesController < BetterTogether::FriendlyResourceController # rubocop
     if @resource.save
       redirect_to resources_path, notice: 'Resource was successfully created.'
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -48,7 +48,7 @@ class ResourcesController < BetterTogether::FriendlyResourceController # rubocop
     if @resource.update(resource_params)
       redirect_to edit_resource_path(@resource), notice: 'Resource was successfully updated.', status: :see_other
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
