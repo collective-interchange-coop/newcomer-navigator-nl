@@ -14,18 +14,17 @@ RSpec.configure do |config|
 
     # Provide a sane default stub for any query string.
     Geocoder::Lookup::Test.set_default_stub([
-      {
-        'latitude' => 45.5017,
-        'longitude' => -73.5673,
-        'coordinates' => [45.5017, -73.5673],
-        'address' => 'Test Address',
-        'state' => 'QC',
-        'state_code' => 'QC',
-        'country' => 'Canada',
-        'country_code' => 'CA',
-        'postal_code' => 'H2Y 1C6'
-      }
-    ])
+                                              {
+                                                'latitude' => 45.5017,
+                                                'longitude' => -73.5673,
+                                                'coordinates' => [45.5017, -73.5673],
+                                                'address' => 'Test Address',
+                                                'state' => 'QC',
+                                                'state_code' => 'QC',
+                                                'country' => 'Canada',
+                                                'country_code' => 'CA',
+                                                'postal_code' => 'H2Y 1C6'
+                                              }
+                                            ])
   end
 end
-

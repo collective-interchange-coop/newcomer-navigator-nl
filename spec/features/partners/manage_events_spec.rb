@@ -11,8 +11,8 @@ RSpec.describe 'partner event management', type: :feature do
     configure_host_platform
   end
 
-  scenario 'shows create event button for permitted user and pre-fills host', :aggregate_failures do
-    user = login_as_platform_manager
+  scenario 'shows create event button for permitted user and pre-fills host', :aggregate_failures do # rubocop:disable RSpec/ExampleLength
+    login_as_platform_manager
 
     # Visit the partner page after login (since login redirects to settings)
     partner_url = "/#{I18n.locale}/partners/#{partner.to_param}"
@@ -21,8 +21,9 @@ RSpec.describe 'partner event management', type: :feature do
     # Switch to Events tab
     find('a#events-tab').click
 
-    expect(page).to have_link('Create an Event')
-    click_link 'Create an Event'
+    create_event_label = I18n.t('partners.show.create_event', default: 'Create an Event')
+    expect(page).to have_link(create_event_label)
+    click_link create_event_label
 
     # We should be on the new event page with host params in URL
     current = Addressable::URI.parse(page.current_url)
@@ -37,7 +38,7 @@ RSpec.describe 'partner event management', type: :feature do
       "input[type='hidden'][name='event[event_hosts_attributes][0][host_id]'][value='#{partner.id}']", visible: false
     )
     expect(page).to have_css(
-      "input[type='hidden'][name='event[event_hosts_attributes][0][host_type]'][value='#{partner.class.name}']", visible: false
+      "input[type='hidden'][name='event[event_hosts_attributes][0][host_type]'][value='#{partner.class.name}']", visible: false # rubocop:disable Layout/LineLength
     )
   end
 

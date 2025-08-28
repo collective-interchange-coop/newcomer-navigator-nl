@@ -17,6 +17,7 @@ fr:
     tabs:
       about: À propos
       contact: Contact
+      events: Événements
       members: Membres
     view: Voir
   hints:
@@ -84,6 +85,8 @@ fr:
       title: Organisations partenaires
     new:
       title: Nouvelle organisation partenaire
+    show:
+      create_event: Créer un événement
   resources:
     actions:
       back_to_index: Retour à l'index

@@ -36,7 +36,7 @@ module DeviseSessionHelpers
     created_user
   end
 
-  def fill_in_registration_form(email, password, person)
+  def fill_in_registration_form(email, password, person) # rubocop:disable Metrics/AbcSize
     fill_in_email_and_password(email, password)
     fill_in 'user[password_confirmation]', with: password
     fill_in 'user[person_attributes][name]', with: person.name
