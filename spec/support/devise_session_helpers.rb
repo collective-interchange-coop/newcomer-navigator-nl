@@ -13,8 +13,10 @@ module DeviseSessionHelpers
   end
 
   def login_as_platform_manager
-    user = create(:better_together_user, :confirmed, :platform_manager)
-    sign_in_user(user.email, user.password)
+    email = 'platform_manager@example.com'
+    password = 'password12345'
+    user = create(:better_together_user, :confirmed, :platform_manager, email: email, password: password)
+    sign_in_user(email, password)
     user
   end
 
@@ -43,15 +45,11 @@ module DeviseSessionHelpers
 
     # New consent checkboxes introduced in the community engine
     # Only check them if present, since platforms may toggle which apply
-    if page.has_unchecked_field?('terms_of_service_agreement', wait: 0)
-      check 'terms_of_service_agreement'
-    end
-    if page.has_unchecked_field?('privacy_policy_agreement', wait: 0)
-      check 'privacy_policy_agreement'
-    end
-    if page.has_unchecked_field?('code_of_conduct_agreement', wait: 0)
-      check 'code_of_conduct_agreement'
-    end
+    check 'terms_of_service_agreement' if page.has_unchecked_field?('terms_of_service_agreement', wait: 0)
+    check 'privacy_policy_agreement' if page.has_unchecked_field?('privacy_policy_agreement', wait: 0)
+    return unless page.has_unchecked_field?('code_of_conduct_agreement', wait: 0)
+
+    check 'code_of_conduct_agreement'
   end
 
   def fill_in_email_and_password(email, password)
