@@ -6,8 +6,8 @@ module NewcomerNavigatorNl
     extend ActiveSupport::Concern
 
     included do
-      require_dependency 'partner_map'
-      require_dependency 'partner_collection_map'
+      require 'partner_map'
+      require 'partner_collection_map'
     end
   end
 end
