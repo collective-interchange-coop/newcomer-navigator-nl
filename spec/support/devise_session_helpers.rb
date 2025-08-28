@@ -40,6 +40,18 @@ module DeviseSessionHelpers
     fill_in 'user[person_attributes][name]', with: person.name
     fill_in 'user[person_attributes][identifier]', with: person.identifier
     fill_in 'user[person_attributes][description]', with: person.description
+
+    # New consent checkboxes introduced in the community engine
+    # Only check them if present, since platforms may toggle which apply
+    if page.has_unchecked_field?('terms_of_service_agreement', wait: 0)
+      check 'terms_of_service_agreement'
+    end
+    if page.has_unchecked_field?('privacy_policy_agreement', wait: 0)
+      check 'privacy_policy_agreement'
+    end
+    if page.has_unchecked_field?('code_of_conduct_agreement', wait: 0)
+      check 'code_of_conduct_agreement'
+    end
   end
 
   def fill_in_email_and_password(email, password)
