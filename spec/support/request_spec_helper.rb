@@ -5,7 +5,7 @@ module RequestSpecHelper
     JSON.parse(response.body)
   end
 
-  def login(email, password)
+  def login(_email, _password)
     post better_together.user_session_path, params: {
       user: { email: user.email, password: user.password }
     }
