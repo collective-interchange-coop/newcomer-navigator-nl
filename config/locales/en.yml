@@ -17,6 +17,7 @@ en:
     tabs:
       about: About
       contact: Contact
+      events: Events
       members: Members
     view: View details
   hints:
@@ -82,6 +83,8 @@ en:
       title: Partner Organizations
     new:
       title: Add a New Partner
+    show:
+      create_event: Create an Event
   resources:
     actions:
       back_to_index: Return to the resource list

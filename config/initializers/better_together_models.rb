@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 ActiveSupport::Reloader.to_prepare do
-  require_dependency 'better_together/content/block_attributes'
-  require_dependency 'better_together/content/block'
-  require_dependency 'better_together/content/template'
-  require_dependency 'better_together/geography/map'
-  require_dependency 'better_together/navigation_item'
-  require_dependency 'better_together/page'
-  require_dependency 'better_together/person'
+  require 'better_together/content/block_attributes'
+  require 'better_together/content/block'
+  require 'better_together/content/template'
+  require 'better_together/geography/map'
+  require 'better_together/navigation_item'
+  require 'better_together/page'
+  require 'better_together/person'
 
   BetterTogether::Content::Block.include(Journeyable)
   BetterTogether::Content::Template.include(NewToNlContentTemplate)

@@ -17,6 +17,7 @@ es:
     tabs:
       about: Acerca de
       contact: Contacto
+      events: Eventos
       members: Miembros
     view: Ver
   hints:
@@ -84,6 +85,8 @@ es:
       title: Organizaciones asociadas
     new:
       title: Nueva organización asociada
+    show:
+      create_event: Crear un evento
   resources:
     actions:
       back_to_index: Volver al índice
