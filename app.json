@@ -1,5 +1,8 @@
 {
   "name": "community-engine",
+  "scripts": {
+    "postdeploy": "bundle exec rails db:seed"
+  },
   "env": {
     "LANG": {
       "description": "Language environment variable",
