@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # This migration comes from better_together (originally 20250830090500)
-class CreateBetterTogetherChecklistItems < ActiveRecord::Migration[7.0] # rubocop:todo Style/Documentation
+class CreateBetterTogetherChecklistItems < ActiveRecord::Migration[7.0]
   def change # rubocop:todo Metrics/MethodLength
     create_bt_table :checklist_items do |t|
       t.bt_identifier
