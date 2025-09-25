@@ -127,5 +127,4 @@ group :test do
   gem 'shoulda-matchers'
   # SimpleCov for test coverage analysis
   gem 'simplecov', require: false
-  gem 'sqlite3', '~> 2.7'
 end
