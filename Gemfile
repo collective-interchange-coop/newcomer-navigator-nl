@@ -62,6 +62,9 @@ group :development, :test do
   gem 'binding_of_caller'
   # Debugger tool
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+
+  # EvilSeed for seeding databases with sample data
+  gem 'evil-seed', require: false
   # Faker for generating fake data
   gem 'faker'
   # FactoryBot for setting up test data

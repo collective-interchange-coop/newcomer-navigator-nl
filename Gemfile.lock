@@ -303,6 +303,8 @@ GEM
     et-orbi (1.4.0)
       tzinfo
     event_stream_parser (1.0.0)
+    evil-seed (0.7.0)
+      activerecord (>= 5.0)
     excon (1.2.8)
       logger
     execjs (2.10.0)
@@ -834,6 +836,7 @@ DEPENDENCIES
   database_cleaner
   database_cleaner-active_record
   easy_translate
+  evil-seed
   factory_bot_rails
   faker
   fog-aws
