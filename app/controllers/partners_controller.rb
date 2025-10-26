@@ -83,6 +83,10 @@ class PartnersController < BetterTogether::CommunitiesController # rubocop:todo 
     Partner
   end
 
+  def resource_collection
+    super.with_attached_profile_image.with_attached_logo
+  end
+
   def translatable_resource_type
     BetterTogether::Community.name
   end

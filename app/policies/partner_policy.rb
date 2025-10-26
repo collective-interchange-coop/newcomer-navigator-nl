@@ -15,7 +15,7 @@ class PartnerPolicy < BetterTogether::CommunityPolicy # rubocop:todo Style/Docum
 
   class Scope < BetterTogether::CommunityPolicy::Scope # rubocop:todo Style/Documentation
     def resolve
-      scope.i18n.with_attached_profile_image.where(permitted_query).order(name: :asc)
+      scope.i18n.where(permitted_query).order(name: :asc)
     end
 
     protected
