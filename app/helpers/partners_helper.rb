@@ -26,16 +26,52 @@ module PartnersHelper # rubocop:todo Style/Documentation
     ]
   end
 
-  def partner_show_cache_key(partner)
+  def partner_header_cache_key(partner)
     [
-      'partner-show',
+      'partner-header',
       partner.id,
       partner.updated_at,
-      partner.contact_details.maximum(:updated_at),
-      partner.hosted_events.maximum(:updated_at),
-      I18n.locale,
       current_user&.id,
-      'v1'
+      I18n.locale
+    ]
+  end
+
+  def partner_about_cache_key(partner)
+    [
+      'partner-about',
+      partner.id,
+      partner.updated_at,
+      I18n.locale
+    ]
+  end
+
+  def partner_contact_cache_key(partner)
+    [
+      'partner-contact',
+      partner.id,
+      partner.contacts.maximum(:updated_at),
+      partner.building_connections.maximum(:updated_at),
+      I18n.locale
+    ]
+  end
+
+  def partner_events_cache_key(partner)
+    [
+      'partner-events',
+      partner.id,
+      partner.hosted_events.maximum(:updated_at),
+      partner.hosted_events.count,
+      current_user&.id,
+      I18n.locale
+    ]
+  end
+
+  def partner_map_cache_key(partner)
+    [
+      'partner-map',
+      partner.id,
+      partner.map.updated_at,
+      I18n.locale
     ]
   end
 end
