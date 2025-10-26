@@ -27,9 +27,8 @@ class PartnerCollectionMap < PartnerMap
             :address
           ]
         },
-        # Partner name/description translations needed for leaflet point labels
-        :string_translations,
-        :text_translations
+        # Partner name translations needed for leaflet point labels
+        :string_translations
       )
       .joins(buildings: [:geospatial_space, { geospatial_space: :space }])
       .order(created_at: :desc)
