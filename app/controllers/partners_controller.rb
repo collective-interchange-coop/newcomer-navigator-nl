@@ -84,7 +84,14 @@ class PartnersController < BetterTogether::CommunitiesController # rubocop:todo 
   end
 
   def resource_collection
-    super.with_attached_profile_image.with_attached_logo
+    # Optimize partner loading with comprehensive eager loading to prevent N+1 queries
+    super
+      .includes(
+        # Preload string translations efficiently (avoid complex outer joins)
+        :string_translations
+      )
+      .with_attached_profile_image
+      .with_attached_logo
   end
 
   def translatable_resource_type
