@@ -19,7 +19,11 @@ Rails.application.routes.draw do
       resources :topics
     end
 
-    resources :partners
+    resources :partners do
+      member do
+        get :available_people
+      end
+    end
     resources :resources do
       member do
         get :download

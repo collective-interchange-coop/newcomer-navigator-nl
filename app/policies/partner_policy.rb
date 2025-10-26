@@ -5,6 +5,22 @@ class PartnerPolicy < BetterTogether::CommunityPolicy # rubocop:todo Style/Docum
     true
   end
 
+  alias available_people? show?
+
+  # Check if user can manage members (view members tab and add/remove members)
+  # Allows:
+  # - Platform managers (can manage all partners)
+  # - Partner members (can view and potentially add members to their partner)
+  def manage_members?
+    return false unless agent
+
+    # Platform managers can manage members of any partner
+    return true if permitted_to?('manage_platform')
+
+    # Users who are members of this partner can manage members
+    record.person_community_memberships.exists?(member_id: agent.id)
+  end
+
   def create?
     permitted_to?('manage_platform')
   end
