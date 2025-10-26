@@ -4,6 +4,11 @@ class PartnersController < BetterTogether::CommunitiesController # rubocop:todo 
   def index
     authorize resource_class
     @partners = policy_scope(resource_collection)
+
+    # Add cache headers for better browser/CDN caching
+    return unless Rails.env.production?
+
+    expires_in 15.minutes, public: true
   end
 
   def new
@@ -85,13 +90,15 @@ class PartnersController < BetterTogether::CommunitiesController # rubocop:todo 
 
   def resource_collection
     # Optimize partner loading with comprehensive eager loading to prevent N+1 queries
-    super
-      .includes(
-        # Preload string translations efficiently (avoid complex outer joins)
-        :string_translations
-      )
-      .with_attached_profile_image
-      .with_attached_logo
+    @resource_collection ||= super
+                             .includes(
+                               # Preload string translations efficiently (avoid complex outer joins)
+                               :string_translations,
+                               # Preload Active Storage attachments and blobs to prevent N+1
+                               logo_attachment: :blob,
+                               profile_image_attachment: :blob
+                             )
+                             .order(created_at: :desc)
   end
 
   def translatable_resource_type
