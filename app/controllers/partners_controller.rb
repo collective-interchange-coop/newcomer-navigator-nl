@@ -138,7 +138,7 @@ class PartnersController < BetterTogether::CommunitiesController # rubocop:todo 
                                logo_attachment: :blob,
                                profile_image_attachment: :blob
                              )
-                             .order(created_at: :desc)
+                             .i18n.order(name: :asc, created_at: :desc)
   end
 
   def show
