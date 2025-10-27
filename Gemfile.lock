@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: b4cc92935722ddcc4bd02ad1fb2f537d276e1a37
+  revision: 657e91f0bee0fc07456df0483202771639127779
   branch: enhance/load-times
   specs:
     better_together (0.8.1)
