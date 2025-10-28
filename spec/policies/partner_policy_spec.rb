@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe PartnerPolicy, type: :policy do # rubocop:todo RSpec/MultipleMemoizedHelpers
-  let(:platform) { create(:better_together_platform) }
-  let(:community) { create(:better_together_community, host_platform: platform) }
-  let(:partner) { create(:partner, host_community: community) }
+  let(:platform) { configure_host_platform }
+  let(:community) { create(:better_together_community) }
+  let(:partner) { create(:partner, privacy: 'public') }
 
   let(:platform_manager) { create(:better_together_user, :platform_manager) }
   let(:partner_member) { create(:better_together_user) }

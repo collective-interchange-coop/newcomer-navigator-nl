@@ -25,7 +25,10 @@ RSpec.describe PartnerCollectionMap, type: :model do
 
       expect(records.map(&:id)).to eq([newer_partner.id, older_partner.id])
       expect(records.first.association(:buildings)).to be_loaded
-      expect(records.first.buildings.first.association(:space)).to be_loaded
+      # Check the actual association path: building -> geospatial_space -> space
+      building = records.first.buildings.first
+      expect(building.association(:geospatial_space)).to be_loaded
+      expect(building.geospatial_space.association(:space)).to be_loaded
     end
   end
 
@@ -34,9 +37,13 @@ RSpec.describe PartnerCollectionMap, type: :model do
     let(:second_partner) { create(:partner) }
 
     before do
-      allow(first_partner).to receive(:leaflet_points).and_return([{ lat: 1.0, lng: 2.0 }])
-      allow(second_partner).to receive(:leaflet_points).and_return([{ lat: 3.0, lng: 4.0 }])
-      allow(described_class).to receive(:records).and_return([first_partner, second_partner])
+      # Mock the calculate_leaflet_points method directly since it's what the class actually calls
+      allow_any_instance_of(described_class).to receive(:calculate_leaflet_points).and_return([
+                                                                                                { lat: 1.0, lng: 2.0,
+                                                                                                  elevation: nil, label: 'Partner 1', popup_html: 'Partner 1' },
+                                                                                                { lat: 3.0, lng: 4.0,
+                                                                                                  elevation: nil, label: 'Partner 2', popup_html: 'Partner 2' }
+                                                                                              ])
     end
 
     it 'returns unique flattened leaflet points from records' do

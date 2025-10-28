@@ -24,6 +24,10 @@ require 'rspec/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
+# Load community engine test helpers first
+require File.join(BetterTogether::Engine.root, 'spec', 'support', 'automatic_test_configuration.rb')
+
+# Load local support files
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
@@ -39,6 +43,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::IntegrationHelpers, type: :feature
   config.include Warden::Test::Helpers
+  config.include AutomaticTestConfiguration
   config.after { Warden.test_reset! }
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
