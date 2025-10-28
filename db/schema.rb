@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_09_08_175706) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_26_212729) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
-  enable_extension "plpgsql"
   enable_extension "postgis"
 
   create_table "action_text_rich_texts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -24,7 +24,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_08_175706) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "locale"
+    t.index ["record_type", "locale", "name"], name: "index_rich_texts_on_type_locale_name"
     t.index ["record_type", "record_id", "name", "locale"], name: "index_action_text_rich_texts_uniqueness", unique: true
+    t.index ["record_type", "record_id"], name: "index_rich_texts_on_type_id"
   end
 
   create_table "active_storage_attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -37,6 +39,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_08_175706) do
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
     t.index ["record_type", "record_id", "name", "locale"], name: "index_active_storage_attachments_on_record_and_name_and_locale", unique: true
+    t.index ["record_type", "record_id", "name"], name: "index_attachments_on_type_id_name"
   end
 
   create_table "active_storage_blobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -203,7 +206,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_08_175706) do
     t.uuid "community_id", null: false
     t.uuid "creator_id"
     t.string "identifier", limit: 100, null: false
-    t.string "locale", limit: 5, default: "es", null: false
+    t.string "locale", limit: 5, default: "en", null: false
     t.string "privacy", limit: 50, default: "private", null: false
     t.boolean "protected", default: false, null: false
     t.index ["community_id"], name: "by_better_together_calendars_community"
@@ -546,7 +549,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_08_175706) do
     t.datetime "updated_at", null: false
     t.uuid "creator_id"
     t.string "identifier", limit: 100, null: false
-    t.string "locale", limit: 5, default: "es", null: false
+    t.string "locale", limit: 5, default: "en", null: false
     t.string "privacy", limit: 50, default: "private", null: false
     t.boolean "protected", default: false, null: false
     t.geography "center", limit: {srid: 4326, type: "st_point", geographic: true}
@@ -729,7 +732,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_08_175706) do
     t.datetime "valid_until"
     t.datetime "last_sent"
     t.datetime "accepted_at"
-    t.string "locale", limit: 5, default: "es", null: false
+    t.string "locale", limit: 5, default: "en", null: false
     t.string "token", limit: 64, null: false
     t.string "invitable_type", null: false
     t.uuid "invitable_id", null: false
@@ -1012,9 +1015,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_08_175706) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "identifier", limit: 100, null: false
-    t.string "privacy", limit: 50, default: "private", null: false
     t.uuid "community_id", null: false
     t.jsonb "preferences", default: {}, null: false
+    t.string "privacy", limit: 50, default: "private", null: false
     t.jsonb "notification_preferences", default: {}, null: false
     t.index ["community_id"], name: "by_person_community"
     t.index ["identifier"], name: "index_better_together_people_on_identifier", unique: true
@@ -1124,7 +1127,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_08_175706) do
     t.datetime "accepted_at"
     t.string "type", default: "BetterTogether::PlatformInvitation", null: false
     t.integer "session_duration_mins", default: 30, null: false
+    t.index ["accepted_at", "last_sent"], name: "better_together_platform_invitations_accepted_at_idx"
     t.index ["community_role_id"], name: "platform_invitations_by_community_role"
+    t.index ["created_at", "accepted_at"], name: "better_together_platform_invitations_created_at_idx"
     t.index ["invitable_id", "status"], name: "index_platform_invitations_on_invitable_id_and_status"
     t.index ["invitable_id"], name: "platform_invitations_by_invitable"
     t.index ["invitee_email", "invitable_id"], name: "idx_on_invitee_email_invitable_id_5a7d642388", unique: true
@@ -1401,6 +1406,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_08_175706) do
     t.index ["translatable_id", "translatable_type", "key"], name: "index_mobility_string_translations_on_translatable_attribute"
     t.index ["translatable_id", "translatable_type", "locale", "key"], name: "index_mobility_string_translations_on_keys", unique: true
     t.index ["translatable_type", "key", "value", "locale"], name: "index_mobility_string_translations_on_query_keys"
+    t.index ["translatable_type", "locale", "key"], name: "index_string_translations_on_type_locale_key"
+    t.index ["translatable_type", "translatable_id"], name: "index_string_translations_on_type_id"
   end
 
   create_table "mobility_text_translations", force: :cascade do |t|
@@ -1413,6 +1420,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_08_175706) do
     t.datetime "updated_at", null: false
     t.index ["translatable_id", "translatable_type", "key"], name: "index_mobility_text_translations_on_translatable_attribute"
     t.index ["translatable_id", "translatable_type", "locale", "key"], name: "index_mobility_text_translations_on_keys", unique: true
+    t.index ["translatable_type", "locale", "key"], name: "index_text_translations_on_type_locale_key"
+    t.index ["translatable_type", "translatable_id"], name: "index_text_translations_on_type_id"
   end
 
   create_table "noticed_events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
