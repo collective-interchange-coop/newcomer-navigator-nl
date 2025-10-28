@@ -20,7 +20,7 @@ RSpec.describe PartnerCollectionMap, type: :model do
       end
     end
 
-    it 'preloads buildings and spaces and orders by creation', :aggregate_failures do
+    it 'preloads buildings and spaces and orders by creation', :aggregate_failures do # rubocop:todo RSpec/ExampleLength
       records = described_class.records.to_a
 
       expect(records.map(&:id)).to eq([newer_partner.id, older_partner.id])
@@ -38,11 +38,17 @@ RSpec.describe PartnerCollectionMap, type: :model do
 
     before do
       # Mock the calculate_leaflet_points method directly since it's what the class actually calls
+      # rubocop:todo RSpec/AnyInstance
       allow_any_instance_of(described_class).to receive(:calculate_leaflet_points).and_return([
+                                                                                                # rubocop:enable RSpec/AnyInstance
                                                                                                 { lat: 1.0, lng: 2.0,
+                                                                                                  # rubocop:todo Layout/LineLength
                                                                                                   elevation: nil, label: 'Partner 1', popup_html: 'Partner 1' },
+                                                                                                # rubocop:enable Layout/LineLength
                                                                                                 { lat: 3.0, lng: 4.0,
+                                                                                                  # rubocop:todo Layout/LineLength
                                                                                                   elevation: nil, label: 'Partner 2', popup_html: 'Partner 2' }
+                                                                                                # rubocop:enable Layout/LineLength
                                                                                               ])
     end
 
