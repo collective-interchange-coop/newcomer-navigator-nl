@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PartnersController < BetterTogether::CommunitiesController # rubocop:todo Style/Documentation
+class PartnersController < BetterTogether::CommunitiesController # rubocop:todo Style/Documentation, Metrics/ClassLength
   def index
     authorize resource_class
     @partners = policy_scope(resource_collection)
@@ -68,7 +68,7 @@ class PartnersController < BetterTogether::CommunitiesController # rubocop:todo 
   end
 
   # AJAX endpoint for loading available people for member addition with search support
-  def available_people
+  def available_people # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
     set_model_instance
     authorize @partner, :manage_members?
 
@@ -83,7 +83,7 @@ class PartnersController < BetterTogether::CommunitiesController # rubocop:todo 
     if search_term.present?
       available_people_scope = available_people_scope.joins(:string_translations)
                                                      .where(
-                                                       'mobility_string_translations.key = ? AND mobility_string_translations.value ILIKE ?',
+                                                       'mobility_string_translations.key = ? AND mobility_string_translations.value ILIKE ?', # rubocop:disable Layout/LineLength
                                                        'name', "%#{search_term}%"
                                                      ).distinct
     end
@@ -141,7 +141,7 @@ class PartnersController < BetterTogether::CommunitiesController # rubocop:todo 
                              .i18n.order(name: :asc, created_at: :desc)
   end
 
-  def show
+  def show # rubocop:todo Metrics/MethodLength
     set_model_instance
     authorize @partner
 

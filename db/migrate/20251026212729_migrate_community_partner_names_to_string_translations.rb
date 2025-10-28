@@ -1,4 +1,6 @@
-class MigrateCommunityPartnerNamesToStringTranslations < ActiveRecord::Migration[8.0]
+# frozen_string_literal: true
+
+class MigrateCommunityPartnerNamesToStringTranslations < ActiveRecord::Migration[8.0] # rubocop:todo Style/Documentation
   def up
     # Move community and partner name translations from text to string translations
     # This handles cases where names were incorrectly stored as text type

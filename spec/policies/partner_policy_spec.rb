@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PartnerPolicy, type: :policy do
+RSpec.describe PartnerPolicy, type: :policy do # rubocop:todo RSpec/MultipleMemoizedHelpers
   let(:platform) { create(:better_together_platform) }
   let(:community) { create(:better_together_community, host_platform: platform) }
   let(:partner) { create(:partner, host_community: community) }
@@ -19,8 +19,8 @@ RSpec.describe PartnerPolicy, type: :policy do
            joinable: partner)
   end
 
-  describe '#manage_members?' do
-    context 'with platform manager' do
+  describe '#manage_members?' do # rubocop:todo RSpec/MultipleMemoizedHelpers
+    context 'with platform manager' do # rubocop:todo RSpec/MultipleMemoizedHelpers
       subject(:policy) { described_class.new(platform_manager, partner) }
 
       it 'allows platform managers to manage members of any partner' do
@@ -28,7 +28,7 @@ RSpec.describe PartnerPolicy, type: :policy do
       end
     end
 
-    context 'with partner member' do
+    context 'with partner member' do # rubocop:todo RSpec/MultipleMemoizedHelpers
       subject(:policy) { described_class.new(partner_member, partner) }
 
       it 'allows partner members to manage members' do
@@ -36,7 +36,7 @@ RSpec.describe PartnerPolicy, type: :policy do
       end
     end
 
-    context 'with non-member user' do
+    context 'with non-member user' do # rubocop:todo RSpec/MultipleMemoizedHelpers
       subject(:policy) { described_class.new(non_member_user, partner) }
 
       it 'denies non-members from managing members' do
@@ -44,7 +44,7 @@ RSpec.describe PartnerPolicy, type: :policy do
       end
     end
 
-    context 'with guest user' do
+    context 'with guest user' do # rubocop:todo RSpec/MultipleMemoizedHelpers
       subject(:policy) { described_class.new(guest_user, partner) }
 
       it 'denies guests from managing members' do
@@ -53,8 +53,8 @@ RSpec.describe PartnerPolicy, type: :policy do
     end
   end
 
-  describe '#available_people?' do
-    context 'with platform manager' do
+  describe '#available_people?' do # rubocop:todo RSpec/MultipleMemoizedHelpers
+    context 'with platform manager' do # rubocop:todo RSpec/MultipleMemoizedHelpers
       subject(:policy) { described_class.new(platform_manager, partner) }
 
       it 'allows platform managers to access available people' do
@@ -62,7 +62,7 @@ RSpec.describe PartnerPolicy, type: :policy do
       end
     end
 
-    context 'with partner member' do
+    context 'with partner member' do # rubocop:todo RSpec/MultipleMemoizedHelpers
       subject(:policy) { described_class.new(partner_member, partner) }
 
       it 'allows partner members to access available people' do

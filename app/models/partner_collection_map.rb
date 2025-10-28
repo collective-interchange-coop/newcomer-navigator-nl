@@ -13,7 +13,7 @@
 #
 # @note This class is used for creating maps of partners in the application and rendered on the partners index view.
 class PartnerCollectionMap < PartnerMap
-  def self.records
+  def self.records # rubocop:todo Metrics/MethodLength
     mappable_class
       .includes(
         # Deep eager loading matching the actual association path
@@ -50,7 +50,10 @@ class PartnerCollectionMap < PartnerMap
   private
 
   # Precompute all leaflet points data using the already eager-loaded associations
-  def calculate_leaflet_points
+  # rubocop:todo Metrics/PerceivedComplexity
+  # rubocop:todo Metrics/MethodLength
+  # rubocop:todo Metrics/AbcSize
+  def calculate_leaflet_points # rubocop:todo Metrics/CyclomaticComplexity, Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
     records.flat_map do |partner|
       partner.buildings.filter_map do |building|
         # Use space through the preloaded geospatial_space -> space association path
@@ -76,7 +79,9 @@ class PartnerCollectionMap < PartnerMap
           locale: I18n.locale
         )
 
+        # rubocop:todo Layout/LineLength
         place_link = "<a href='#{place_url}' class='text-decoration-none'><strong>#{partner.name}#{place_label}</strong></a>"
+        # rubocop:enable Layout/LineLength
 
         address_label = building.address&.to_formatted_s(excluded: [:display_label]) || ''
 
@@ -87,4 +92,7 @@ class PartnerCollectionMap < PartnerMap
       end
     end
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/PerceivedComplexity
 end
