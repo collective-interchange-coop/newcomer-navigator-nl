@@ -42,7 +42,7 @@ This plan implements Cloudflare Turnstile captcha protection for user registrati
 
 ### Phase 2: Engine Integration Hooks
 
-- [ ] **Step 4: Create Turnstile Hook in Engine**
+- [x] **Step 4: Create Turnstile Hook in Engine** ✅
   - Add `validate_captcha_if_enabled` method to registrations controller
   - Design hook to be overridable by host applications
   - Ensure hook doesn't break existing functionality when unused
@@ -51,7 +51,7 @@ This plan implements Cloudflare Turnstile captcha protection for user registrati
 
 ### Phase 3: Host Application Implementation
 
-- [ ] **Step 5: Create Host Registration Controller**
+- [x] **Step 5: Create Host Registration Controller** ✅
   - Override `BetterTogether::Users::RegistrationsController` in host app
   - Implement Turnstile validation using `valid_turnstile?` method
   - Handle validation errors with proper user feedback
