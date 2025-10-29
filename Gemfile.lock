@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: 4ad463c961c3f12f11cc4f6c9cde81f084b0efe9
-  branch: main
+  revision: 198fcd0a7ce2c702cfa94f472aec230e4a230453
+  branch: feat/password-complexity
   specs:
     better_together (0.8.1)
       active_storage_svg_sanitizer
@@ -13,6 +13,7 @@ GIT
       devise
       devise-i18n
       devise-jwt
+      devise_zxcvbn
       elasticsearch-model (~> 7)
       elasticsearch-rails (~> 7)
       font-awesome-sass (~> 6.5)
@@ -267,6 +268,9 @@ GEM
     devise-jwt (0.12.1)
       devise (~> 4.0)
       warden-jwt_auth (~> 0.10)
+    devise_zxcvbn (6.0.0)
+      devise
+      zxcvbn (~> 0.1.7)
     diff-lcs (1.6.2)
     disposable (0.6.3)
       declarative (>= 0.0.9, < 1.0.0)
@@ -815,6 +819,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.7.3)
+    zxcvbn (0.1.13)
 
 PLATFORMS
   aarch64-linux
