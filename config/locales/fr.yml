@@ -82,15 +82,15 @@ fr:
       remove: Retirer du parcours
   journey_stages:
     arrival:
-      button: Vos premiers pas aux Pays-Bas
+      button: Vos premiers pas aux Terre-Neuve-et-Labrador.
       image_alt: Image d'Arrivée
       title: Arrivée
     pre-arrival:
-      button: Préparez-vous à venir aux Pays-Bas
+      button: Préparez-vous à venir aux Terre-Neuve-et-Labrador.
       image_alt: Image de Pré-Arrivée
       title: Pré-Arrivée
     settlement:
-      button: Prêt à vous installer aux Pays-Bas
+      button: Prêt à vous installer aux Terre-Neuve-et-Labrador.
       image_alt: Image d'Installation
       title: Installation
     title: À chaque étape de votre parcours, nous pouvons vous guider

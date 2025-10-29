@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: c911193f224d7fb38adb468c017a64456601fe49
+  revision: 3909290b96826270a798f1ebd6f9d69d797e8c95
   branch: feat/password-complexity
   specs:
     better_together (0.8.1)
