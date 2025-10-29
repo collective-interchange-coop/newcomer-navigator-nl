@@ -102,3 +102,13 @@ fr:
     new:
       back_to_resources: Retour aux ressources
       title: Nouvelle ressource
+
+  # Traductions d'authentification Devise  
+  devise:
+    registrations:
+      new:
+        captcha:
+          legend: Vérification de Sécurité
+          aria_label: Compléter la vérification de sécurité
+          help: Veuillez compléter la vérification de sécurité pour continuer votre inscription.
+        captcha_failed: La vérification de sécurité a échoué. Veuillez compléter la vérification de sécurité et réessayer.

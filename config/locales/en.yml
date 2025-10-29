@@ -100,3 +100,13 @@ en:
     new:
       back_to_resources: Return to the resource list
       title: Create a New Resource
+  
+  # Devise authentication translations
+  devise:
+    registrations:
+      new:
+        captcha:
+          legend: Security Verification
+          aria_label: Complete security verification
+          help: Please complete the security verification to continue with your registration.
+        captcha_failed: Security verification failed. Please complete the security check and try again.

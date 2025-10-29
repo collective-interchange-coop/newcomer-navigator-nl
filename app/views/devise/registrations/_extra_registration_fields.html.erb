@@ -1,0 +1,25 @@
+<%# New to NL host app override - adds Cloudflare Turnstile captcha to registration form %>
+
+<% if defined?(Cloudflare::Turnstile::Rails) && Cloudflare::Turnstile::Rails.configuration.site_key.present? %>
+<!-- Security Verification (Captcha) -->
+<div class="mb-4">
+  <fieldset aria-describedby="captcha-help-<%= Time.current.to_i %>">
+    <legend class="form-label h6"><%= t('devise.registrations.new.captcha.legend', default: 'Security Verification') %></legend>
+    <div class="mb-3">
+      <%= cloudflare_turnstile_tag(
+        data: { 
+          theme: 'light', 
+          language: I18n.locale.to_s,
+          size: 'normal'
+        }, 
+        class: 'cf-turnstile',
+        'aria-label': t('devise.registrations.new.captcha.aria_label', default: 'Complete security verification')
+      ) %>
+      <p id="captcha-help-<%= Time.current.to_i %>" class="form-text text-muted">
+        <%= t('devise.registrations.new.captcha.help', 
+              default: 'Please complete the security verification to continue with your registration.') %>
+      </p>
+    </div>
+  </fieldset>
+</div>
+<% end %>
