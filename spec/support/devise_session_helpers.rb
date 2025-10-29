@@ -49,7 +49,10 @@ module DeviseSessionHelpers
     fill_in_registration_form(email, password, person)
     click_button 'Sign Up'
     created_user = BetterTogether::User.find_by(email: email)
-    created_user.confirm
+    return nil unless created_user
+
+    # Only confirm if the user has the confirmable module enabled
+    created_user.confirm if created_user.respond_to?(:confirm)
     created_user
   end
 

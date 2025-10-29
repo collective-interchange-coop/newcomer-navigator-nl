@@ -20,8 +20,15 @@ require 'capybara/rspec'
 require 'capybara-screenshot/rspec'
 require 'simplecov'
 require 'coveralls'
+require 'rspec/rebound'
+require 'webmock/rspec'
 
-Capybara.asset_host = ENV.fetch('APP_HOST', 'http://localhost:3001')
+# Disable real external HTTP connections in tests but allow localhost so
+# Capybara drivers (cuprite/ferrum/selenium) can communicate with the app
+# server started by the test suite. Also allow Elasticsearch connections.
+WebMock.disable_net_connect!(allow_localhost: true, allow: 'elasticsearch:9200')
+
+Capybara.asset_host = ENV.fetch('APP_HOST', 'http://localhost:3000')
 
 Coveralls.wear!('rails')
 
