@@ -4,6 +4,40 @@ fr:
     communities:
       tabs:
         categories: Catégories
+  devise:
+    registrations:
+      new:
+        captcha:
+          aria_label: Compléter la vérification de sécurité
+          error:
+            default_message: Il y a eu un problème avec la vérification de sécurité.
+              Veuillez réessayer.
+            expired_error: La vérification de sécurité a expiré. Veuillez la compléter
+              à nouveau.
+            failed_error: La vérification de sécurité a échoué. Veuillez essayer de
+              la compléter à nouveau.
+            invisible:
+              default_message: Il y a eu un problème avec la vérification de sécurité.
+                Veuillez recharger la page et réessayer. Si le problème persiste,
+                contactez le support.
+              expired_error: La vérification de sécurité a expiré. Veuillez recharger
+                la page et réessayer. Si le problème persiste, contactez le support.
+              failed_error: La vérification de sécurité a échoué. Veuillez recharger
+                la page et réessayer. Si le problème persiste, contactez le support.
+              network_error: Une erreur de connexion réseau s'est produite lors de
+                la vérification de sécurité. Veuillez recharger la page et réessayer.
+                Si le problème persiste, contactez le support.
+              timeout_error: La vérification de sécurité a expiré. Veuillez recharger
+                la page et réessayer. Si le problème persiste, contactez le support.
+            network_error: Une erreur de connexion réseau s'est produite lors de la
+              vérification de sécurité.
+            timeout_error: La vérification de sécurité a expiré. Veuillez réessayer.
+            title: Erreur de Vérification de Sécurité
+          help: Veuillez compléter la vérification de sécurité pour continuer votre
+            inscription.
+          legend: Vérification de Sécurité
+        captcha_failed: La vérification de sécurité a échoué. Veuillez compléter la
+          vérification de sécurité et réessayer.
   globals:
     add_member: Ajouter un membre
     attached_file: Fichier joint
@@ -102,13 +136,3 @@ fr:
     new:
       back_to_resources: Retour aux ressources
       title: Nouvelle ressource
-
-  # Traductions d'authentification Devise  
-  devise:
-    registrations:
-      new:
-        captcha:
-          legend: Vérification de Sécurité
-          aria_label: Compléter la vérification de sécurité
-          help: Veuillez compléter la vérification de sécurité pour continuer votre inscription.
-        captcha_failed: La vérification de sécurité a échoué. Veuillez compléter la vérification de sécurité et réessayer.

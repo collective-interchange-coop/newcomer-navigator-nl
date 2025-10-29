@@ -7,7 +7,7 @@ module NewToNlCaptchaValidation
   included do
     # Override the engine's captcha validation hook to implement Turnstile validation
     # @return [Boolean] true if captcha is valid, false if validation fails
-    def validate_captcha_if_enabled
+    def validate_captcha_if_enabled?
       # Check if Turnstile gem is available and configured
       return true unless defined?(Cloudflare::Turnstile::Rails)
       return true if Cloudflare::Turnstile::Rails.configuration.site_key.blank?
@@ -22,7 +22,9 @@ module NewToNlCaptchaValidation
     def handle_captcha_validation_failure(resource)
       # Add a user-friendly error message
       resource.errors.add(:base, I18n.t('devise.registrations.new.captcha_failed',
+                                        # rubocop:todo Layout/LineLength
                                         default: 'Security verification failed. Please complete the security check and try again.'))
+      # rubocop:enable Layout/LineLength
       respond_with resource
     end
   end

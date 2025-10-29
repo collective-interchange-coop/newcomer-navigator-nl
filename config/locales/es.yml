@@ -4,6 +4,44 @@ es:
     communities:
       tabs:
         categories: Categorías
+  devise:
+    registrations:
+      new:
+        captcha:
+          aria_label: Completar verificación de seguridad
+          error:
+            default_message: Hubo un problema con la verificación de seguridad. Por
+              favor, inténtelo de nuevo.
+            expired_error: La verificación de seguridad ha expirado. Por favor, complétela
+              de nuevo.
+            failed_error: La verificación de seguridad falló. Por favor, intente completarla
+              de nuevo.
+            invisible:
+              default_message: Hubo un problema con la verificación de seguridad.
+                Por favor, recargue la página e inténtelo de nuevo. Si el problema
+                continúa, contacte con soporte.
+              expired_error: La verificación de seguridad ha expirado. Por favor,
+                recargue la página e inténtelo de nuevo. Si el problema continúa,
+                contacte con soporte.
+              failed_error: La verificación de seguridad falló. Por favor, recargue
+                la página e inténtelo de nuevo. Si el problema continúa, contacte
+                con soporte.
+              network_error: Ocurrió un error de conexión de red durante la verificación
+                de seguridad. Por favor, recargue la página e inténtelo de nuevo.
+                Si el problema continúa, contacte con soporte.
+              timeout_error: La verificación de seguridad expiró. Por favor, recargue
+                la página e inténtelo de nuevo. Si el problema continúa, contacte
+                con soporte.
+            network_error: Ocurrió un error de conexión de red durante la verificación
+              de seguridad.
+            timeout_error: La verificación de seguridad expiró. Por favor, inténtelo
+              de nuevo.
+            title: Error de Verificación de Seguridad
+          help: Por favor, complete la verificación de seguridad para continuar con
+            su registro.
+          legend: Verificación de Seguridad
+        captcha_failed: La verificación de seguridad falló. Por favor, complete la
+          verificación de seguridad e inténtalo de nuevo.
   globals:
     add_member: Agregar miembro
     attached_file: Archivo adjunto
@@ -102,13 +140,3 @@ es:
     new:
       back_to_resources: Volver a los recursos
       title: Nuevo recurso
-
-  # Traducciones de autenticación Devise
-  devise:
-    registrations:
-      new:
-        captcha:
-          legend: Verificación de Seguridad
-          aria_label: Completar verificación de seguridad
-          help: Por favor, complete la verificación de seguridad para continuar con su registro.
-        captcha_failed: La verificación de seguridad falló. Por favor, complete la verificación de seguridad e inténtalo de nuevo.

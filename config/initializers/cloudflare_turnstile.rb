@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Cloudflare::Turnstile::Rails.configure do |config|
   # Set your Cloudflare Turnstile Site Key and Secret Key.
   config.site_key = ENV.fetch('CLOUDFLARE_TURNSTILE_SITE_KEY', nil)

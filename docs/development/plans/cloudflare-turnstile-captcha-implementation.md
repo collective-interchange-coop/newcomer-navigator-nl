@@ -12,7 +12,7 @@ This plan implements Cloudflare Turnstile captcha protection for user registrati
 
 ## Technical Architecture
 
-- **Hook Pattern**: Engine provides `validate_captcha_if_enabled` hook for host app customization
+- **Hook Pattern**: Engine provides `validate_captcha_if_enabled?` hook for host app customization
 - **Host Override**: New-to-NL overrides registration controller and view to implement Turnstile
 - **Gem Integration**: Uses `cloudflare-turnstile-rails` gem for seamless Rails integration
 - **Accessibility**: WCAG AA compliant implementation with proper ARIA labels
@@ -43,7 +43,7 @@ This plan implements Cloudflare Turnstile captcha protection for user registrati
 ### Phase 2: Engine Integration Hooks
 
 - [x] **Step 4: Create Turnstile Hook in Engine** ✅
-  - Add `validate_captcha_if_enabled` method to registrations controller
+  - Add `validate_captcha_if_enabled?` method to registrations controller
   - Design hook to be overridable by host applications
   - Ensure hook doesn't break existing functionality when unused
   - Add before_action hook integration point
