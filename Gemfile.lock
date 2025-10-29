@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: 80fb95adafde4e30cffed9893f4e2c9d0937f6b9
+  revision: 4ad463c961c3f12f11cc4f6c9cde81f084b0efe9
   branch: main
   specs:
     better_together (0.8.1)
@@ -250,7 +250,7 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0)
     database_cleaner-core (2.0.1)
-    date (3.4.1)
+    date (3.5.0)
     debug_inspector (1.2.0)
     declarative (0.0.20)
     descendants_tracker (0.0.4)
@@ -580,7 +580,7 @@ GEM
       tsort (>= 0.2)
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
-    rake (13.3.0)
+    rake (13.3.1)
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -769,7 +769,7 @@ GEM
     thread (0.2.2)
     thread_safe (0.3.6)
     tilt (2.6.1)
-    timeout (0.4.3)
+    timeout (0.4.4)
     tins (1.33.0)
       bigdecimal
       sync
