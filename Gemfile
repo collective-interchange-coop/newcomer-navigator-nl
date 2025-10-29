@@ -21,6 +21,9 @@ gem 'bcrypt', '~> 3.1.20'
 # Bootsnap for faster boot times
 gem 'bootsnap', '>= 1.7.0', require: false
 
+# Cloudflare Turnstile captcha for bot protection
+gem 'cloudflare-turnstile-rails'
+
 gem 'fog-aws'
 
 gem 'ostruct', '~> 0.6.3'

@@ -1,0 +1,140 @@
+<%# New to NL host app override - adds Cloudflare Turnstile captcha to registration form %>
+
+<% if defined?(Cloudflare::Turnstile::Rails) && Cloudflare::Turnstile::Rails.configuration.site_key.present? %>
+<!-- Security Verification (Captcha) -->
+<div id="turnstile-section" 
+     class="turnstile-captcha-section" 
+     data-controller="turnstile" 
+     data-turnstile-target="container"
+     data-testid="captcha-section">
+  <fieldset id="turnstile-fieldset" 
+            class="turnstile-fieldset" 
+            aria-describedby="turnstile-help-text">
+    <legend id="turnstile-legend" 
+            class="form-label h6 d-none turnstile-legend" 
+            data-turnstile-target="legend" 
+            data-testid="captcha-legend"
+            aria-hidden="true">
+      <%= t('devise.registrations.new.captcha.legend', default: 'Security Verification') %>
+    </legend>
+    <div class="mb-3 turnstile-content">
+      <div id="turnstile-widget-container" 
+           class="turnstile-widget-container" 
+           data-turnstile-target="widget"
+           data-testid="captcha-widget">
+        <%= cloudflare_turnstile_tag(
+          data: {
+            theme: 'light',
+            language: I18n.locale.to_s,
+            size: 'flexible',
+            callback: 'turnstileSuccessCallback',
+            'error-callback': 'turnstileErrorCallback',
+            'expired-callback': 'turnstileExpiredCallback',
+            'timeout-callback': 'turnstileTimeoutCallback'
+          },
+          class: 'cf-turnstile turnstile-challenge',
+          id: 'turnstile-challenge-widget',
+          'aria-label': t('devise.registrations.new.captcha.aria_label', default: 'Complete security verification')
+        ) %>
+      </div>
+      <p id="turnstile-help-text" 
+         class="form-text text-muted d-none turnstile-help-text" 
+         data-turnstile-target="helpText" 
+         data-testid="captcha-help-text"
+         aria-hidden="true">
+        <%= t('devise.registrations.new.captcha.help',
+              default: 'Please complete the security verification to continue with your registration.') %>
+      </p>
+      
+      <!-- Error Alert (Hidden by default) -->
+      <div id="turnstile-error-alert" 
+           class="alert alert-danger d-none turnstile-error-alert" 
+           role="alert"
+           data-turnstile-target="errorAlert" 
+           data-testid="captcha-error-alert"
+           aria-live="polite">
+        <div class="d-flex align-items-center">
+          <i class="fas fa-exclamation-triangle me-2" aria-hidden="true"></i>
+          <div>
+            <strong><%= t('devise.registrations.new.captcha.error.title', default: 'Security Verification Error') %></strong>
+            
+            <!-- Visible Mode Error Messages -->
+            <div class="mt-1 turnstile-error-message d-none" 
+                 data-turnstile-target="errorMessageVisible" 
+                 data-error-type="default_message"
+                 data-testid="captcha-error-message-visible-default">
+              <%= t('devise.registrations.new.captcha.error.default_message', 
+                    default: 'There was a problem with the security verification. Please try again.') %>
+            </div>
+            <div class="mt-1 turnstile-error-message d-none" 
+                 data-turnstile-target="errorMessageVisible" 
+                 data-error-type="network_error"
+                 data-testid="captcha-error-message-visible-network">
+              <%= t('devise.registrations.new.captcha.error.network_error', 
+                    default: 'Network connection error occurred during security verification.') %>
+            </div>
+            <div class="mt-1 turnstile-error-message d-none" 
+                 data-turnstile-target="errorMessageVisible" 
+                 data-error-type="timeout_error"
+                 data-testid="captcha-error-message-visible-timeout">
+              <%= t('devise.registrations.new.captcha.error.timeout_error', 
+                    default: 'Security verification timed out. Please try again.') %>
+            </div>
+            <div class="mt-1 turnstile-error-message d-none" 
+                 data-turnstile-target="errorMessageVisible" 
+                 data-error-type="expired_error"
+                 data-testid="captcha-error-message-visible-expired">
+              <%= t('devise.registrations.new.captcha.error.expired_error', 
+                    default: 'Security verification has expired. Please complete it again.') %>
+            </div>
+            <div class="mt-1 turnstile-error-message d-none" 
+                 data-turnstile-target="errorMessageVisible" 
+                 data-error-type="failed_error"
+                 data-testid="captcha-error-message-visible-failed">
+              <%= t('devise.registrations.new.captcha.error.failed_error', 
+                    default: 'Security verification failed. Please try completing it again.') %>
+            </div>
+            
+            <!-- Invisible Mode Error Messages -->
+            <div class="mt-1 turnstile-error-message d-none" 
+                 data-turnstile-target="errorMessageInvisible" 
+                 data-error-type="default_message"
+                 data-testid="captcha-error-message-invisible-default">
+              <%= t('devise.registrations.new.captcha.error.invisible.default_message', 
+                    default: 'There was a problem with the security verification. Please reload the page and try again. If the problem continues, contact support.') %>
+            </div>
+            <div class="mt-1 turnstile-error-message d-none" 
+                 data-turnstile-target="errorMessageInvisible" 
+                 data-error-type="network_error"
+                 data-testid="captcha-error-message-invisible-network">
+              <%= t('devise.registrations.new.captcha.error.invisible.network_error', 
+                    default: 'Network connection error occurred during security verification. Please reload the page and try again. If the problem continues, contact support.') %>
+            </div>
+            <div class="mt-1 turnstile-error-message d-none" 
+                 data-turnstile-target="errorMessageInvisible" 
+                 data-error-type="timeout_error"
+                 data-testid="captcha-error-message-invisible-timeout">
+              <%= t('devise.registrations.new.captcha.error.invisible.timeout_error', 
+                    default: 'Security verification timed out. Please reload the page and try again. If the problem continues, contact support.') %>
+            </div>
+            <div class="mt-1 turnstile-error-message d-none" 
+                 data-turnstile-target="errorMessageInvisible" 
+                 data-error-type="expired_error"
+                 data-testid="captcha-error-message-invisible-expired">
+              <%= t('devise.registrations.new.captcha.error.invisible.expired_error', 
+                    default: 'Security verification has expired. Please reload the page and try again. If the problem continues, contact support.') %>
+            </div>
+            <div class="mt-1 turnstile-error-message d-none" 
+                 data-turnstile-target="errorMessageInvisible" 
+                 data-error-type="failed_error"
+                 data-testid="captcha-error-message-invisible-failed">
+              <%= t('devise.registrations.new.captcha.error.invisible.failed_error', 
+                    default: 'Security verification failed. Please reload the page and try again. If the problem continues, contact support.') %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+<% end %>

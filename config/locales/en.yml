@@ -4,6 +4,36 @@ en:
     communities:
       tabs:
         categories: Categories
+  devise:
+    registrations:
+      new:
+        captcha:
+          aria_label: Complete security verification
+          error:
+            default_message: There was a problem with the security verification. Please
+              try again.
+            expired_error: Security verification has expired. Please complete it again.
+            failed_error: Security verification failed. Please try completing it again.
+            invisible:
+              default_message: There was a problem with the security verification.
+                Please reload the page and try again. If the problem continues, contact
+                support.
+              expired_error: Security verification has expired. Please reload the
+                page and try again. If the problem continues, contact support.
+              failed_error: Security verification failed. Please reload the page and
+                try again. If the problem continues, contact support.
+              network_error: Network connection error occurred during security verification.
+                Please reload the page and try again. If the problem continues, contact
+                support.
+              timeout_error: Security verification timed out. Please reload the page
+                and try again. If the problem continues, contact support.
+            network_error: Network connection error occurred during security verification.
+            timeout_error: Security verification timed out. Please try again.
+            title: Security Verification Error
+          help: Please complete the security verification to continue with your registration.
+          legend: Security Verification
+        captcha_failed: Security verification failed. Please complete the security
+          check and try again.
   globals:
     add_member: Add a new member
     attached_file: File attached
