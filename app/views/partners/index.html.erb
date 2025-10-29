@@ -22,9 +22,11 @@
   <p><%= t('.alphabetical_note') %></p>
 
   <% if @partners&.size > 0 %>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
-      <%= render partial: 'partner', collection: @partners %>
-    </div>
+    <% cache partners_cache_key(@partners) do %>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+        <%= render partial: 'partner', collection: @partners %>
+      </div>
+    <% end %>
   <% else %>
     <div class="alert alert-info text-center mt-4" role="alert">
       <%= t('.no_partners_message') %>

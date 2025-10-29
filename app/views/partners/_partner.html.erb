@@ -31,25 +31,5 @@
         <% end %>
       </h5>
     </div>
-
-    <% if policy(partner).edit? or policy(partner).destroy? %>
-      <div class="card-footer">
-        <!-- Actions -->
-        <div class="text-end">
-          <% if policy(partner).edit? %>
-            <%= link_to edit_partner_path(partner), class: 'btn btn-outline-secondary btn-sm me-2' do %>
-              <i class="fas fa-edit"></i> <%= t('globals.edit') %>
-            <% end %>
-          <% end %>
-          <% if policy(partner).destroy? %>
-            <%= link_to partner_path(partner),
-                        class: 'btn btn-outline-danger btn-sm',
-                        data: { turbo_method: :delete, turbo_confirm: t('partners.confirm_delete') } do %>
-              <i class="fas fa-trash-alt"></i> <%= t('globals.delete') %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
   </div>
 </div>

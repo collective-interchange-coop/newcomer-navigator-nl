@@ -5,10 +5,27 @@ module DeviseSessionHelpers
   include Rails.application.routes.url_helpers
   include BetterTogether::Engine.routes.url_helpers
 
-  def configure_host_platform
-    host_platform = create(:better_together_platform, :host, privacy: 'public')
+  def configure_host_platform # rubocop:todo Metrics/MethodLength
+    host_platform = BetterTogether::Platform.find_by(host: true)
+    if host_platform
+      host_platform.update!(privacy: 'public')
+    else
+      host_platform = create(:better_together_platform, :host, privacy: 'public')
+    end
+
     wizard = BetterTogether::Wizard.find_or_create_by(identifier: 'host_setup')
     wizard.mark_completed
+
+    platform_manager = BetterTogether::User.find_by(email: 'manager@example.test')
+
+    unless platform_manager
+      create(
+        :user, :confirmed, :platform_manager,
+        email: 'manager@example.test',
+        password: 'password12345'
+      )
+    end
+
     host_platform
   end
 
