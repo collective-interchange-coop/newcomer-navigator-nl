@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'faker'
+
 module DeviseSessionHelpers
   include FactoryBot::Syntax::Methods
   include Rails.application.routes.url_helpers
@@ -22,7 +24,7 @@ module DeviseSessionHelpers
       create(
         :user, :confirmed, :platform_manager,
         email: 'manager@example.test',
-        password: 'password12345'
+        password: Faker::Internet.password(min_length: 12, max_length: 20)
       )
     end
 
@@ -31,7 +33,7 @@ module DeviseSessionHelpers
 
   def login_as_platform_manager
     email = 'platform_manager@example.com'
-    password = 'password12345'
+    password = Faker::Internet.password(min_length: 12, max_length: 20)
     user = create(:better_together_user, :confirmed, :platform_manager, email: email, password: password)
     sign_in_user(email, password)
     user
