@@ -16,43 +16,19 @@ export default class extends Controller {
     // Store widget ID to track if already rendered
     this.widgetId = null
     
+    // Find and cache the form and submit button
+    this.form = this.element.closest('form')
+    this.submitButton = this.form ? this.form.querySelector('input[type="submit"], button[type="submit"]') : null
+    
+    // Disable submit button immediately when controller connects
+    this.disableSubmitButton()
+    
     // Hide all captcha UI elements by default
     this.hideCaptchaUI()
     this.hideErrorAlert()
     
-    // Set up global callback functions for Turnstile (only if not already set)
-    if (!window.turnstileSuccessCallback) {
-      this.setupTurnstileCallbacks()
-    }
-    
     // Wait for Turnstile API to be available, then render explicitly
     this.waitForTurnstileAndRender()
-  }
-  
-  setupTurnstileCallbacks() {
-    // Store reference to controller instance for callbacks
-    const controller = this
-    
-    // Make callbacks globally available for Turnstile to call
-    window.turnstileSuccessCallback = function(token) {
-      controller.hideErrorAlert()
-      controller.enableSubmitButton()
-    }
-    
-    window.turnstileErrorCallback = function(errorCode) {
-      controller.showErrorAlert('failed_error')
-      controller.disableSubmitButton()
-    }
-    
-    window.turnstileExpiredCallback = function() {
-      controller.showErrorAlert('expired_error')
-      controller.disableSubmitButton()
-    }
-    
-    window.turnstileTimeoutCallback = function() {
-      controller.showErrorAlert('timeout_error')
-      controller.disableSubmitButton()
-    }
   }
   
   waitForTurnstileAndRender() {
@@ -77,7 +53,7 @@ export default class extends Controller {
   }
   
   renderTurnstileWidget() {
-    const turnstileContainer = document.querySelector('.cf-turnstile')
+    const turnstileContainer = document.querySelector('.cf-turnstile-challenge')
     
     if (!turnstileContainer) {
       return
@@ -94,35 +70,47 @@ export default class extends Controller {
     }
     
     try {
-      // Render the widget explicitly
-      // this.widgetId = window.turnstile.render(turnstileContainer, {
-      //   sitekey: turnstileContainer.dataset.sitekey,
-      //   theme: 'light',
-      //   language: turnstileContainer.dataset.language || 'en',
-      //   size: 'flexible',
-      //   callback: 'turnstileSuccessCallback',
-      //   'error-callback': 'turnstileErrorCallback',
-      //   'expired-callback': 'turnstileExpiredCallback',
-      //   'timeout-callback': 'turnstileTimeoutCallback'
-      // })
-      
+      // Render the widget explicitly with inline callbacks
+      this.widgetId = window.turnstile.render(turnstileContainer, {
+        sitekey: turnstileContainer.dataset.sitekey,
+        theme: 'light',
+        language: turnstileContainer.dataset.language || 'en',
+        size: 'flexible',
+        callback: (token) => {
+          this.hideErrorAlert()
+          this.enableSubmitButton()
+        },
+        'error-callback': (errorCode) => {
+          this.showErrorAlert('failed_error')
+          this.disableSubmitButton()
+        },
+        'expired-callback': () => {
+          this.showErrorAlert('expired_error')
+          this.disableSubmitButton()
+        },
+        'timeout-callback': () => {
+          this.showErrorAlert('timeout_error')
+          this.disableSubmitButton()
+        }
+      })
+
       // Monitor the widget after rendering
       this.monitorTurnstileWidget()
     } catch (error) {
       this.showErrorAlert('default_message')
     }
   }
-  
+
   monitorTurnstileWidget() {
-    const turnstileContainer = document.querySelector('.cf-turnstile')
-    
+    const turnstileContainer = document.querySelector('.cf-turnstile-challenge')
+
     if (!turnstileContainer) {
       return
     }
-    
+
     // Check immediately for existing content (handles race conditions)
     this.checkForTurnstileInput()
-    
+
     // Create MutationObserver to watch for new div elements being added
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -132,14 +120,14 @@ export default class extends Controller {
             if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'DIV') {
               // Check height after element is added and handle UI accordingly
               const elementHeight = turnstileContainer.offsetHeight
-              
+
               if (elementHeight === 0) {
                 this.hideCaptchaUI()
               } else {
                 this.showCaptchaUI()
                 this.disableSubmitButton()
               }
-              
+
               // Stop observing once we've detected the widget
               observer.disconnect()
             }
@@ -147,52 +135,50 @@ export default class extends Controller {
         }
       })
     })
-    
+
     // Start observing
     observer.observe(turnstileContainer, {
       childList: true,
       subtree: true
     })
   }
-  
+
   checkForTurnstileInput() {
-    // Look for the hidden Turnstile response input field within the .cf-turnstile element
-    const turnstileElement = document.querySelector('.cf-turnstile')
+    // Look for the hidden Turnstile response input field within the .cf-turnstile-challenge element
+    const turnstileElement = document.querySelector('.cf-turnstile-challenge')
     if (!turnstileElement) {
       return
     }
-    
+
     // Check if Turnstile element has zero height (invisible mode)
     const elementHeight = turnstileElement.offsetHeight
-    
+
     if (elementHeight === 0) {
       this.hideCaptchaUI()
       return
     }
-    
+
     const turnstileInput = turnstileElement.querySelector('input[type="hidden"][name="cf-turnstile-response"]')
-    
+
     if (turnstileInput) {
-      // If the input exists but has no value, show the help text
+      // If the input exists but has no value, show the help text and disable submit
       if (!turnstileInput.value || turnstileInput.value.trim() === '') {
         this.showCaptchaUI()
       }
     }
   }
-  
+
   disableSubmitButton() {
-    const submitButton = document.querySelector('#registration-submit-btn')
-    if (submitButton) {
-      submitButton.disabled = true
-      submitButton.setAttribute('aria-disabled', 'true')
+    if (this.submitButton) {
+      this.submitButton.disabled = true
+      this.submitButton.setAttribute('aria-disabled', 'true')
     }
   }
   
   enableSubmitButton() {
-    const submitButton = document.querySelector('#registration-submit-btn')
-    if (submitButton) {
-      submitButton.disabled = false
-      submitButton.setAttribute('aria-disabled', 'false')
+    if (this.submitButton) {
+      this.submitButton.disabled = false
+      this.submitButton.setAttribute('aria-disabled', 'false')
     }
   }
   
@@ -254,7 +240,7 @@ export default class extends Controller {
   }
   
   isInvisibleMode() {
-    const turnstileElement = document.querySelector('.cf-turnstile')
+    const turnstileElement = document.querySelector('.cf-turnstile-challenge')
     if (!turnstileElement) return false
     
     return turnstileElement.offsetHeight === 0
@@ -318,8 +304,5 @@ export default class extends Controller {
     if (this.element) {
       delete this.element.dataset.turnstileInitialized
     }
-    
-    // Note: We don't delete global callbacks as they might be reused on reconnect
-    // The callbacks reference 'controller' which will update to the new instance
   }
 }

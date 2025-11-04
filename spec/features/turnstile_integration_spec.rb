@@ -17,7 +17,7 @@ RSpec.describe 'Cloudflare Turnstile Integration', :js, :unauthenticated, type: 
     xit 'displays the Turnstile widget in page source' do # rubocop:todo RSpec/MultipleExpectations, RSpec/PendingWithoutReason
       # rubocop:enable RSpec/PendingWithoutReason
       # DISABLED: Incorrect path helper name - should use new_user_registration_path for host app routing
-      expect(page.html).to include('cf-turnstile')
+      expect(page.html).to include('cf-turnstile-challenge')
       expect(page.html).to include(CloudflareTurnstile.configuration.site_key)
     end
 
@@ -39,7 +39,7 @@ RSpec.describe 'Cloudflare Turnstile Integration', :js, :unauthenticated, type: 
       visit new_user_registration_path
 
       expect(page).not_to have_content('Security Verification')
-      expect(page).not_to have_css('.cf-turnstile')
+      expect(page).not_to have_css('.cf-turnstile-challenge')
     end
 
     # rubocop:todo RSpec/PendingWithoutReason
@@ -92,7 +92,7 @@ RSpec.describe 'Cloudflare Turnstile Integration', :js, :unauthenticated, type: 
       # DISABLED: ChromeDriver not configured for Docker environment, requires WebDriver setup
       visit new_user_registration_path
 
-      turnstile_element = page.find('.cf-turnstile')
+      turnstile_element = page.find('.cf-turnstile-challenge')
       expect(turnstile_element['aria-label']).to eq('Complete security verification')
     end
   end
