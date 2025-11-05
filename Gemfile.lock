@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: a381cd77ef821778f2dc109d7e0c2f9d4be21c27
-  branch: feat/password-complexity
+  revision: 19ec60184a25e12583ee3c96b3adcc7064ca293b
+  branch: main
   specs:
     better_together (0.8.1)
       active_storage_svg_sanitizer
@@ -793,7 +793,7 @@ GEM
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
     unicode-emoji (4.1.0)
-    uri (1.1.0)
+    uri (1.1.1)
     useragent (0.16.11)
     virtus (2.0.0)
       axiom-types (~> 0.1)
