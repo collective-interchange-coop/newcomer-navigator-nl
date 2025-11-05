@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: 4ad463c961c3f12f11cc4f6c9cde81f084b0efe9
+  revision: 19ec60184a25e12583ee3c96b3adcc7064ca293b
   branch: main
   specs:
     better_together (0.8.1)
@@ -13,6 +13,7 @@ GIT
       devise
       devise-i18n
       devise-jwt
+      devise_zxcvbn
       elasticsearch-model (~> 7)
       elasticsearch-rails (~> 7)
       font-awesome-sass (~> 6.5)
@@ -267,6 +268,9 @@ GEM
     devise-jwt (0.12.1)
       devise (~> 4.0)
       warden-jwt_auth (~> 0.10)
+    devise_zxcvbn (6.0.0)
+      devise
+      zxcvbn (~> 0.1.7)
     diff-lcs (1.6.2)
     disposable (0.6.3)
       declarative (>= 0.0.9, < 1.0.0)
@@ -402,7 +406,7 @@ GEM
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.8.1)
-    irb (1.15.2)
+    irb (1.15.3)
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
@@ -469,7 +473,7 @@ GEM
     msgpack (1.8.0)
     multi_json (1.17.0)
     multipart-post (2.4.1)
-    net-http (0.6.0)
+    net-http (0.7.0)
       uri
     net-imap (0.5.12)
       date
@@ -480,7 +484,7 @@ GEM
       timeout
     net-smtp (0.5.1)
       net-protocol
-    nio4r (2.7.4)
+    nio4r (2.7.5)
     nokogiri (1.18.10-aarch64-linux-gnu)
       racc (~> 1.4)
     nokogiri (1.18.10-x86_64-linux-gnu)
@@ -527,7 +531,7 @@ GEM
       activesupport (>= 3.0.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (3.2.3)
+    rack (3.2.4)
     rack-attack (6.8.0)
       rack (>= 1.0, < 4)
     rack-cors (3.0.0)
@@ -589,7 +593,7 @@ GEM
       ffi (>= 1.0.6)
       msgpack (>= 0.4.3)
       optimist (>= 3.0.0)
-    rdoc (6.15.0)
+    rdoc (6.15.1)
       erb
       psych (>= 4.0.0)
       tsort
@@ -702,9 +706,9 @@ GEM
     rubyzip (3.2.1)
     rufus-scheduler (3.9.2)
       fugit (~> 1.1, >= 1.11.1)
-    sass-embedded (1.93.2-aarch64-linux-gnu)
+    sass-embedded (1.93.3-aarch64-linux-gnu)
       google-protobuf (~> 4.31)
-    sass-embedded (1.93.2-x86_64-linux-gnu)
+    sass-embedded (1.93.3-x86_64-linux-gnu)
       google-protobuf (~> 4.31)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -727,7 +731,7 @@ GEM
       activesupport (>= 3)
     shoulda-matchers (6.5.0)
       activesupport (>= 5.2.0)
-    sidekiq (8.0.8)
+    sidekiq (8.0.9)
       connection_pool (>= 2.5.0)
       json (>= 2.9.0)
       logger (>= 1.6.2)
@@ -789,7 +793,7 @@ GEM
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
     unicode-emoji (4.1.0)
-    uri (1.0.4)
+    uri (1.1.1)
     useragent (0.16.11)
     virtus (2.0.0)
       axiom-types (~> 0.1)
@@ -815,6 +819,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.7.3)
+    zxcvbn (0.1.13)
 
 PLATFORMS
   aarch64-linux

@@ -15,7 +15,7 @@ Cloudflare::Turnstile::Rails.configure do |config|
   # - `onload`: Defines a callback function name to be called when Turnstile script loads.
   # If you specify `render` or `onload`, the parameters will be appended to the default `script_url`.
   # If `script_url` is provided, it will be used directly and render/onload options will be ignored.
-  # config.render = 'explicit'
+  config.render = 'explicit'
   # config.onload = 'onloadTurnstileCallback'
 
   # In the Rails Test environment, automatically fill in a dummy response if none was provided.

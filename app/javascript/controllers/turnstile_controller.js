@@ -5,60 +5,112 @@ export default class extends Controller {
   static targets = ["helpText", "widget", "legend", "container", "errorAlert", "errorMessageVisible", "errorMessageInvisible"]
   
   connect() {
+    // Prevent duplicate initialization on the same element
+    if (this.element.dataset.turnstileInitialized === 'true') {
+      return
+    }
+    
+    // Mark as initialized
+    this.element.dataset.turnstileInitialized = 'true'
+    
+    // Store widget ID to track if already rendered
+    this.widgetId = null
+    
+    // Find and cache the form and submit button
+    this.form = this.element.closest('form')
+    this.submitButton = this.form ? this.form.querySelector('input[type="submit"], button[type="submit"]') : null
+    
+    // Disable submit button immediately when controller connects
+    this.disableSubmitButton()
+    
     // Hide all captcha UI elements by default
     this.hideCaptchaUI()
     this.hideErrorAlert()
     
-    // Set up global callback functions for Turnstile
-    this.setupTurnstileCallbacks()
-    
-    // Watch for Turnstile widget to load and disable submit button
-    this.monitorTurnstileWidget()
+    // Wait for Turnstile API to be available, then render explicitly
+    this.waitForTurnstileAndRender()
   }
   
-  setupTurnstileCallbacks() {
-    // Store reference to controller instance for callbacks
-    const controller = this
-    
-    // Make callbacks globally available for Turnstile to call
-    window.turnstileSuccessCallback = function(token) {
-      console.log('Turnstile challenge completed successfully')
-      controller.hideErrorAlert()
-      controller.enableSubmitButton()
-    }
-    
-    window.turnstileErrorCallback = function(errorCode) {
-      console.log('Turnstile error occurred:', errorCode)
-      controller.showErrorAlert('failed_error')
-      controller.disableSubmitButton()
-    }
-    
-    window.turnstileExpiredCallback = function() {
-      console.log('Turnstile token expired')
-      controller.showErrorAlert('expired_error')
-      controller.disableSubmitButton()
-    }
-    
-    window.turnstileTimeoutCallback = function() {
-      console.log('Turnstile challenge timed out')
-      controller.showErrorAlert('timeout_error')
-      controller.disableSubmitButton()
+  waitForTurnstileAndRender() {
+    // Check if Turnstile API is already loaded
+    if (window.turnstile) {
+      this.renderTurnstileWidget()
+    } else {
+      // Wait for Turnstile API to load (check every 100ms, timeout after 10 seconds)
+      let attempts = 0
+      const maxAttempts = 100
+      const checkInterval = setInterval(() => {
+        attempts++
+        if (window.turnstile) {
+          clearInterval(checkInterval)
+          this.renderTurnstileWidget()
+        } else if (attempts >= maxAttempts) {
+          clearInterval(checkInterval)
+          this.showErrorAlert('network_error')
+        }
+      }, 100)
     }
   }
   
-  monitorTurnstileWidget() {
-    const turnstileContainer = document.querySelector('.cf-turnstile')
+  renderTurnstileWidget() {
+    const turnstileContainer = document.querySelector('.cf-turnstile-challenge')
     
     if (!turnstileContainer) {
-      console.log('No .cf-turnstile container found for monitoring')
       return
     }
     
-    console.log('Setting up MutationObserver for Turnstile widget')
+    // Check if widget already rendered
+    if (this.widgetId !== null) {
+      return
+    }
     
+    // Check if container already has Turnstile content
+    if (turnstileContainer.querySelector('iframe')) {
+      return
+    }
+    
+    try {
+      // Render the widget explicitly with inline callbacks
+      this.widgetId = window.turnstile.render(turnstileContainer, {
+        sitekey: turnstileContainer.dataset.sitekey,
+        theme: 'light',
+        language: turnstileContainer.dataset.language || 'en',
+        size: 'flexible',
+        callback: (token) => {
+          this.hideErrorAlert()
+          this.enableSubmitButton()
+        },
+        'error-callback': (errorCode) => {
+          this.showErrorAlert('failed_error')
+          this.disableSubmitButton()
+        },
+        'expired-callback': () => {
+          this.showErrorAlert('expired_error')
+          this.disableSubmitButton()
+        },
+        'timeout-callback': () => {
+          this.showErrorAlert('timeout_error')
+          this.disableSubmitButton()
+        }
+      })
+
+      // Monitor the widget after rendering
+      this.monitorTurnstileWidget()
+    } catch (error) {
+      this.showErrorAlert('default_message')
+    }
+  }
+
+  monitorTurnstileWidget() {
+    const turnstileContainer = document.querySelector('.cf-turnstile-challenge')
+
+    if (!turnstileContainer) {
+      return
+    }
+
     // Check immediately for existing content (handles race conditions)
     this.checkForTurnstileInput()
-    
+
     // Create MutationObserver to watch for new div elements being added
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -66,97 +118,67 @@ export default class extends Controller {
           mutation.addedNodes.forEach((node) => {
             // Look specifically for DIV elements being added (matches Turnstile structure)
             if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'DIV') {
-              console.log('DIV element added to .cf-turnstile:', {
-                tagName: node.tagName,
-                className: node.className,
-                innerHTML: node.innerHTML.substring(0, 100) + '...'
-              })
-              
               // Check height after element is added and handle UI accordingly
               const elementHeight = turnstileContainer.offsetHeight
-              console.log('Turnstile container height after DIV added:', elementHeight)
-              
+
               if (elementHeight === 0) {
-                console.log('Zero height detected - hiding help text (invisible mode)')
                 this.hideCaptchaUI()
               } else {
-                console.log('Non-zero height detected - showing help text and disabling submit')
                 this.showCaptchaUI()
                 this.disableSubmitButton()
               }
-              
+
               // Stop observing once we've detected the widget
               observer.disconnect()
-              console.log('Stopped observing after detecting Turnstile widget')
             }
           })
         }
       })
     })
-    
+
     // Start observing
     observer.observe(turnstileContainer, {
       childList: true,
       subtree: true
     })
   }
-  
+
   checkForTurnstileInput() {
-    // Look for the hidden Turnstile response input field within the .cf-turnstile element
-    const turnstileElement = document.querySelector('.cf-turnstile')
+    // Look for the hidden Turnstile response input field within the .cf-turnstile-challenge element
+    const turnstileElement = document.querySelector('.cf-turnstile-challenge')
     if (!turnstileElement) {
-      console.log('No .cf-turnstile element found')
       return
     }
-    
+
     // Check if Turnstile element has zero height (invisible mode)
     const elementHeight = turnstileElement.offsetHeight
-    console.log('Turnstile element height:', elementHeight)
-    
+
     if (elementHeight === 0) {
-      console.log('Turnstile element has zero height - hiding help text (invisible mode)')
       this.hideCaptchaUI()
       return
     }
-    
+
     const turnstileInput = turnstileElement.querySelector('input[type="hidden"][name="cf-turnstile-response"]')
-    
+
     if (turnstileInput) {
-      console.log('Found Turnstile response input:', {
-        id: turnstileInput.id,
-        value: turnstileInput.value,
-        hasValue: !!turnstileInput.value,
-        parentDiv: turnstileInput.parentElement.tagName,
-        elementHeight: elementHeight
-      })
-      
-      // If the input exists but has no value, show the help text
+      // If the input exists but has no value, show the help text and disable submit
       if (!turnstileInput.value || turnstileInput.value.trim() === '') {
-        console.log('Turnstile input found with no value - showing help text')
         this.showCaptchaUI()
-      } else {
-        console.log('Turnstile input already has value - challenge completed')
       }
-    } else {
-      console.log('No Turnstile response input found within .cf-turnstile element')
     }
   }
-  
+
   disableSubmitButton() {
-    const submitButton = document.querySelector('#registration-submit-btn')
-    if (submitButton) {
-      submitButton.disabled = true
-      submitButton.setAttribute('aria-disabled', 'true')
-      console.log('Submit button disabled')
+    if (this.submitButton) {
+      this.submitButton.disabled = true
+      this.submitButton.setAttribute('aria-disabled', 'true')
     }
   }
   
   enableSubmitButton() {
-    const submitButton = document.querySelector('#registration-submit-btn')
-    if (submitButton) {
-      submitButton.disabled = false
-      submitButton.setAttribute('aria-disabled', 'false')
-      console.log('Submit button enabled')
+    if (this.submitButton) {
+      this.submitButton.disabled = false
+      this.submitButton.setAttribute('aria-disabled', 'false')
     }
   }
   
@@ -164,22 +186,17 @@ export default class extends Controller {
     // Add margin to container when widget becomes visible
     if (this.hasContainerTarget) {
       this.containerTarget.classList.add('mb-4')
-      console.log('Added margin to container')
     }
     
     if (this.hasLegendTarget) {
       this.legendTarget.classList.remove('d-none')
       this.legendTarget.setAttribute('aria-hidden', 'false')
-      console.log('Showed legend')
     }
     
     if (this.hasHelpTextTarget) {
       this.helpTextTarget.classList.remove('d-none')
       this.helpTextTarget.setAttribute('aria-hidden', 'false')
-      console.log('Showed help text')
     }
-    
-    console.log('Captcha UI now visible')
   }
   
   hideCaptchaUI() {
@@ -197,8 +214,6 @@ export default class extends Controller {
       this.helpTextTarget.classList.add('d-none')
       this.helpTextTarget.setAttribute('aria-hidden', 'true')
     }
-    
-    console.log('Captcha UI now hidden')
   }
   
   showErrorAlert(errorType = 'default_message') {
@@ -214,7 +229,6 @@ export default class extends Controller {
       
       // Show the error alert container
       this.errorAlertTarget.classList.remove('d-none')
-      console.log(`Error alert shown for type: ${errorType}, invisible mode: ${isInvisibleMode}`)
     }
   }
   
@@ -222,12 +236,11 @@ export default class extends Controller {
     if (this.hasErrorAlertTarget) {
       this.errorAlertTarget.classList.add('d-none')
       this.hideAllErrorMessages()
-      console.log('Error alert hidden')
     }
   }
   
   isInvisibleMode() {
-    const turnstileElement = document.querySelector('.cf-turnstile')
+    const turnstileElement = document.querySelector('.cf-turnstile-challenge')
     if (!turnstileElement) return false
     
     return turnstileElement.offsetHeight === 0
@@ -259,7 +272,6 @@ export default class extends Controller {
     
     if (messageElement) {
       messageElement.classList.remove('d-none')
-      console.log(`Showing ${isInvisibleMode ? 'invisible' : 'visible'} error message for type: ${errorType}`)
     } else {
       // Fallback to default message if specific type not found
       const defaultElement = targetArray.find(element => 
@@ -267,24 +279,30 @@ export default class extends Controller {
       )
       if (defaultElement) {
         defaultElement.classList.remove('d-none')
-        console.log(`Showing ${isInvisibleMode ? 'invisible' : 'visible'} default error message as fallback`)
       }
     }
   }
   
   disconnect() {
+    // Remove the widget if it exists
+    if (this.widgetId !== null && window.turnstile) {
+      try {
+        window.turnstile.remove(this.widgetId)
+        this.widgetId = null
+      } catch (error) {
+        // Silent error handling
+      }
+    }
+    
     // Clean up Turnstile observer if still active
     if (this.turnstileObserver) {
       this.turnstileObserver.disconnect()
       this.turnstileObserver = null
     }
     
-
-    
-    // Clean up global callbacks when controller is disconnected
-    delete window.turnstileSuccessCallback
-    delete window.turnstileErrorCallback
-    delete window.turnstileExpiredCallback
-    delete window.turnstileTimeoutCallback
+    // Clear initialization flag so it can be re-initialized if the element comes back
+    if (this.element) {
+      delete this.element.dataset.turnstileInitialized
+    }
   }
 }
