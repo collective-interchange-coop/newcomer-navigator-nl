@@ -108,16 +108,6 @@ es:
       title: Editar organización asociada
     index:
       alphabetical_note: 'Estas son nuestras Organizaciones Asociadas (orden alfabético):'
-      description: 'En la sección "Organizaciones Asociadas", encontrarás información
-        sobre grupos que ayudan a recién llegados e inmigrantes en Terranova y Labrador.
-        Estas organizaciones ofrecen diferentes tipos de ayuda, como encontrar empleo,
-        acceder a educación, hacer amigos y recibir asesoramiento legal. Al contactar
-        a estos grupos, los recién llegados pueden obtener apoyo para establecerse,
-        encontrar buenos empleos, aprender nuevas cosas y formar parte de sus nuevas
-        comunidades. Este conjunto de organizaciones está aquí para ayudarte en cada
-        paso del camino.
-
-        '
       new_btn_text: Nueva organización asociada
       no_partners_message: No hay organizaciones asociadas
       title: Organizaciones asociadas

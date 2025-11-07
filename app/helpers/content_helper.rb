@@ -26,5 +26,12 @@ module ContentHelper # rubocop:todo Style/Documentation
       render partial: 'better_together/content/blocks/template', locals: { template: funder }
     end
   end
+
+  def render_partners_list_intro
+    intro = BetterTogether::Content::RichText.find_by(identifier: 'partners-list-intro')
+
+    return unless intro
+
+    render partial: 'better_together/content/blocks/rich_text', locals: { rich_text: intro }
   end
 end
