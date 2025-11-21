@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: eb162d16ac33164701e9841715a37b11ea879446
+  revision: 682166f0154603542134fc67b3d23ed800c925f6
   branch: main
   specs:
     better_together (0.8.1)
@@ -304,7 +304,7 @@ GEM
       base64
       faraday (>= 1, < 3)
       multi_json
-    erb (5.1.3)
+    erb (6.0.0)
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
@@ -365,10 +365,10 @@ GEM
       csv (>= 3.0.0)
     globalid (1.3.0)
       activesupport (>= 6.1)
-    google-protobuf (4.33.0-aarch64-linux-gnu)
+    google-protobuf (4.33.1-aarch64-linux-gnu)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.33.0-x86_64-linux-gnu)
+    google-protobuf (4.33.1-x86_64-linux-gnu)
       bigdecimal
       rake (>= 13)
     groupdate (6.7.0)
@@ -376,7 +376,7 @@ GEM
     hashie (5.0.0)
     highline (3.1.2)
       reline
-    htmlentities (4.3.4)
+    htmlentities (4.4.2)
     humanize_boolean (0.0.2)
       i18n
     i18n (1.14.7)
@@ -464,7 +464,7 @@ GEM
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
-    minitest (5.26.1)
+    minitest (5.26.2)
     mobility (1.3.2)
       i18n (>= 0.6.10, < 2)
       request_store (~> 1.0)
@@ -474,8 +474,8 @@ GEM
     msgpack (1.8.0)
     multi_json (1.17.0)
     multipart-post (2.4.1)
-    net-http (0.7.0)
-      uri
+    net-http (0.8.0)
+      uri (>= 0.11.1)
     net-imap (0.5.12)
       date
       net-protocol
@@ -707,9 +707,9 @@ GEM
     rubyzip (3.2.1)
     rufus-scheduler (3.9.2)
       fugit (~> 1.1, >= 1.11.1)
-    sass-embedded (1.94.0-aarch64-linux-gnu)
+    sass-embedded (1.94.2-aarch64-linux-gnu)
       google-protobuf (~> 4.31)
-    sass-embedded (1.94.0-x86_64-linux-gnu)
+    sass-embedded (1.94.2-x86_64-linux-gnu)
       google-protobuf (~> 4.31)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -764,7 +764,7 @@ GEM
     stackprof (0.2.27)
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
-    stringio (3.1.7)
+    stringio (3.1.8)
     sync (0.5.0)
     term-ansicolor (1.8.0)
       tins (~> 1.0)
