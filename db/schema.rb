@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_07_225625) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_21_161438) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -829,7 +829,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_07_225625) do
     t.integer "lock_version", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "content"
     t.uuid "sender_id", null: false
     t.uuid "conversation_id", null: false
     t.index ["conversation_id"], name: "index_better_together_messages_on_conversation_id"
@@ -1013,9 +1012,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_07_225625) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "identifier", limit: 100, null: false
-    t.string "privacy", limit: 50, default: "private", null: false
     t.uuid "community_id", null: false
     t.jsonb "preferences", default: {}, null: false
+    t.string "privacy", limit: 50, default: "private", null: false
     t.jsonb "notification_preferences", default: {}, null: false
     t.index ["community_id"], name: "by_person_community"
     t.index ["identifier"], name: "index_better_together_people_on_identifier", unique: true
