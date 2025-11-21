@@ -65,7 +65,7 @@ RSpec.describe 'Cloudflare Turnstile Integration', :js, :unauthenticated, type: 
     let(:config) { double('Config', site_key: '1x00000000000000000000AA') } # rubocop:todo RSpec/VerifiedDoubles
 
     before do
-      stub_const('Cloudflare::Turnstile::Rails', double(configuration: config)) # rubocop:todo RSpec/VerifiedDoubles
+      stub_const('Cloudflare::Turnstile::Rails', double(configuration: config))
     end
 
     # rubocop:todo RSpec/PendingWithoutReason

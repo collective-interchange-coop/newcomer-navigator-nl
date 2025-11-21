@@ -13,7 +13,7 @@ RSpec.describe ContentHelper, type: :helper do
 
   describe '#render_disclaimer_content' do
     context 'when disclaimer content exists' do
-      let!(:disclaimer) do
+      let!(:disclaimer) do # rubocop:todo RSpec/LetSetup
         BetterTogether::Content::RichText.create!(
           identifier: 'disclaimer-message',
           creator: creator,
@@ -22,13 +22,13 @@ RSpec.describe ContentHelper, type: :helper do
         )
       end
 
-      context 'with caching enabled' do
+      context 'with caching enabled' do # rubocop:todo RSpec/NestedGroups
         before do
           allow(controller).to receive(:perform_caching).and_return(true)
           Rails.cache.clear
         end
 
-        it 'renders the disclaimer content wrapped in a small tag' do
+        it 'renders the disclaimer content wrapped in a small tag' do # rubocop:todo RSpec/MultipleExpectations
           # Mock the cache helper to yield the block (simulating cache write)
           allow(helper).to receive(:cache).and_yield
 
@@ -48,12 +48,12 @@ RSpec.describe ContentHelper, type: :helper do
         end
       end
 
-      context 'with caching disabled' do
+      context 'with caching disabled' do # rubocop:todo RSpec/NestedGroups
         before do
           allow(controller).to receive(:perform_caching).and_return(false)
         end
 
-        it 'renders the disclaimer content without caching' do
+        it 'renders the disclaimer content without caching' do # rubocop:todo RSpec/MultipleExpectations
           result = helper.render_disclaimer_content
           expect(result).to be_present
           expect(result).to include('fst-italic')
@@ -61,7 +61,7 @@ RSpec.describe ContentHelper, type: :helper do
         end
 
         it 'does not use cache' do
-          expect(helper).not_to receive(:cache)
+          expect(helper).not_to receive(:cache) # rubocop:todo RSpec/MessageSpies
           helper.render_disclaimer_content
         end
       end
@@ -76,7 +76,7 @@ RSpec.describe ContentHelper, type: :helper do
 
   describe '#render_funder_content' do
     context 'when funder template exists' do
-      let!(:funder_template) do
+      let!(:funder_template) do # rubocop:todo RSpec/LetSetup
         BetterTogether::Content::Template.create!(
           identifier: 'funders-message',
           creator: creator,
@@ -85,7 +85,7 @@ RSpec.describe ContentHelper, type: :helper do
         )
       end
 
-      it 'renders the funder content in a container div' do
+      it 'renders the funder content in a container div' do # rubocop:todo RSpec/MultipleExpectations
         result = helper.render_funder_content
         expect(result).to include('container content my-3')
         expect(result).to include('id="new-to-nl-funder-message"')
@@ -111,7 +111,7 @@ RSpec.describe ContentHelper, type: :helper do
 
   describe '#render_partners_list_intro' do
     context 'when partners intro content exists' do
-      let!(:partners_intro) do
+      let!(:partners_intro) do # rubocop:todo RSpec/LetSetup
         BetterTogether::Content::RichText.create!(
           identifier: 'partners-list-intro',
           creator: creator,
@@ -125,7 +125,7 @@ RSpec.describe ContentHelper, type: :helper do
         expect { helper.render_partners_list_intro }.not_to raise_error
       end
 
-      it 'returns rendered content' do
+      it 'returns rendered content' do # rubocop:todo RSpec/MultipleExpectations
         result = helper.render_partners_list_intro
         expect(result).to be_present
         # Should include the content from the rich text block
@@ -142,7 +142,7 @@ RSpec.describe ContentHelper, type: :helper do
 
   describe 'integration with translations' do
     context 'with multiple locales' do
-      let!(:disclaimer) do
+      let!(:disclaimer) do # rubocop:todo RSpec/LetSetup
         BetterTogether::Content::RichText.create!(
           identifier: 'disclaimer-message',
           creator: creator,
@@ -181,7 +181,7 @@ RSpec.describe ContentHelper, type: :helper do
   end
 
   describe 'caching behavior' do
-    let!(:partners_intro) do
+    let!(:partners_intro) do # rubocop:todo RSpec/LetSetup
       BetterTogether::Content::RichText.create!(
         identifier: 'partners-list-intro',
         creator: creator,
@@ -190,7 +190,7 @@ RSpec.describe ContentHelper, type: :helper do
       )
     end
 
-    it 'renders the block partial which includes built-in caching' do
+    it 'renders the block partial which includes built-in caching' do # rubocop:todo RSpec/MultipleExpectations
       result = helper.render_partners_list_intro
       expect(result).to be_present
       expect(result).to include('Original content')
@@ -198,7 +198,7 @@ RSpec.describe ContentHelper, type: :helper do
   end
 
   describe 'content safety and sanitization' do
-    let!(:disclaimer) do
+    let!(:disclaimer) do # rubocop:todo RSpec/LetSetup
       BetterTogether::Content::RichText.create!(
         identifier: 'disclaimer-message',
         creator: creator,
@@ -219,7 +219,7 @@ RSpec.describe ContentHelper, type: :helper do
 
   describe 'error handling' do
     context 'when content has invalid data' do
-      let!(:broken_disclaimer) do
+      let!(:broken_disclaimer) do # rubocop:todo RSpec/LetSetup
         # Create a record with blank content
         BetterTogether::Content::RichText.create!(
           identifier: 'disclaimer-message',

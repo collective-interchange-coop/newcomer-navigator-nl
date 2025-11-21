@@ -2,7 +2,7 @@
 
 namespace :nn_nl do # rubocop:todo Metrics/BlockLength
   desc 'Migrate Partners List Intro from YAML to RichText Content'
-  task migrate_partners_intro_to_content: :environment do
+  task migrate_partners_intro_to_content: :environment do # rubocop:todo Metrics/BlockLength
     identifier = 'partners-list-intro'
 
     # Hardcoded translations to preserve content after YAML removal

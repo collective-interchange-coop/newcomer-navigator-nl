@@ -42,7 +42,7 @@ RSpec.describe NewToNlCaptchaValidation, type: :concern do
       let(:config) { double('Config', site_key: '') } # rubocop:todo RSpec/VerifiedDoubles
 
       before do
-        stub_const('Cloudflare::Turnstile::Rails', double(configuration: config)) # rubocop:todo RSpec/VerifiedDoubles
+        stub_const('Cloudflare::Turnstile::Rails', double(configuration: config))
       end
 
       it 'returns true (skips validation)' do
@@ -55,7 +55,7 @@ RSpec.describe NewToNlCaptchaValidation, type: :concern do
       let(:config) { double('Config', site_key: 'test_site_key') } # rubocop:todo RSpec/VerifiedDoubles
 
       before do
-        stub_const('Cloudflare::Turnstile::Rails', double(configuration: config)) # rubocop:todo RSpec/VerifiedDoubles
+        stub_const('Cloudflare::Turnstile::Rails', double(configuration: config))
       end
 
       context 'with valid captcha' do # rubocop:todo RSpec/NestedGroups
