@@ -71,7 +71,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   # Fuubar for fancy test progress bar
   gem 'fuubar'
-  gem 'i18n-tasks', '~> 1.1.0'
+  gem 'i18n-tasks', '~> 1.1.2'
   # Pry for a powerful shell alternative to IRB
   gem 'pry'
   # RuboCop for static code analysis
