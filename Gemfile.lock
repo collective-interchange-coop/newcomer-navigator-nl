@@ -194,7 +194,7 @@ GEM
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
       rouge (>= 1.0.0)
-    bigdecimal (3.3.1)
+    bigdecimal (4.0.1)
     bindex (0.8.1)
     binding_of_caller (1.0.1)
       debug_inspector (>= 1.2.0)
@@ -223,7 +223,7 @@ GEM
       launchy
     childprocess (5.1.0)
       logger (~> 1.5)
-    cloudflare-turnstile-rails (0.10.0)
+    cloudflare-turnstile-rails (0.10.1)
       rails (>= 5.0)
     coderay (1.1.3)
     coercible (1.0.0)
@@ -379,7 +379,7 @@ GEM
     htmlentities (4.4.2)
     humanize_boolean (0.0.2)
       i18n
-    i18n (1.14.7)
+    i18n (1.14.8)
       concurrent-ruby (~> 1.0)
     i18n-tasks (1.1.2)
       activesupport (>= 4.0.2)
@@ -414,9 +414,9 @@ GEM
       reline (>= 0.4.2)
     jmespath (1.6.2)
     json (2.18.0)
-    json-schema (6.0.0)
+    json-schema (6.1.0)
       addressable (~> 2.8)
-      bigdecimal (~> 3.1)
+      bigdecimal (>= 3.1, < 5)
     jsonapi-resources (0.10.7)
       activerecord (>= 4.1)
       concurrent-ruby
@@ -515,7 +515,7 @@ GEM
       net-smtp
       premailer (~> 1.7, >= 1.7.9)
     prettyprint (0.2.0)
-    prism (1.6.0)
+    prism (1.7.0)
     pry (0.15.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
