@@ -21,6 +21,9 @@ gem 'bcrypt', '~> 3.1.20'
 # Bootsnap for faster boot times
 gem 'bootsnap', '>= 1.7.0', require: false
 
+# Cloudflare Turnstile captcha for bot protection
+gem 'cloudflare-turnstile-rails'
+
 gem 'fog-aws'
 
 gem 'ostruct', '~> 0.6.3'
@@ -42,7 +45,7 @@ gem 'rails', '~> 8.0.2'
 # Redis for ActionCable and background jobs
 gem 'redis', '~> 5.4'
 # Sidekiq for background processing
-gem 'sidekiq', '~> 8.0.8'
+gem 'sidekiq', '~> 8.1.0'
 
 # Error and performance monitoring with Sentry
 gem 'sentry-rails'
@@ -71,7 +74,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   # Fuubar for fancy test progress bar
   gem 'fuubar'
-  gem 'i18n-tasks', '~> 1.0.15'
+  gem 'i18n-tasks', '~> 1.1.2'
   # Pry for a powerful shell alternative to IRB
   gem 'pry'
   # RuboCop for static code analysis

@@ -21,7 +21,9 @@ require 'capybara-screenshot/rspec'
 require 'simplecov'
 require 'coveralls'
 
-Capybara.asset_host = ENV.fetch('APP_HOST', 'http://localhost:3001')
+# NOTE: WebMock is not available in this project, so external HTTP connections are allowed
+
+Capybara.asset_host = ENV.fetch('APP_HOST', 'http://localhost:3000')
 
 Coveralls.wear!('rails')
 

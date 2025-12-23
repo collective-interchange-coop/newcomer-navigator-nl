@@ -1,20 +1,39 @@
 # frozen_string_literal: true
 
+require 'faker'
+
 module DeviseSessionHelpers
   include FactoryBot::Syntax::Methods
   include Rails.application.routes.url_helpers
   include BetterTogether::Engine.routes.url_helpers
 
-  def configure_host_platform
-    host_platform = create(:better_together_platform, :host, privacy: 'public')
+  def configure_host_platform # rubocop:todo Metrics/MethodLength
+    host_platform = BetterTogether::Platform.find_by(host: true)
+    if host_platform
+      host_platform.update!(privacy: 'public')
+    else
+      host_platform = create(:better_together_platform, :host, privacy: 'public')
+    end
+
     wizard = BetterTogether::Wizard.find_or_create_by(identifier: 'host_setup')
     wizard.mark_completed
+
+    platform_manager = BetterTogether::User.find_by(email: 'manager@example.test')
+
+    unless platform_manager
+      create(
+        :user, :confirmed, :platform_manager,
+        email: 'manager@example.test',
+        password: Faker::Internet.password(min_length: 12, max_length: 20)
+      )
+    end
+
     host_platform
   end
 
   def login_as_platform_manager
     email = 'platform_manager@example.com'
-    password = 'password12345'
+    password = Faker::Internet.password(min_length: 12, max_length: 20)
     user = create(:better_together_user, :confirmed, :platform_manager, email: email, password: password)
     sign_in_user(email, password)
     user
@@ -32,7 +51,10 @@ module DeviseSessionHelpers
     fill_in_registration_form(email, password, person)
     click_button 'Sign Up'
     created_user = BetterTogether::User.find_by(email: email)
-    created_user.confirm
+    return nil unless created_user
+
+    # Only confirm if the user has the confirmable module enabled
+    created_user.confirm if created_user.respond_to?(:confirm)
     created_user
   end
 

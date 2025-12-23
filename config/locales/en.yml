@@ -4,6 +4,36 @@ en:
     communities:
       tabs:
         categories: Categories
+  devise:
+    registrations:
+      new:
+        captcha:
+          aria_label: Complete security verification
+          error:
+            default_message: There was a problem with the security verification. Please
+              try again.
+            expired_error: Security verification has expired. Please complete it again.
+            failed_error: Security verification failed. Please try completing it again.
+            invisible:
+              default_message: There was a problem with the security verification.
+                Please reload the page and try again. If the problem continues, contact
+                support.
+              expired_error: Security verification has expired. Please reload the
+                page and try again. If the problem continues, contact support.
+              failed_error: Security verification failed. Please reload the page and
+                try again. If the problem continues, contact support.
+              network_error: Network connection error occurred during security verification.
+                Please reload the page and try again. If the problem continues, contact
+                support.
+              timeout_error: Security verification timed out. Please reload the page
+                and try again. If the problem continues, contact support.
+            network_error: Network connection error occurred during security verification.
+            timeout_error: Security verification timed out. Please try again.
+            title: Security Verification Error
+          help: Please complete the security verification to continue with your registration.
+          legend: Security Verification
+        captcha_failed: Security verification failed. Please complete the security
+          check and try again.
   globals:
     add_member: Add a new member
     attached_file: File attached
@@ -69,15 +99,6 @@ en:
       title: Edit Partner Details
     index:
       alphabetical_note: 'These are our Partner Organizations (Alphabetical order):'
-      description: 'In the "Partner Organizations" section, you''ll find information
-        about groups that help newcomers and immigrants in Newfoundland and Labrador.
-        These organizations offer many different kinds of help, like finding jobs,
-        going to school, making friends, and getting legal advice. By talking to these
-        groups, newcomers can get help with settling in, finding good jobs, learning
-        new things, and becoming part of their new communities. This group of organizations
-        is here to help you every step of the way.
-
-        '
       new_btn_text: Add Partner Organization
       no_partners_message: There are no partner organizations yet. Why not add one?
       title: Partner Organizations

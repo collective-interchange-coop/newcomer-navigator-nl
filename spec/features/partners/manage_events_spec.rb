@@ -2,18 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.describe 'partner event management', type: :feature do
-  include DeviseSessionHelpers
-
+RSpec.describe 'partner event management', :as_platform_manager, type: :feature do
   let!(:partner) { create(:partner, privacy: 'public') }
 
-  before do
-    configure_host_platform
-  end
-
   scenario 'shows create event button for permitted user and pre-fills host', :aggregate_failures do # rubocop:disable RSpec/ExampleLength
-    login_as_platform_manager
-
     # Visit the partner page after login (since login redirects to settings)
     partner_url = "/#{I18n.locale}/partners/#{partner.to_param}"
     visit partner_url
