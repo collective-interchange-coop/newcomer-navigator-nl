@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: 707db0dc8e378efd827cc8e484aa619efaa1e353
+  revision: aebb3f7810f970ed79892aae5acf4e215fe33e32
   branch: main
   specs:
     better_together (0.8.1)
@@ -373,7 +373,8 @@ GEM
       rake (>= 13)
     groupdate (6.7.0)
       activesupport (>= 7.1)
-    hashie (5.0.0)
+    hashie (5.1.0)
+      logger
     highline (3.1.2)
       reline
     htmlentities (4.4.2)
