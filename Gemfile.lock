@@ -223,7 +223,7 @@ GEM
       launchy
     childprocess (5.1.0)
       logger (~> 1.5)
-    cloudflare-turnstile-rails (0.11.0)
+    cloudflare-turnstile-rails (1.0.0)
       rails (>= 5.0)
     coderay (1.1.3)
     coercible (1.0.0)
@@ -774,7 +774,7 @@ GEM
       tins (~> 1.0)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
-    thor (1.4.0)
+    thor (1.5.0)
     thread (0.2.2)
     thread_safe (0.3.6)
     tilt (2.6.1)
