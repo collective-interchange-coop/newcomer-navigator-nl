@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_12_25_001017) do
+ActiveRecord::Schema[8.0].define(version: 2026_01_07_172926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -547,7 +547,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_25_001017) do
     t.datetime "updated_at", null: false
     t.uuid "creator_id"
     t.string "identifier", limit: 100, null: false
-    t.string "locale", limit: 5, default: "en", null: false
+    t.string "locale", limit: 5, default: "es", null: false
     t.string "privacy", limit: 50, default: "private", null: false
     t.boolean "protected", default: false, null: false
     t.geography "center", limit: {srid: 4326, type: "st_point", geographic: true}
@@ -730,7 +730,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_25_001017) do
     t.datetime "valid_until"
     t.datetime "last_sent"
     t.datetime "accepted_at"
-    t.string "locale", limit: 5, default: "en", null: false
+    t.string "locale", limit: 5, default: "es", null: false
     t.string "token", limit: 64, null: false
     t.string "invitable_type", null: false
     t.uuid "invitable_id", null: false
@@ -740,6 +740,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_25_001017) do
     t.uuid "invitee_id", null: false
     t.string "invitee_email", null: false
     t.uuid "role_id"
+    t.uuid "creator_id"
+    t.index ["creator_id"], name: "by_better_together_invitations_creator"
     t.index ["invitable_id", "status"], name: "invitations_on_invitable_id_and_status"
     t.index ["invitable_type", "invitable_id"], name: "by_invitable"
     t.index ["invitee_email", "invitable_id"], name: "invitations_on_invitee_email_and_invitable_id", unique: true
@@ -1007,6 +1009,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_25_001017) do
     t.string "layout"
     t.string "template"
     t.uuid "sidebar_nav_id"
+    t.uuid "creator_id"
+    t.index ["creator_id"], name: "by_better_together_pages_creator"
     t.index ["identifier"], name: "index_better_together_pages_on_identifier", unique: true
     t.index ["privacy"], name: "by_page_privacy"
     t.index ["published_at"], name: "by_page_publication_date"
@@ -1018,9 +1022,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_25_001017) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "identifier", limit: 100, null: false
+    t.string "privacy", limit: 50, default: "private", null: false
     t.uuid "community_id", null: false
     t.jsonb "preferences", default: {}, null: false
-    t.string "privacy", limit: 50, default: "private", null: false
     t.jsonb "notification_preferences", default: {}, null: false
     t.index ["community_id"], name: "by_person_community"
     t.index ["identifier"], name: "index_better_together_people_on_identifier", unique: true
@@ -1068,6 +1072,29 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_25_001017) do
     t.index ["member_id"], name: "person_community_membership_by_member"
     t.index ["role_id"], name: "person_community_membership_by_role"
     t.index ["status"], name: "index_better_together_person_community_memberships_on_status"
+  end
+
+  create_table "better_together_person_platform_integrations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "provider", limit: 50, default: "", null: false
+    t.string "uid", limit: 50, default: "", null: false
+    t.string "name"
+    t.string "handle"
+    t.string "profile_url"
+    t.string "image_url"
+    t.string "access_token"
+    t.string "access_token_secret"
+    t.string "refresh_token"
+    t.datetime "expires_at"
+    t.jsonb "auth"
+    t.uuid "person_id"
+    t.uuid "platform_id"
+    t.uuid "user_id"
+    t.index ["person_id"], name: "bt_person_platform_conections_by_person"
+    t.index ["platform_id"], name: "bt_person_platform_conections_by_platform"
+    t.index ["user_id"], name: "bt_person_platform_conections_by_user"
   end
 
   create_table "better_together_person_platform_memberships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -1166,8 +1193,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_25_001017) do
     t.string "time_zone", null: false
     t.jsonb "settings", default: {}, null: false
     t.uuid "creator_id"
+    t.boolean "external", default: false, null: false
     t.index ["community_id"], name: "by_platform_community"
     t.index ["creator_id"], name: "by_better_together_platforms_creator"
+    t.index ["external"], name: "index_better_together_platforms_on_external"
     t.index ["host"], name: "index_better_together_platforms_on_host", unique: true, where: "(host IS TRUE)"
     t.index ["identifier"], name: "index_better_together_platforms_on_identifier", unique: true
     t.index ["privacy"], name: "by_platform_privacy"
@@ -1287,9 +1316,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_25_001017) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
+    t.string "type"
     t.index ["confirmation_token"], name: "index_better_together_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_better_together_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_better_together_users_on_reset_password_token", unique: true
+    t.index ["type"], name: "index_better_together_users_on_type"
     t.index ["unlock_token"], name: "index_better_together_users_on_unlock_token", unique: true
   end
 
@@ -1535,6 +1566,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_25_001017) do
   add_foreign_key "better_together_infrastructure_rooms", "better_together_communities", column: "community_id"
   add_foreign_key "better_together_infrastructure_rooms", "better_together_infrastructure_floors", column: "floor_id"
   add_foreign_key "better_together_infrastructure_rooms", "better_together_people", column: "creator_id"
+  add_foreign_key "better_together_invitations", "better_together_people", column: "creator_id"
   add_foreign_key "better_together_invitations", "better_together_roles", column: "role_id"
   add_foreign_key "better_together_joatu_agreements", "better_together_joatu_offers", column: "offer_id"
   add_foreign_key "better_together_joatu_agreements", "better_together_joatu_requests", column: "request_id"
@@ -1550,6 +1582,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_25_001017) do
   add_foreign_key "better_together_navigation_items", "better_together_navigation_areas", column: "navigation_area_id"
   add_foreign_key "better_together_navigation_items", "better_together_navigation_items", column: "parent_id"
   add_foreign_key "better_together_pages", "better_together_navigation_areas", column: "sidebar_nav_id"
+  add_foreign_key "better_together_pages", "better_together_people", column: "creator_id"
   add_foreign_key "better_together_people", "better_together_communities", column: "community_id"
   add_foreign_key "better_together_person_blocks", "better_together_people", column: "blocked_id"
   add_foreign_key "better_together_person_blocks", "better_together_people", column: "blocker_id"
@@ -1559,6 +1592,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_25_001017) do
   add_foreign_key "better_together_person_community_memberships", "better_together_communities", column: "joinable_id"
   add_foreign_key "better_together_person_community_memberships", "better_together_people", column: "member_id"
   add_foreign_key "better_together_person_community_memberships", "better_together_roles", column: "role_id"
+  add_foreign_key "better_together_person_platform_integrations", "better_together_people", column: "person_id"
+  add_foreign_key "better_together_person_platform_integrations", "better_together_platforms", column: "platform_id"
+  add_foreign_key "better_together_person_platform_integrations", "better_together_users", column: "user_id"
   add_foreign_key "better_together_person_platform_memberships", "better_together_people", column: "member_id"
   add_foreign_key "better_together_person_platform_memberships", "better_together_platforms", column: "joinable_id"
   add_foreign_key "better_together_person_platform_memberships", "better_together_roles", column: "role_id"
