@@ -25,13 +25,18 @@ RSpec.describe 'partner event management', :as_platform_manager, type: :feature 
       'host_type' => [partner.class.name]
     )
 
-    # Check for pre-filled hidden host fields based on actual HTML structure
-    expect(page).to have_css(
-      "input[type='hidden'][name='event[event_hosts_attributes][0][host_id]'][value='#{partner.id}']", visible: false
-    )
-    expect(page).to have_css(
-      "input[type='hidden'][name='event[event_hosts_attributes][0][host_type]'][value='#{partner.class.name}']", visible: false # rubocop:disable Layout/LineLength
-    )
+    # Verify the partner is pre-filled as an event host
+    # The EventHost object is new (data-new-record="true") but has the host already attached
+    # Note: host_type is stored as the base STI class for polymorphic associations
+    within('.nested-fields[data-better-together--event-hosts-target="hostField"]') do
+      expect(page).to have_css("input[type='hidden'][name*='[host_id]'][value='#{partner.id}']", visible: false)
+      expect(page).to have_css(
+        "input[type='hidden'][name*='[host_type]'][value='#{partner.class.base_class.name}']",
+        visible: false
+      )
+      # Should display the partner's name in the existing host display
+      expect(page).to have_content(partner.name)
+    end
   end
 
   scenario 'lists hosted events for the partner' do
