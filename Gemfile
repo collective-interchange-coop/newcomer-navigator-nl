@@ -45,7 +45,7 @@ gem 'rails', '~> 8.0.2'
 # Redis for ActionCable and background jobs
 gem 'redis', '~> 5.4'
 # Pin connection_pool to avoid breaking changes in 3.x
-gem 'connection_pool', '< 3'
+gem 'connection_pool', '< 4'
 # Sidekiq for background processing
 gem 'sidekiq', '~> 8.0.9'
 
