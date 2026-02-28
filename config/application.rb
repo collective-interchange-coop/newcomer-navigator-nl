@@ -47,6 +47,12 @@ module NewToNl
       ActiveStorage::Analyzer::AudioAnalyzer
     ]
 
+    # Keep Active Storage URLs consistent regardless of backing service.
+    # - proxy: always serve via the app (same URL shape for Disk and S3)
+    # - redirect: redirect to the service URL when supported (more efficient for S3)
+    config.active_storage.resolve_model_to_route =
+      ENV.fetch('ACTIVE_STORAGE_ROUTE', 'proxy').to_s == 'redirect' ? :rails_storage_redirect : :rails_storage_proxy
+
     config.action_mailer.default_options = {
       from: ENV.fetch('FROM_ADDRESS', 'Better Together Community <community@bettertogethersolutions.com>'),
       reply_to: ENV.fetch('REPLY_ADDRESS', 'Better Together Community Support <support@bettertogethersolutions.com>')

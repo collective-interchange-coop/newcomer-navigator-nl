@@ -9,7 +9,7 @@ gem 'asset_sync'
 gem 'aws-sdk-s3', require: false
 
 # Use the published version of better_together for production
-gem 'better_together', '~> 0.8.1',
+gem 'better_together', '~> 0.10',
     github: 'better-together-org/community-engine-rails',
     branch: 'main'
 
@@ -31,7 +31,7 @@ gem 'ostruct', '~> 0.6.3'
 # Database adapter for PostgreSQL
 gem 'pg', '>= 0.18', '< 2.0'
 # Puma as the app server
-gem 'puma', '~> 7.1'
+gem 'puma', '~> 7.2'
 
 # Pundit for authorization, custom fork for Better Together
 gem 'pundit-resources', '~> 1.1.6', github: 'better-together-org/pundit-resources'
@@ -40,12 +40,12 @@ gem 'pundit-resources', '~> 1.1.6', github: 'better-together-org/pundit-resource
 gem 'rack-protection'
 # Rack mini profiler for performance profiling
 gem 'rack-mini-profiler'
-gem 'rails', '~> 8.0.2'
+gem 'rails', '~> 8.0.4'
 
 # Redis for ActionCable and background jobs
 gem 'redis', '~> 5.4'
 # Pin connection_pool to avoid breaking changes in 3.x
-gem 'connection_pool', '< 3'
+gem 'connection_pool', '~> 2.5.5'
 # Sidekiq for background processing
 gem 'sidekiq', '~> 8.0.9'
 
