@@ -15,8 +15,9 @@ RSpec.describe 'ResourcesController', :as_platform_manager do
   describe 'GET /:locale/resources/:id/download' do
     let(:document) do
       Resource::Document.new(
-        title: 'Test Document',
+        name: 'Test Document',
         identifier: SecureRandom.uuid,
+        locale: I18n.default_locale.to_s,
         privacy: 'public',
         published_at: 1.day.ago
       ).tap do |r|
