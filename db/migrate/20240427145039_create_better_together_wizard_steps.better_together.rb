@@ -3,7 +3,7 @@
 # This migration comes from better_together (originally 20231115195003)
 # Creates wizard steps table
 class CreateBetterTogetherWizardSteps < ActiveRecord::Migration[7.0]
-  def change # rubocop:todo Metrics/MethodLength
+  def change
     create_bt_table :wizard_steps do |t|
       t.bt_references :wizard, null: false, index: { name: 'by_step_wizard' }
       t.bt_references :wizard_step_definition, null: false, index: { name: 'by_step_wizard_step_definition' }

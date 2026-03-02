@@ -3,7 +3,7 @@
 # This migration comes from better_together (originally 20190223195457)
 # Creates text translations table
 class CreateTextTranslations < ActiveRecord::Migration[7.0]
-  def change # rubocop:todo Metrics/MethodLength
+  def change
     create_table :mobility_text_translations do |t|
       t.string :locale, null: false
       t.string :key,    null: false
