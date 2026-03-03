@@ -5,7 +5,6 @@
 # This migration is intentionally explicit and kept readable rather than split into
 # many tiny helper methods.
 class AddLocaleToActiveStorageAttachments < ActiveRecord::Migration[7.1]
-  # rubocop:disable Metrics/MethodLength
   def up
     # Step 1: add nullable column so deploy can be staged
     add_column :active_storage_attachments, :locale, :string, default: I18n.default_locale.to_s
@@ -33,8 +32,6 @@ class AddLocaleToActiveStorageAttachments < ActiveRecord::Migration[7.1]
                 name: :index_active_storage_attachments_on_record_and_name_and_locale
     end
   end
-
-  # rubocop:enable Metrics/MethodLength
 
   def down
     if index_exists?(:active_storage_attachments, %i[record_type record_id name locale],
