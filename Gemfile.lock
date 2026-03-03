@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/better-together-org/community-engine-rails.git
-  revision: 585107e69c232c50773b1b04293b9a4059d021de
+  revision: ae37edb9ab71cf6db0771087a09d8a54ba02a055
   branch: main
   specs:
     better_together (0.10.0)
@@ -515,7 +515,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0924)
+    mime-types-data (3.2026.0224)
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
