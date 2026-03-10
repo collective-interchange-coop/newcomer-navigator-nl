@@ -3,7 +3,9 @@
 require 'uri'
 
 module NewcomerNavigatorNl
+  # Ensures controller-generated URLs use the canonical NNNL host.
   module CanonicalUrlOptions
+    # Keeps class-level default URL options aligned with the canonical host.
     module ClassMethods
       def default_url_options
         super.merge(NewcomerNavigatorNl::CanonicalUrlOptions.base_url_options)
