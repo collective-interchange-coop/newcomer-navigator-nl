@@ -5,6 +5,7 @@ Rails.application.config.to_prepare do
   require 'better_together/host_dashboard_controller'
   require 'better_together/users/registrations_controller'
 
+  BetterTogether::ApplicationController.prepend(NewcomerNavigatorNl::CanonicalUrlOptions)
   BetterTogether::ApplicationController.include(NewcomerNavigatorNl::ControllerErrorReporting)
   BetterTogether::HostDashboardController.include(NewToNlHostDashboard)
   BetterTogether::Users::RegistrationsController.include(NewToNlCaptchaValidation)
