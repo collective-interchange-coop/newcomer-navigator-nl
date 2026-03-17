@@ -46,6 +46,41 @@ else
       root.include('rich_text_translations', 'text_translations', 'string_translations')
     end
 
+    # BetterTogether::Community: exclude all sensitive PII associations
+    # including contact details, invitations, and user relationship data
+    config.root('BetterTogether::Community') do |root|
+      root.exclude('contact_detail',
+                   'contacts',
+                   'contact_details',
+                   'invitations',
+                   'platform_invitations',
+                   'calendars',
+                   'default_calendar',
+                   'person_community_memberships',
+                   'person_members',
+                   'users')
+    end
+
+    # BetterTogether::Person: exclude all sensitive PII associations
+    # user credentials, contact details, and authentication tokens are never exported
+    config.root('BetterTogether::Person') do |root|
+      root.exclude('conversations',
+                   'created_conversations',
+                   'conversation_participants',
+                   'notifications',
+                   'notification_mentions',
+                   'contact_detail',
+                   'phone_numbers',
+                   'email_addresses',
+                   'social_media_accounts',
+                   'addresses',
+                   'postal_addresses',
+                   'physical_addresses',
+                   'website_links',
+                   'user',
+                   'users')
+    end
+
     config.customize('Mobility::Backends::ActiveRecord::KeyValue::StringTranslation') do |t|
       t['value'] = '[redacted-text]'
     end
