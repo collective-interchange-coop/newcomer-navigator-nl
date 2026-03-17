@@ -3,7 +3,7 @@
 # This migration comes from better_together (originally 20250715200000)
 # Creates join table between agreements and people
 class CreateBetterTogetherAgreementParticipants < ActiveRecord::Migration[7.1]
-  def change # rubocop:todo Metrics/MethodLength
+  def change
     create_bt_table :agreement_participants do |t|
       t.bt_references :agreement, null: false
       t.bt_references :person, null: false

@@ -9,7 +9,7 @@ gem 'asset_sync'
 gem 'aws-sdk-s3', require: false
 
 # Use the published version of better_together for production
-gem 'better_together', '~> 0.8.1',
+gem 'better_together', '~> 0.10',
     github: 'better-together-org/community-engine-rails',
     branch: 'main'
 
@@ -17,7 +17,7 @@ gem 'better_together', '~> 0.8.1',
 # gem 'better_together', path: '/community-engine'
 
 # bcrypt for secure password handling
-gem 'bcrypt', '~> 3.1.20'
+gem 'bcrypt', '~> 3.1.21'
 # Bootsnap for faster boot times
 gem 'bootsnap', '>= 1.7.0', require: false
 
@@ -31,7 +31,7 @@ gem 'ostruct', '~> 0.6.3'
 # Database adapter for PostgreSQL
 gem 'pg', '>= 0.18', '< 2.0'
 # Puma as the app server
-gem 'puma', '~> 7.1'
+gem 'puma', '~> 7.2'
 
 # Pundit for authorization, custom fork for Better Together
 gem 'pundit-resources', '~> 1.1.6', github: 'better-together-org/pundit-resources'
@@ -40,12 +40,14 @@ gem 'pundit-resources', '~> 1.1.6', github: 'better-together-org/pundit-resource
 gem 'rack-protection'
 # Rack mini profiler for performance profiling
 gem 'rack-mini-profiler'
-gem 'rails', '~> 8.0.2'
+gem 'rails', '~> 8.0.4'
 
 # Redis for ActionCable and background jobs
 gem 'redis', '~> 5.4'
-# Sidekiq for background processing
-gem 'sidekiq', '~> 8.1.0'
+
+gem 'sidekiq', '~> 8.1.1'
+
+gem 'connection_pool', '~> 3.0.2'
 
 # Error and performance monitoring with Sentry
 gem 'sentry-rails'
@@ -91,7 +93,7 @@ group :development do
   # Help with managing translation database
   gem 'easy_translate'
   # Listen for file system changes
-  gem 'listen', '>= 3.0.5', '< 3.10'
+  gem 'listen', '>= 3.0.5', '< 3.11'
   # Readline implementation for Ruby
   gem 'rb-readline'
   # Spring for fast Rails actions via pre-loading

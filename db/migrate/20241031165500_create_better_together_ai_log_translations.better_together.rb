@@ -2,7 +2,7 @@
 
 # This migration comes from better_together (originally 20241031163036)
 class CreateBetterTogetherAiLogTranslations < ActiveRecord::Migration[7.1]
-  def change # rubocop:todo Metrics/MethodLength
+  def change
     create_bt_table :ai_log_translations do |t|
       t.text :request, null: false
       t.text :response

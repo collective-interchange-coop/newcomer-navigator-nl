@@ -7,12 +7,15 @@ class JourneyMapsController < ApplicationController # rubocop:todo Style/Documen
   def show # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
     @pages = BetterTogether::Page.with_journey_stages(@journey_stage&.id)
                                  .with_topics(@topic&.id)
+                                 .includes(:string_translations)
 
     @resources = Resource.with_journey_stages(@journey_stage&.id)
                          .with_topics(@topic&.id)
+                         .includes(:string_translations, { file_attachment: :blob })
 
     @partners = Partner.with_journey_stages(@journey_stage&.id)
                        .with_topics(@topic&.id)
+                       .includes(:string_translations)
 
     respond_to do |format|
       format.html

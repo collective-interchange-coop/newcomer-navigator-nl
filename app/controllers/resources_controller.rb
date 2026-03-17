@@ -73,10 +73,10 @@ class ResourcesController < BetterTogether::FriendlyResourceController # rubocop
         )
       end
 
-      send_data @resource.file.download,
-                filename: @resource.file.filename.to_s,
-                type: @resource.file.content_type,
-                disposition: 'attachment'
+      redirect_to @resource.file.url(
+        expires_in: 5.minutes,
+        disposition: "attachment; filename=\"#{@resource.file.filename}\""
+      ), allow_other_host: true
     else
       redirect_to @resource, alert: t('resources.download_failed')
     end
@@ -119,5 +119,9 @@ class ResourcesController < BetterTogether::FriendlyResourceController # rubocop
     else
       Resource
     end
+  end
+
+  def resource_collection
+    super.with_translations
   end
 end

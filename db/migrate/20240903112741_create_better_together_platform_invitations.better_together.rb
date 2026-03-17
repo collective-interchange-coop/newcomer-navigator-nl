@@ -3,7 +3,7 @@
 # This migration comes from better_together (originally 20240826143510)
 # Creates the PlatformInvitations database table
 class CreateBetterTogetherPlatformInvitations < ActiveRecord::Migration[7.1]
-  def change # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
+  def change # rubocop:todo Metrics/AbcSize
     create_bt_table :platform_invitations, id: :uuid do |t| # rubocop:todo Metrics/BlockLength
       # Reference to the better_together_roles table for the role
       t.bt_references :community_role,

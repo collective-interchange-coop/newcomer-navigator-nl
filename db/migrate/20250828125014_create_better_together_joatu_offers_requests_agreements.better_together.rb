@@ -3,7 +3,6 @@
 # This migration comes from better_together (originally 20250704000000)
 # Creates tables for BetterTogether::Joatu models
 class CreateBetterTogetherJoatuOffersRequestsAgreements < ActiveRecord::Migration[7.1]
-  # rubocop:disable Metrics/MethodLength
   def change
     create_bt_table :joatu_offers do |t|
       t.bt_creator
@@ -25,5 +24,4 @@ class CreateBetterTogetherJoatuOffersRequestsAgreements < ActiveRecord::Migratio
       t.string :status, null: false, default: 'pending'
     end
   end
-  # rubocop:enable Metrics/MethodLength
 end

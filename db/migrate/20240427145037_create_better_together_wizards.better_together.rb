@@ -3,7 +3,7 @@
 # This migration comes from better_together (originally 20231115185720)
 # Creates wizards table
 class CreateBetterTogetherWizards < ActiveRecord::Migration[7.0]
-  def change # rubocop:todo Metrics/MethodLength
+  def change
     create_bt_table :wizards do |t|
       t.bt_identifier
       t.bt_protected
