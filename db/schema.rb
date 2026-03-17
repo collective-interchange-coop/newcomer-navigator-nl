@@ -835,7 +835,6 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_17_131031) do
     t.integer "lock_version", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "content"
     t.uuid "sender_id", null: false
     t.uuid "conversation_id", null: false
     t.index ["conversation_id"], name: "index_better_together_messages_on_conversation_id"
@@ -1097,9 +1096,9 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_17_131031) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "identifier", limit: 100, null: false
-    t.string "privacy", limit: 50, default: "private", null: false
     t.uuid "community_id", null: false
     t.jsonb "preferences", default: {}, null: false
+    t.string "privacy", limit: 50, default: "private", null: false
     t.jsonb "notification_preferences", default: {}, null: false
     t.index ["community_id"], name: "by_person_community"
     t.index ["identifier"], name: "index_better_together_people_on_identifier", unique: true
@@ -1228,7 +1227,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_17_131031) do
     t.uuid "inviter_id", null: false
     t.uuid "platform_role_id"
     t.string "status", limit: 20, null: false
-    t.string "locale", limit: 5, default: "es", null: false
+    t.string "locale", limit: 5, default: "en", null: false
     t.string "token", limit: 64, null: false
     t.datetime "valid_from", null: false
     t.datetime "valid_until"
@@ -1248,7 +1247,6 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_17_131031) do
     t.index ["platform_role_id"], name: "platform_invitations_by_platform_role"
     t.index ["status"], name: "platform_invitations_by_status"
     t.index ["token"], name: "platform_invitations_by_token", unique: true
-    t.index ["type"], name: "platform_invitations_by_type"
     t.index ["valid_from"], name: "platform_invitations_by_valid_from"
     t.index ["valid_until"], name: "platform_invitations_by_valid_until"
   end
@@ -1715,7 +1713,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_17_131031) do
 
   create_table "resources", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "identifier", limit: 100, null: false
-    t.string "locale", limit: 5, default: "es", null: false
+    t.string "locale", limit: 5, default: "en", null: false
     t.string "privacy", limit: 50, default: "private", null: false
     t.string "slug"
     t.string "type", default: "Resource", null: false
