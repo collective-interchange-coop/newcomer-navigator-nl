@@ -3,7 +3,7 @@
 # This migration comes from better_together (originally 20251229000000)
 # Adds posts navigation items to header and host dropdown
 class AddPostsNavigationItems < ActiveRecord::Migration[7.2]
-  def up # rubocop:todo Metrics/MethodLength
+  def up
     puts 'Adding posts navigation items...'
 
     load BetterTogether::Engine.root.join('lib', 'tasks', 'better_together', 'navigation_items.rake')

@@ -3,7 +3,7 @@
 # This migration comes from better_together (originally 20251219191929)
 # Add privacy and permission-based visibility to navigation items
 class AddPrivacyAndPermissionsToNavigationItems < ActiveRecord::Migration[7.2]
-  # rubocop:disable Metrics/AbcSize, Metrics/BlockLength, Metrics/MethodLength
+  # rubocop:disable Metrics/AbcSize, Metrics/BlockLength
   def change
     change_table :better_together_navigation_items do |t|
       # Add privacy column using bt_ helper (defaults to 'private' like all BT models)
@@ -72,5 +72,5 @@ class AddPrivacyAndPermissionsToNavigationItems < ActiveRecord::Migration[7.2]
       end
     end
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/BlockLength, Metrics/MethodLength
+  # rubocop:enable Metrics/AbcSize, Metrics/BlockLength
 end

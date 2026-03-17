@@ -1,5 +1,5 @@
 
-<%# locals: (person:, journey_items: person.journey_items.includes(:journeyable))%>
+<%# locals: (person:, journey_items: person.journey_items.includes(:journey_stage, journeyable: [:string_translations, { file_attachment: :blob }]))%>
 
 <section id="journey" class="row collapse" aria-labelledby="journey-tab" aria-expanded="true">
   <div class="col-md-12">

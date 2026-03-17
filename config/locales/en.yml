@@ -92,7 +92,7 @@ en:
   journeys:
     title: My Personal Journey
   partner:
-    updated: Partner was sucessfully updated
+    updated: Partner was successfully updated
   partners:
     confirm_delete: Are you sure you want to remove this partner?
     edit:

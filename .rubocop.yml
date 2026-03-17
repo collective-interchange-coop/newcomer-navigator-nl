@@ -7,6 +7,10 @@ AllCops:
     - 'db/schema.rb'
     - 'vendor/**/*'
   NewCops: enable
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*'
+
 Style/StringLiterals:
   Exclude:
     - 'db/migrate/*'

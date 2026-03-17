@@ -3,7 +3,7 @@
 # This migration comes from better_together (originally 20240901173824)
 # This migration comes from noticed (originally 20231215190233)
 class CreateNoticedTables < ActiveRecord::Migration[6.1]
-  def change # rubocop:todo Metrics/MethodLength
+  def change
     primary_key_type, foreign_key_type = primary_and_foreign_key_types
     create_table :noticed_events, id: primary_key_type do |t|
       t.string :type

@@ -3,7 +3,7 @@
 # This migration comes from better_together (originally 20190425130144)
 # Creates posts table
 class CreateBetterTogetherPosts < ActiveRecord::Migration[7.0]
-  def change # rubocop:todo Metrics/MethodLength
+  def change
     return if table_exists? :better_together_posts
 
     create_bt_table :posts do |t|
