@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-FakeRequest = Struct.new(:fullpath, :original_url, keyword_init: true)
-FakePlatform = Struct.new(:name, keyword_init: true)
+FakeRequest = Struct.new(:fullpath, :original_url)
+FakePlatform = Struct.new(:name)
 RSpec.describe BetterTogether::ApplicationHelper, type: :helper do
   around do |example|
     original_base_url = BetterTogether.base_url

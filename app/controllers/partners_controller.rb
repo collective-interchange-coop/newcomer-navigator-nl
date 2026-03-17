@@ -163,18 +163,22 @@ class PartnersController < BetterTogether::CommunitiesController # rubocop:todo 
                  map: [:spaces],
                  # Preload building connections and buildings
                  building_connections: [
-                   building: [
-                     :string_translations, :text_translations,
-                     { primary_address: [] }
-                   ]
+                   {
+                     building: [
+                       :string_translations, :text_translations,
+                       { primary_address: [] }
+                     ]
+                   }
                  ],
                  # Preload memberships with member details
                  person_community_memberships: [
-                   member: [
-                     :string_translations,
-                     { profile_image_attachment: :blob }
-                   ],
-                   role: %i[string_translations text_translations]
+                   {
+                     member: [
+                       :string_translations,
+                       { profile_image_attachment: :blob }
+                     ],
+                     role: %i[string_translations text_translations]
+                   }
                  ],
                  # Preload hosted events
                  hosted_events: [:string_translations]
