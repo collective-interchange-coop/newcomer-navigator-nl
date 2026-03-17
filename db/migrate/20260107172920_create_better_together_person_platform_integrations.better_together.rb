@@ -5,7 +5,7 @@
 # Stores encrypted OAuth credentials and profile information from external platforms.
 # Supports multiple OAuth providers with token refresh capabilities.
 class CreateBetterTogetherPersonPlatformIntegrations < ActiveRecord::Migration[7.1]
-  def change # rubocop:todo Metrics/MethodLength
+  def change
     create_bt_table :person_platform_integrations do |t|
       t.string :provider, limit: 50, null: false, default: ''
       t.string :uid, limit: 50, null: false, default: ''

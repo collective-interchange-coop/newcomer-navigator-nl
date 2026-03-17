@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-# config/initializers/better_together_helpers.rb
-
 Rails.application.config.to_prepare do
+  BetterTogether::ApplicationHelper.prepend(NewcomerNavigatorNl::BetterTogetherApplicationHelperOverride)
+  BetterTogether::ShareButtonsHelper.prepend(NewcomerNavigatorNl::BetterTogetherShareButtonsHelperOverride)
+
   # Define the path to the host application's helpers
   helper_files = Dir[Rails.root.join('app', 'helpers', '**', '*_helper.rb')]
 

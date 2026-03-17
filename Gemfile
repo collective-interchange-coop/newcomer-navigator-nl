@@ -9,7 +9,7 @@ gem 'asset_sync'
 gem 'aws-sdk-s3', require: false
 
 # Use the published version of better_together for production
-gem 'better_together', '~> 0.8.1',
+gem 'better_together', '~> 0.10',
     github: 'better-together-org/community-engine-rails',
     branch: 'main'
 
@@ -40,12 +40,12 @@ gem 'pundit-resources', '~> 1.1.6', github: 'better-together-org/pundit-resource
 gem 'rack-protection'
 # Rack mini profiler for performance profiling
 gem 'rack-mini-profiler'
-gem 'rails', '~> 8.0.2'
+gem 'rails', '~> 8.0.4'
 
 # Redis for ActionCable and background jobs
 gem 'redis', '~> 5.4'
 # Pin connection_pool to avoid breaking changes in 3.x
-gem 'connection_pool', '< 3'
+gem 'connection_pool', '~> 2.5.5'
 # Sidekiq for background processing
 gem 'sidekiq', '~> 8.0.9'
 
@@ -90,7 +90,7 @@ group :development do
   # Help with managing translation database
   gem 'easy_translate'
   # Listen for file system changes
-  gem 'listen', '>= 3.0.5', '< 3.10'
+  gem 'listen', '>= 3.0.5', '< 3.11'
   # Readline implementation for Ruby
   gem 'rb-readline'
   # Spring for fast Rails actions via pre-loading

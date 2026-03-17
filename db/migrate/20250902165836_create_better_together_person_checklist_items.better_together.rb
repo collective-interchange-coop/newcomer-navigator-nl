@@ -2,7 +2,7 @@
 
 # This migration comes from better_together (originally 20250830091000)
 class CreateBetterTogetherPersonChecklistItems < ActiveRecord::Migration[7.0]
-  def change # rubocop:todo Metrics/MethodLength
+  def change
     create_bt_table :person_checklist_items do |t|
       t.bt_references :person, null: false, target_table: :better_together_people,
                                index: { name: 'bt_person_checklist_items_on_person' }

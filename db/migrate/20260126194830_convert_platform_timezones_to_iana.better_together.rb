@@ -153,7 +153,7 @@ class ConvertPlatformTimezonesToIana < ActiveRecord::Migration[7.2] # rubocop:di
     'Samoa' => 'Pacific/Apia'
   }.freeze
 
-  def up # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
+  def up # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     say 'Converting Platform timezones from Rails names to IANA identifiers...'
 
     # Track conversions for reporting

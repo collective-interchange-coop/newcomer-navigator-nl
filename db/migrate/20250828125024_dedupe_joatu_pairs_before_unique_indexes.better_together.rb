@@ -4,7 +4,7 @@
 class DedupeJoatuPairsBeforeUniqueIndexes < ActiveRecord::Migration[7.1]
   disable_ddl_transaction!
 
-  def up # rubocop:todo Metrics/MethodLength
+  def up
     # Remove duplicate agreements keeping the earliest row per offer/request pair
     say_with_time 'Deduping better_together_joatu_agreements' do
       execute <<~SQL
