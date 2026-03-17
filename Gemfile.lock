@@ -79,6 +79,22 @@ GIT
       activerecord (>= 4.0, < 8.1)
       virtus
 
+PATH
+  remote: vendor/gems/better_together_evil_seed
+  specs:
+    better_together_evil_seed (0.1.0)
+      better_together (>= 0.10)
+      evil-seed (>= 0.7.0)
+      railties (>= 7.2, < 9.0)
+
+PATH
+  remote: vendor/gems/better_together_turnstile
+  specs:
+    better_together_turnstile (0.1.0)
+      better_together (>= 0.10)
+      cloudflare-turnstile-rails
+      railties (>= 7.2, < 9.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -934,6 +950,8 @@ DEPENDENCIES
   bcrypt (~> 3.1.21)
   better_errors
   better_together (~> 0.10)!
+  better_together_evil_seed!
+  better_together_turnstile!
   binding_of_caller
   bootsnap (>= 1.7.0)
   brakeman
@@ -941,13 +959,11 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   capybara-screenshot
-  cloudflare-turnstile-rails
   connection_pool (~> 3.0.2)
   coveralls_reborn
   database_cleaner
   database_cleaner-active_record
   easy_translate
-  evil-seed
   factory_bot_rails
   faker
   fog-aws
