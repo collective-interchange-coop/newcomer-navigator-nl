@@ -22,10 +22,10 @@ gem 'bcrypt', '~> 3.1.21'
 gem 'bootsnap', '>= 1.7.0', require: false
 
 # Cloudflare Turnstile captcha for bot protection
-gem 'better_together_turnstile', path: 'vendor/gems/better_together_turnstile'
+gem 'better_together-turnstile', path: 'vendor/gems/better_together-turnstile'
 
 # Reusable Evil Seed export capability for Better Together host apps
-gem 'better_together_evil_seed', path: 'vendor/gems/better_together_evil_seed'
+gem 'better_together-evil_seed', path: 'vendor/gems/better_together-evil_seed'
 
 gem 'fog-aws'
 

@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 begin
-  require 'better_together_turnstile'
+  require 'better_together/turnstile'
 rescue LoadError
-  # noop: host app can still boot even if turnstile extraction gem is not installed
+  # noop: host app can still boot even if better_together-turnstile gem is not installed
 end
 
 module NewToNlCaptchaValidation
   extend ActiveSupport::Concern
 
-  if defined?(BetterTogetherTurnstile::CaptchaValidation)
-    include BetterTogetherTurnstile::CaptchaValidation
+  if defined?(BetterTogether::Turnstile::CaptchaValidation)
+    include BetterTogether::Turnstile::CaptchaValidation
   end
 end

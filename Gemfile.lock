@@ -80,17 +80,17 @@ GIT
       virtus
 
 PATH
-  remote: vendor/gems/better_together_evil_seed
+  remote: vendor/gems/better_together-evil_seed
   specs:
-    better_together_evil_seed (0.1.0)
+    better_together-evil_seed (0.1.0)
       better_together (>= 0.10)
       evil-seed (>= 0.7.0)
       railties (>= 7.2, < 9.0)
 
 PATH
-  remote: vendor/gems/better_together_turnstile
+  remote: vendor/gems/better_together-turnstile
   specs:
-    better_together_turnstile (0.1.0)
+    better_together-turnstile (0.1.0)
       better_together (>= 0.10)
       cloudflare-turnstile-rails
       railties (>= 7.2, < 9.0)
@@ -950,8 +950,8 @@ DEPENDENCIES
   bcrypt (~> 3.1.21)
   better_errors
   better_together (~> 0.10)!
-  better_together_evil_seed!
-  better_together_turnstile!
+  better_together-evil_seed!
+  better_together-turnstile!
   binding_of_caller
   bootsnap (>= 1.7.0)
   brakeman

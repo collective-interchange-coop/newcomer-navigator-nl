@@ -183,7 +183,7 @@ RSpec.describe 'Sanitized Export Configuration' do
 
   describe 'Evil Seed Gem Configuration File' do
     let(:config_file) do
-      File.expand_path('../../vendor/gems/better_together_evil_seed/lib/better_together_evil_seed/evil_seed_configuration.rb', __dir__)
+      File.expand_path('../../vendor/gems/better_together-evil_seed/lib/better_together/evil_seed/evil_seed_configuration.rb', __dir__)
     end
     let(:config_content) { File.read(config_file) if File.exist?(config_file) }
 
@@ -235,7 +235,7 @@ RSpec.describe 'Sanitized Export Configuration' do
   end
 
   describe 'Prod Export Task Gem' do
-    let(:task_file) { File.expand_path('../../vendor/gems/better_together_evil_seed/lib/tasks/better_together_evil_seed_tasks.rake', __dir__) }
+    let(:task_file) { File.expand_path('../../vendor/gems/better_together-evil_seed/lib/tasks/evil_seed_tasks.rake', __dir__) }
     let(:task_content) { File.read(task_file) if File.exist?(task_file) }
 
     it 'exists in the gem tasks directory' do
@@ -252,27 +252,27 @@ RSpec.describe 'Sanitized Export Configuration' do
     end
 
     it 'includes approval gate enforcement' do
-      service_file = File.expand_path('../../vendor/gems/better_together_evil_seed/lib/better_together_evil_seed/sanitized_export.rb', __dir__)
+      service_file = File.expand_path('../../vendor/gems/better_together-evil_seed/lib/better_together/evil_seed/sanitized_export.rb', __dir__)
       service_content = File.read(service_file)
       expect(service_content).to include('enforce_export_approval!')
       expect(service_content).to include('ALLOW_SANITIZED_EXPORT')
     end
 
     it 'includes production source approval enforcement' do
-      service_file = File.expand_path('../../vendor/gems/better_together_evil_seed/lib/better_together_evil_seed/sanitized_export.rb', __dir__)
+      service_file = File.expand_path('../../vendor/gems/better_together-evil_seed/lib/better_together/evil_seed/sanitized_export.rb', __dir__)
       service_content = File.read(service_file)
       expect(service_content).to include('enforce_production_source_approval!')
       expect(service_content).to include('ALLOW_PRODUCTION_DB_SOURCE')
     end
 
     it 'includes read-only transaction guard' do
-      service_file = File.expand_path('../../vendor/gems/better_together_evil_seed/lib/better_together_evil_seed/sanitized_export.rb', __dir__)
+      service_file = File.expand_path('../../vendor/gems/better_together-evil_seed/lib/better_together/evil_seed/sanitized_export.rb', __dir__)
       service_content = File.read(service_file)
       expect(service_content).to include('SET default_transaction_read_only = on')
     end
 
     it 'includes leak scanning' do
-      service_file = File.expand_path('../../vendor/gems/better_together_evil_seed/lib/better_together_evil_seed/sanitized_export.rb', __dir__)
+      service_file = File.expand_path('../../vendor/gems/better_together-evil_seed/lib/better_together/evil_seed/sanitized_export.rb', __dir__)
       service_content = File.read(service_file)
       expect(service_content).to include('scan_for_sensitive_patterns')
       expect(service_content).to include('email:')
@@ -282,14 +282,14 @@ RSpec.describe 'Sanitized Export Configuration' do
     end
 
     it 'includes output path handling' do
-      service_file = File.expand_path('../../vendor/gems/better_together_evil_seed/lib/better_together_evil_seed/sanitized_export.rb', __dir__)
+      service_file = File.expand_path('../../vendor/gems/better_together-evil_seed/lib/better_together/evil_seed/sanitized_export.rb', __dir__)
       service_content = File.read(service_file)
       expect(service_content).to include('SANITIZED_EXPORT_OUTPUT')
       expect(service_content).to include('sanitized_seed.sql')
     end
 
     it 'includes file cleanup on leak detection' do
-      service_file = File.expand_path('../../vendor/gems/better_together_evil_seed/lib/better_together_evil_seed/sanitized_export.rb', __dir__)
+      service_file = File.expand_path('../../vendor/gems/better_together-evil_seed/lib/better_together/evil_seed/sanitized_export.rb', __dir__)
       service_content = File.read(service_file)
       expect(service_content).to include('FileUtils.rm_f(path)')
     end
