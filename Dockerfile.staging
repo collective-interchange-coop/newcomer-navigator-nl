@@ -100,6 +100,11 @@ COPY --from=builder /bt /bt
 RUN rm -rf /bt/tmp/cache /bt/log /bt/spec /bt/test \
   && mkdir -p tmp/pids && chmod -R 755 tmp
 
+# Embed commit SHA for traceability
+ARG GIT_COMMIT=unknown
+LABEL git_commit=$GIT_COMMIT
+RUN echo "$GIT_COMMIT" > /bt/REVISION
+
 EXPOSE 3000
 
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
