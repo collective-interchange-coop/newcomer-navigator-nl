@@ -91,6 +91,8 @@ en:
     title: In any stage of your journey, we can guide you
   journeys:
     title: My Personal Journey
+  locales:
+    uk: Ukrainian
   partner:
     updated: Partner was successfully updated
   partners:
