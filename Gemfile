@@ -22,7 +22,10 @@ gem 'bcrypt', '~> 3.1.21'
 gem 'bootsnap', '>= 1.7.0', require: false
 
 # Cloudflare Turnstile captcha for bot protection
-gem 'cloudflare-turnstile-rails'
+gem 'better_together-turnstile', path: 'vendor/gems/better_together-turnstile'
+
+# Reusable Evil Seed export capability for Better Together host apps
+gem 'better_together-evil_seed', path: 'vendor/gems/better_together-evil_seed'
 
 gem 'fog-aws'
 
@@ -67,6 +70,9 @@ group :development, :test do
   gem 'binding_of_caller'
   # Debugger tool
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+
+  # EvilSeed for seeding databases with sample data
+  # Provided through better_together_evil_seed gem
   # Faker for generating fake data
   gem 'faker'
   # FactoryBot for setting up test data
