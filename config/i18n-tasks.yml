@@ -1,29 +1,50 @@
 # config/i18n-tasks.yml
+# nnnl.ca host app — most translations are provided by the better_together CE gem at runtime.
+# - data.read/write scoped to app's own locale files only (avoids check-normalized false
+#   positives on read-only gem locale paths)
+# - ignore_missing covers CE-provided namespaces (better_together.*, devise.*, etc.)
+# - ignore_unused: '*' — CE views use these keys; static scan can't detect them
 base_locale: en
+
 locales:
   - en
   - es
   - fr
-# Paths to scan for translations
-search:
-  # Paths in the dummy app
+  - uk
 
-  # relative_roots:
-  #   - app/controllers/better_together
-  #   - app/helpers/better_together
-  #   - app/mailers/better_together
-  #   - app/presenters/better_together
-  #   - app/views/better_together
+data:
+  read:
+    - 'config/locales/%{locale}.yml'
+    - 'config/locales/**/%{locale}.yml'
+  write:
+    - 'config/locales/%{locale}.yml'
+
+search:
   paths:
     - app/views
+  exclude:
+    - 'test/**'
+    - 'spec/**'
+    - 'tmp/**'
+    - 'log/**'
 
 translation:
   backend: openai
   openai_model: gpt-4o-mini-2024-07-18
 
-# Exclude test and unnecessary paths
-exclude:
-  - 'test/**'
-  - 'spec/**'
-  - 'tmp/**'
-  - 'log/**'
+ignore_missing:
+  - '{translation_en,translation_es,translation_fr,translation_uk}.*'  # Mobility virtual locales
+  - 'better_together.*'
+  - 'devise.*'
+  - 'doorkeeper.*'
+  - 'activerecord.*'
+  - 'errors.*'
+  - 'helpers.*'
+  - 'date.*'
+  - 'datetime.*'
+  - 'number.*'
+  - 'support.*'
+  - 'time.*'
+
+ignore_unused:
+  - '*'
