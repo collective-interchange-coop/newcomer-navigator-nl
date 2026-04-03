@@ -45,7 +45,7 @@ gem 'rails', '~> 8.0.4'
 # Redis for ActionCable and background jobs
 gem 'redis', '~> 5.4'
 
-gem 'sidekiq', '~> 8.1.1'
+gem 'sidekiq', '~> 8.1.2'
 
 gem 'connection_pool', '~> 3.0.2'
 
