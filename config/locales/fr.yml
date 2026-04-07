@@ -96,6 +96,8 @@ fr:
     title: À chaque étape de votre parcours, nous pouvons vous guider
   journeys:
     title: Mon parcours
+  locales:
+    uk: Ukrainien
   partner:
     updated: L'organisation partenaire a été mise à jour avec succès
   partners:

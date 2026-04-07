@@ -6,11 +6,24 @@ AllCops:
     - 'node_modules/**/*'
     - 'db/schema.rb'
     - 'vendor/**/*'
+    - 'worktrees/**/*'
+    - 'tmp/**/*'
+    - 'db/migrate/*.better_together.rb'
   NewCops: enable
+Style/StringLiterals:
+  Exclude:
+    - 'db/migrate/*'
+Style/Documentation:
+  Exclude:
+    - 'db/migrate/*'
+    - 'spec/**/*'
+    - 'test/**/*'
 Metrics/MethodLength:
   Exclude:
     - 'db/migrate/*'
-
-Style/StringLiterals:
+Metrics/AbcSize:
+  Exclude:
+    - 'db/migrate/*'
+Layout/LineLength:
   Exclude:
     - 'db/migrate/*'

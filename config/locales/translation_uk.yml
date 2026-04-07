@@ -1,0 +1,31 @@
+uk:
+  activerecord:
+    models:
+      journey_map: Карта подорожі
+      partner: Партнер
+      resource: Ресурс
+      resource/document: Документ
+      resource/link: Посилання
+
+    attributes:
+      partner:
+        creator: :activerecord.models.creator
+        host: Господар
+        identifier: Ідентифікатор
+        lock_version: Версія блокування
+        person_community_memberships: Членство у спільноті
+        person_members: Члени спільноти
+        person_roles: Ролі особи
+        privacy: Конфіденційність
+        protected: Захищений
+        slug: Слаг
+        slugs: Слаги
+        string_translations: Рядкові переклади
+        text_translations: Текстові переклади
+      resource:
+        type: Тип
+        external_url: Зовнішній URL
+        published_at: Опубліковано
+        author: Автор
+        privacy: Конфіденційність
+        language: Мова
