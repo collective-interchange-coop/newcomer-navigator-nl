@@ -249,7 +249,7 @@ GEM
       thor (~> 1.2)
       tins (~> 1.32)
     crass (1.0.6)
-    css_parser (2.0.0)
+    css_parser (2.1.0)
       addressable
     csv (3.3.5)
     dartsass-sprockets (3.2.1)
